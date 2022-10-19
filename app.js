@@ -32,6 +32,18 @@ class Pet {
     console.log(`${this.name} ate a berry`)
     return this;
   }
+  heal(){
+    this.health = 100;
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`${this.name} visited a pokéstop`)
+    return this;
+  }
+  sleep(){
+    this.sleep =100;
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`${this.name} is sleeping`)
+    return this;
+  }
   checkStats(){
     return console.table({
       name: this.name,
