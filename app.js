@@ -11,6 +11,49 @@ class Pet {
     this.hunger = 100;
     this.sleep = 100;
     this.happiness = 100;
+    this.age = 0;
+  }
+  playGame(){
+    this.health -=5;
+    this.hunger -=5;
+    this.sleep -=5;
+    this.happiness +=5;
+    // console logs for clarity
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`played a game`)
+    return this;
+  }
+  eatBerry(){
+    this.health +=5;
+    this.hunger +=10;
+    this.sleep -=5;
+    this.happiness +=5;
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`${this.name} ate a berry`)
+    return this;
+  }
+  heal(){
+    this.health = 100;
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`${this.name} visited a pokéstop`)
+    return this;
+  }
+  sleep(){
+    this.sleep =100;
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`${this.name} is sleeping`)
+    return this;
+  }
+  checkStats(){
+    return console.table({
+      name: this.name,
+      mood: this.mood,
+      health: this.health,
+      hunger: this.hunger,
+      sleep: this.sleep,
+      happiness: this.happiness,
+      age: this.age
+    });
   }
 }
 class Charmander extends Pet {
