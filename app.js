@@ -62,39 +62,40 @@ function createPropertyBars(health, hunger, sleep, happiness){
 	// Create array which hold property names
 	let propertiesArray = ["Health", "Hunger", "Sleep", "Happiness"]
 
-	// Create div to hold property bar
-	const propertiesDiv = document.createElement('div')
+		for (let i=0 ; i<propertiesArray.length ; i++ ){
 
-	// Create paragraph tag to hold property name => Append to the new progress div
-	const newPara = document.createElement('p')
-	propertiesDiv.appendChild(newPara.appendChild(document.createTextNode(`${propertiesArray[0]}`)))
+		// Create div to hold property bar
+		const propertiesDiv = document.createElement('div')
 
-	// Create the div to hold the property bar and paratag
-	const barBoxDiv = document.createElement('div')
-	barBoxDiv.classList.add("barBox-div");
-	propertiesDiv.appendChild(barBoxDiv)
+		// Create paragraph tag to hold property name => Append to the new progress div
+		const newPara = document.createElement('p')
+		propertiesDiv.appendChild(newPara.appendChild(document.createTextNode(`${propertiesArray[i]}`)))
 
-	// Create the div to hold the actual bar
-	const barDiv = document.createElement('div')
-	barDiv.classList.add("bar-div");
-	barDiv.setAttribute('id',`properties-bar-1`);
-	barBoxDiv.appendChild(barDiv)
+		// Create the div to hold the property bar and paratag
+		const barBoxDiv = document.createElement('div')
+		barBoxDiv.classList.add("barBox-div");
+		propertiesDiv.appendChild(barBoxDiv)
 
-	// Create the div to hold the paragraph tag with the percentage value
-	const propertyValueDiv = document.createElement('div')
-	propertyValueDiv.classList.add("property-perc");
-	const propertyValuePara = document.createElement('p')
-	propertyValueDiv.appendChild(propertyValuePara.appendChild(document.createTextNode(`100`)))
+		// Create the div to hold the actual bar
+		const barDiv = document.createElement('div')
+		barDiv.classList.add("bar-div");
+		barDiv.setAttribute('id',`properties-bar-1`);
+		barBoxDiv.appendChild(barDiv)
 
-	barBoxDiv.appendChild(propertyValueDiv)
+		// Create the div to hold the paragraph tag with the percentage value
+		const propertyValueDiv = document.createElement('div')
+		propertyValueDiv.classList.add("property-perc");
+		const propertyValuePara = document.createElement('p')
+		propertyValueDiv.appendChild(propertyValuePara.appendChild(document.createTextNode(`100`)))
 
-	// Add styling to the bar depending on the value of the property
-	barDiv.style.background= "linear-gradient(to right, green 75%, green 90%, blue 1%)";
+		barBoxDiv.appendChild(propertyValueDiv)
 
+		// Add styling to the bar depending on the value of the property
+		barDiv.style.background= "linear-gradient(to right, green 75%, green 90%, blue 1%)";
 
-
-	// Append progress div to main div
-	mainDiv.appendChild(propertiesDiv);
+		// Append progress div to main div
+		mainDiv.appendChild(propertiesDiv);
+	}
 
 }
 
