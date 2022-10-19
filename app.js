@@ -1,7 +1,9 @@
 //class for potential divs to create
 const divname = {
-    name: ['menu','pet']
+    name: ['menu','pet'],
+    ID: [0,1]
 }
+diplayedDivID = 1;
 //placeholder will get button names from pet class method
 const btnname = {
     name: ['eat','drink','play']
@@ -10,8 +12,8 @@ const btnname = {
 const newDiv = document.createElement('div')
 //create div based on the array value
 function creatediv(){
-newDiv.textContent = divname.name[0];
-newDiv.classList.add(divname.name[0]);
+newDiv.textContent = divname.name[diplayedDivID];
+newDiv.classList.add(divname.name[diplayedDivID]);
 mainDiv.appendChild(newDiv);
 }
 //create div
@@ -27,4 +29,6 @@ function createbtn(){
     }
 }
 // create btn's
-createbtn()
+if (diplayedDivID == 1) {
+    createbtn()
+}
