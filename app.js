@@ -128,9 +128,6 @@ function createStatsBars(pet){
 	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
 	let statsValues = [pet.health, pet.hunger, pet.sleep, pet.happiness]
 
-		console.log(statsValues)
-
-
 		for (let i=0 ; i<statsArray.length ; i++ ){
 
 		// Create div to hold property bar
@@ -148,14 +145,16 @@ function createStatsBars(pet){
 		// Create the div to hold the actual bar
 		const barDiv = document.createElement('div')
 		barDiv.classList.add("bar-div");
-		barDiv.setAttribute('id',`stats-bar-1`);
+		barDiv.setAttribute('id',`stats-bar-${i+1}`);
 		barBoxDiv.appendChild(barDiv)
 
 		// Create the div to hold the paragraph tag with the percentage value
 		const statsValueDiv = document.createElement('div')
 		statsValueDiv.classList.add("stats-perc");
 		const statsValuePara = document.createElement('p')
-		statsValueDiv.appendChild(statsValuePara.appendChild(document.createTextNode(`${statsValues[i]}`)))
+		statsValuePara.setAttribute('id',`stats-value-para-${i+1}`);
+		statsValuePara.innerText = `${statsValues[i]}`
+		statsValueDiv.appendChild(statsValuePara)
 
 		barBoxDiv.appendChild(statsValueDiv)
 
@@ -169,3 +168,34 @@ function createStatsBars(pet){
 }
 
 createStatsBars(charmander)
+
+
+
+// ================================
+// ----- Update Stats bars
+
+function updateStatsBars(pet){
+
+	// Create array to store values
+	let statsValues = [pet.health, pet.hunger, pet.sleep, pet.happiness];
+
+	// Update Values
+	for (let i = 0 ; i<statsValues.length ; i++){
+
+		// Get the stats paragraphs and bars 
+		let statsValuePara = document.getElementById(`stats-value-para-${i+1}`)
+		let statsBar = document.getElementById(`stats-bar-${i+1}`)
+
+		// Update the paragraph and stats bar
+		statsValuePara.innerText = `${statsValues[i]}`
+		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
+	}
+}
+
+
+
+
+
+
+
+
