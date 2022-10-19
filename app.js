@@ -77,7 +77,8 @@ class Squirtle extends Pet {
     }
   }
 
-// console.log(charmander)
+let charmander = new Charmander('dave','happy')
+console.log(charmander)
 //class for potential divs to create
 const divname = {
   name: ["menu", "pet"],
@@ -110,10 +111,16 @@ function createbtn() {
 }
 // create btn's of pet displayed
 if (diplayedDivID == 1) {
-  createbtn();
+    createbtn()
+
 }
 
+
+
+// ================================
 // ----- Create Property Bars 
+
+
 
 function createPropertyBars(health, hunger, sleep, happiness){
 
@@ -158,12 +165,3 @@ function createPropertyBars(health, hunger, sleep, happiness){
 }
 
 createPropertyBars()
-
-// Create New Pet give it a name and mood name and mood
-let charmander = new Charmander('dave','happy')
-charmander.playGame()
-charmander.playGame()
-charmander.playGame()
-charmander.eatBerry()
-charmander.playGame()
-charmander.checkStats()
