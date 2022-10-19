@@ -155,12 +155,12 @@ function createStatsBars(pet){
 		const statsValueDiv = document.createElement('div')
 		statsValueDiv.classList.add("stats-perc");
 		const statsValuePara = document.createElement('p')
-		statsValueDiv.appendChild(statsValuePara.appendChild(document.createTextNode(`100`)))
+		statsValueDiv.appendChild(statsValuePara.appendChild(document.createTextNode(`${statsValues[i]}`)))
 
 		barBoxDiv.appendChild(statsValueDiv)
 
 		// Add styling to the bar depending on the value of the property
-		barDiv.style.background= "linear-gradient(to right, green 75%, green 90%, blue 1%)";
+		barDiv.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 
 		// Append progress div to main div
 		mainDiv.appendChild(statsDiv);
