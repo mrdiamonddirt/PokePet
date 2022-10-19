@@ -31,7 +31,9 @@ body {
 
 .barBox-div{
   display: inline-block;
+  text-align: right;
   width: 300px;
+  margin-right: 0;
   background-color: red;
 }
 
@@ -39,7 +41,6 @@ body {
   display: inline-block;
   min-width: 85%;
   min-height: 7px;
-  margin-right: 3%;
 }
 
 .stats-perc{
