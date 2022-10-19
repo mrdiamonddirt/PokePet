@@ -28,7 +28,7 @@ function createbtn(){
     newDiv.appendChild(newBtn);
     }
 }
-// create btn's
+// create btn's of pet displayed
 if (diplayedDivID == 1) {
     createbtn()
 }
