@@ -2,3 +2,23 @@
   margin: 0px;
   padding: 0px;
 }
+
+
+/* ----------- Properties Bars */
+
+.barBox-div{
+  display: inline-block;
+  width: 300px;
+  background-color: red;
+}
+
+.bar-div{
+  display: inline-block;
+  min-width: 85%;
+  min-height: 7px;
+  margin-right: 3%;
+}
+
+.property-perc{
+  display: inline-block;
+}
