@@ -122,46 +122,85 @@ if (diplayedDivID == 1) {
 
 
 
-function createPropertyBars(health, hunger, sleep, happiness){
+function createStatsBars(pet){
 
 	// Create array which hold property names
-	let propertiesArray = ["Health", "Hunger", "Sleep", "Happiness"]
+	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
+	let statsValues = [pet.health, pet.hunger, pet.sleep, pet.happiness]
 
-		for (let i=0 ; i<propertiesArray.length ; i++ ){
+		for (let i=0 ; i<statsArray.length ; i++ ){
 
 		// Create div to hold property bar
-		const propertiesDiv = document.createElement('div')
+		const statsDiv = document.createElement('div')
 
 		// Create paragraph tag to hold property name => Append to the new progress div
 		const newPara = document.createElement('p')
-		propertiesDiv.appendChild(newPara.appendChild(document.createTextNode(`${propertiesArray[i]}`)))
+		newPara.setAttribute('class', 'statsName-Para');
+		newPara.innerText = `${statsArray[i]}`
+		statsDiv.appendChild(newPara)
 
 		// Create the div to hold the property bar and paratag
 		const barBoxDiv = document.createElement('div')
 		barBoxDiv.classList.add("barBox-div");
-		propertiesDiv.appendChild(barBoxDiv)
+		statsDiv.appendChild(barBoxDiv)
 
 		// Create the div to hold the actual bar
 		const barDiv = document.createElement('div')
 		barDiv.classList.add("bar-div");
-		barDiv.setAttribute('id',`properties-bar-1`);
+		barDiv.setAttribute('id',`stats-bar-${i+1}`);
 		barBoxDiv.appendChild(barDiv)
 
 		// Create the div to hold the paragraph tag with the percentage value
-		const propertyValueDiv = document.createElement('div')
-		propertyValueDiv.classList.add("property-perc");
-		const propertyValuePara = document.createElement('p')
-		propertyValueDiv.appendChild(propertyValuePara.appendChild(document.createTextNode(`100`)))
+		// const statsValueDiv = document.createElement('div')
+		// statsValueDiv.classList.add("stats-perc");
+		// const statsValuePara = document.createElement('p')
+		// statsValuePara.setAttribute('id',`stats-value-para-${i+1}`);
+		// statsValuePara.innerText = `${statsValues[i]}`
+		// statsValueDiv.appendChild(statsValuePara)
 
-		barBoxDiv.appendChild(propertyValueDiv)
+		// barBoxDiv.appendChild(statsValueDiv)
 
 		// Add styling to the bar depending on the value of the property
-		barDiv.style.background= "linear-gradient(to right, green 75%, green 90%, blue 1%)";
+		barDiv.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 
 		// Append progress div to main div
-		mainDiv.appendChild(propertiesDiv);
+		mainDiv.appendChild(statsDiv);
 	}
 
 }
 
-createPropertyBars()
+createStatsBars(charmander)
+
+
+
+// ================================
+// ----- Update Stats bars
+
+function updateStatsBars(pet){
+
+	// Create array to store values
+	let statsValues = [pet.health, pet.hunger, pet.sleep, pet.happiness];
+
+	// Update Values
+	for (let i = 0 ; i<statsValues.length ; i++){
+
+		// Get the stats paragraphs and bars 
+		// let statsValuePara = document.getElementById(`stats-value-para-${i+1}`)
+		let statsBar = document.getElementById(`stats-bar-${i+1}`)
+
+		// Update the paragraph and stats bar
+		// statsValuePara.innerText = `${statsValues[i]}`
+		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
