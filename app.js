@@ -13,7 +13,7 @@ class Pet {
 		this.sleep = 100;
 		this.happiness = 100;
 	}
-
+}
 //class for potential divs to create
 const divname = {
     name: ['menu','pet'],
