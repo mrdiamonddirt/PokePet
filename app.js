@@ -11,37 +11,6 @@ class Pet {
     this.hunger = 100;
     this.sleep = 100;
     this.happiness = 100;
-    this.age = 0;
-  }
-  playGame(){
-    this.health -=5;
-    this.hunger -=5;
-    this.sleep -=5;
-    this.happiness +=5;
-    // console logs for clarity
-    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
-    console.log(`played a game`)
-    return this;
-  }
-  eatBerry(){
-    this.health +=5;
-    this.hunger +=10;
-    this.sleep -=5;
-    this.happiness +=5;
-    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
-    console.log(`${this.name} ate a berry`)
-    return this;
-  }
-  checkStats(){
-    return console.table({
-      name: this.name,
-      mood: this.mood,
-      health: this.health,
-      hunger: this.hunger,
-      sleep: this.sleep,
-      happiness: this.happiness,
-      age: this.age
-    });
   }
 }
 class Charmander extends Pet {
@@ -65,7 +34,8 @@ class Squirtle extends Pet {
     }
   }
 
-// console.log(charmander)
+let charmander = new Charmander('dave','happy')
+console.log(charmander)
 //class for potential divs to create
 const divname = {
   name: ["menu", "pet"],
@@ -98,10 +68,16 @@ function createbtn() {
 }
 // create btn's of pet displayed
 if (diplayedDivID == 1) {
-  createbtn();
+    createbtn()
+
 }
 
+
+
+// ================================
 // ----- Create Property Bars 
+
+
 
 function createPropertyBars(health, hunger, sleep, happiness){
 
@@ -146,12 +122,3 @@ function createPropertyBars(health, hunger, sleep, happiness){
 }
 
 createPropertyBars()
-
-// Create New Pet give it a name and mood name and mood
-let charmander = new Charmander('dave','happy')
-charmander.playGame()
-charmander.playGame()
-charmander.playGame()
-charmander.eatBerry()
-charmander.playGame()
-charmander.checkStats()
