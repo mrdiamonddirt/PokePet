@@ -55,19 +55,7 @@ if (diplayedDivID == 1) {
 // ================================
 // ----- Create Property Bars 
 
-/*
-	<div class="mini-hero-progress-boxes">
-		<div id="id-progress-1" class="mini-hero-progress-bar"></div>
-		<div class="mini-hero-progress-perc" ><p>100%</p></div>
-	</div>
 
-
-
-
-#id-progress-1{
-	background: linear-gradient(to right, var(--gold) 100%, var(--gold) 100%, var(--darkBlue) 50%);
-}
-*/
 
 function createPropertyBars(health, hunger, sleep, happiness){
 
@@ -99,6 +87,10 @@ function createPropertyBars(health, hunger, sleep, happiness){
 	propertyValueDiv.appendChild(propertyValuePara.appendChild(document.createTextNode(`100`)))
 
 	barBoxDiv.appendChild(propertyValueDiv)
+
+	// Add styling to the bar depending on the value of the property
+	barDiv.style.background= "linear-gradient(to right, green 75%, green 90%, blue 1%)";
+
 
 
 	// Append progress div to main div
