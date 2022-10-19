@@ -135,7 +135,9 @@ function createStatsBars(pet){
 
 		// Create paragraph tag to hold property name => Append to the new progress div
 		const newPara = document.createElement('p')
-		statsDiv.appendChild(newPara.appendChild(document.createTextNode(`${statsArray[i]}`)))
+		newPara.setAttribute('class', 'statsName-Para');
+		newPara.innerText = `${statsArray[i]}`
+		statsDiv.appendChild(newPara)
 
 		// Create the div to hold the property bar and paratag
 		const barBoxDiv = document.createElement('div')
@@ -191,6 +193,9 @@ function updateStatsBars(pet){
 		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 	}
 }
+
+
+
 
 
 

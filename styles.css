@@ -24,6 +24,11 @@ body {
 
 /* ----------- Properties Bars */
 
+.statsName-Para{
+  background-color: yellow;
+  text-align: right;
+}
+
 .barBox-div{
   display: inline-block;
   width: 300px;
