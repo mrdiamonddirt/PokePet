@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+
 * {
   margin: 0;
   padding: 0;
@@ -412,4 +413,14 @@ button {
   display: inline-block;
   min-width: 85%;
   min-height: 7px;
+}
+
+@keyframes btnpressed {
+  0%{
+    background-color: #4d4d4d;
+  } 50% {
+    background-color: black;
+  } 100% {
+    background-color: #4d4d4d;
+  }
 }

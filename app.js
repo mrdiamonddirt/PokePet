@@ -172,15 +172,31 @@ function createbtns() {
       const letterY = document.querySelector(".letterY");
       input.addEventListener("keypress", (e) => {
         if (e.key === "x" || e.key === "X") {
+          letterX.style.animation = 'btnpressed 1s'
+          setTimeout(() => {
+          letterX.style.animation = 'none'
+          }, 1000);
           charmander.heal();
           updateStatsBars(charmander);
         } else if (e.key === "a" || e.key === "A") {
+          letterA.style.animation = 'btnpressed 1s'
+          setTimeout(() => {
+          letterA.style.animation = 'none'
+          }, 1000);
           charmander.eatBerry();
           updateStatsBars(charmander);
         } else if (e.key === "b" || e.key === "B") {
+          letterB.style.animation = 'btnpressed 1s'
+          setTimeout(() => {
+          letterB.style.animation = 'none'
+          }, 1000);
           charmander.playGame();
           updateStatsBars(charmander);
         } else if (e.key === "y" || e.key === "Y") {
+          letterY.style.animation = 'btnpressed 1s'
+          setTimeout(() => {
+          letterY.style.animation = 'none'
+          }, 1000);
           charmander.sleep();
           updateStatsBars(charmander);
         }
