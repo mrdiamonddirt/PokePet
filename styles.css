@@ -394,8 +394,14 @@ button {
 }
 /* ----------- Properties Bars */
 
+
+#stats-all-div{
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 270px;
+  margin-left: auto ;
+}
+
 .statsName-Para {
-  background-color: yellow;
   text-align: right;
   width: 250px;
   margin-left: auto ;
