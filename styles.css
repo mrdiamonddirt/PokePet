@@ -407,7 +407,8 @@ button {
 #stats-all-div{
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.1);
-  width: 270px;
+  display: inline-block;
+  width: 2px;
   margin-left: auto ;
   padding: 2% 5% 1% 0;
 }
@@ -445,3 +446,10 @@ button {
   }
 }
 
+
+/* ----------- Image */
+#image-div{
+  width: 200px;
+  display: inline-block;
+  background-color: yellow;
+}

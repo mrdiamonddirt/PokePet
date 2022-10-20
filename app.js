@@ -112,6 +112,7 @@ function creatediv() {
     createbtns();
   } else if (diplayedDivID == 1) {
     createbtns();
+    createImage();
     createStatsBars(charmander);
   }
 }
@@ -393,3 +394,37 @@ function checkSecond(sec) {
   }
   return sec;
 }
+
+
+
+// ================================
+// ----- Create Image Div
+
+function createImage(){
+
+  // Create Div to hold pet
+  const imageDiv = document.createElement('div')
+  imageDiv.setAttribute("id", "image-div");
+
+  const para = document.createElement('p')
+  para.innerText = `Hello Image`;
+
+
+  imageDiv.appendChild(para)
+
+  // Append Image to mainDiv
+  mainDiv.appendChild(imageDiv)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
