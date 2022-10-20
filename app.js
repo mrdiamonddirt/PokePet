@@ -86,18 +86,22 @@ class Pikachu extends Pet {
 }
 
 // Set new pet
-let chosenPet = "pikachu";
+let chosenPet = "squirtle";
 let newPet = new Pet
+let petImage = "";
 
 // Create switch to create class depending on chosen pet
 if (chosenPet == "charmander"){
   newPet = new Charmander("dave", "happy");
+  petImage = "Pokemon3.png";
 } 
 else if ( chosenPet == "squirtle"){
   newPet = new Squirtle ("dave", "happy");
+  petImage = "Pokemon2.png";
 }
 else{
   newPet = new Pikachu ("dave", "happy");
+  petImage = "Pokemon1.png";
 }
 
 
@@ -495,7 +499,7 @@ function createImage(){
 
   const image = document.createElement('img')
   image.setAttribute("id", "image-ID");
-  image.src = `./imgs/Pokemon1.png`;
+  image.src = `./imgs/${petImage}`;
   image.style.width="100%";
 
 
