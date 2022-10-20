@@ -460,15 +460,7 @@ button:focus {
   background-color: red;
 }
 
-#clock{
-  position: fixed;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  justify-content: flex-end;
-  width: 100%;
-  transform: translateX(-100px);
-}
+
 
 
 #div-screen{
