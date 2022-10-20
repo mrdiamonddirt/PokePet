@@ -103,6 +103,9 @@ const menubtnname = {
 };
 
 const newDiv = document.createElement("div");
+const screenDiv = document.createElement("div");
+screenDiv.setAttribute("id", "div-screen")
+
 //create div based on the array value
 function creatediv() {
   newDiv.textContent = "";
@@ -112,8 +115,8 @@ function creatediv() {
   if (diplayedDivID == 0) {
     createbtns();
   } else if (diplayedDivID == 1) {
-    createbtns();
     createImage();
+    createbtns();
     createStatsBars(charmander);
   }
 }
@@ -171,6 +174,8 @@ function createbtns() {
           actionBackground("sleep"); // Background change
         }
       });
+
+      screenDiv.appendChild(newDiv)
 
       // Load background image on start //
       const screen = document.querySelector(".screen");
@@ -314,7 +319,7 @@ function createStatsBars(pet) {
   }
 
   // Append stats All Div to main div
-  mainDiv.appendChild(statsAllDiv);
+  screenDiv.appendChild(statsAllDiv);
 }
 
 // ================================
@@ -465,11 +470,12 @@ function createImage(){
   imageDiv.appendChild(image)
 
   // Append Image to mainDiv
-  mainDiv.appendChild(imageDiv)
+  screenDiv.appendChild(imageDiv)
 
 }
 
 
+mainDiv.appendChild(screenDiv);
 
 
 
