@@ -1,15 +1,13 @@
 /* VARIABLES */
 
-:root{
-  --green:#35A600 ;
-  --red: #FD000B ;
-  --blue: #0091CF ;
-  --orange: #F87E26 ;
+:root {
+  --green: #35a600;
+  --red: #fd000b;
+  --blue: #0091cf;
+  --orange: #f87e26;
 }
 
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 
 * {
   margin: 0;
@@ -28,6 +26,11 @@ body {
 
 button {
   font-family: "Poppins", sans-serif;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 /* Background */
@@ -393,18 +396,19 @@ button {
 #action-btn-3,
 #action-btn-4 {
   height: 20px;
-  width: 100px;
+  width: 20px;
   font-size: 15px;
-  /* background: url(imgs/dead.png); */
+  /* background-color: rgb(0, 0, 0); */
+  background: url('/imgs/berry.png') no-repeat top left;
 }
 
 .timer {
   display: none;
+  text-align: center;
 }
 /* ----------- Properties Bars */
 
-
-#stats-all-div{
+#stats-all-div {
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.1);
   display: inline-block;
@@ -415,7 +419,7 @@ button {
 .statsName-Para {
   text-align: right;
   width: 250px;
-  margin-left: auto ;
+  margin-left: auto;
   padding: 4% 0 1.5% 0;
 }
 
@@ -436,14 +440,17 @@ button {
 }
 
 @keyframes btnpressed {
-  0%{
+  0% {
     background-color: #4d4d4d;
-  } 50% {
-    background-color: black;
-  } 100% {
+  }
+  50% {
+    background-color: #343132;
+  }
+  100% {
     background-color: #4d4d4d;
   }
 }
+
 
 
 /* ----------- Image */
@@ -451,4 +458,13 @@ button {
   width: 200px;
   display: inline-block;
   background-color: red;
+
+#clock{
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  justify-content: flex-end;
+  width: 100%;
+  transform: translateX(-100px);
 }
