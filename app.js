@@ -407,7 +407,9 @@ function createImage(){
   imageDiv.setAttribute("id", "image-div");
 
   const image = document.createElement('img')
+  image.setAttribute("id", "image-ID");
   image.src = `./imgs/Pokemon1.png`;
+  image.style.width="100%";
 
 
   imageDiv.appendChild(image)
