@@ -170,9 +170,10 @@ function createbtns() {
 
 function createStatsBars(pet){
 
-	// Create array which hold property names
+	// Create array which hold property names , values , colours for styling
 	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
 	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness]
+  let statsCols = ["var(--green)", "var(--red)", "var(--blue)", "var(--orange)"]
 
   // Create a div to hold all of the status bars 
   const statsAllDiv = document.createElement('div')
@@ -195,14 +196,14 @@ function createStatsBars(pet){
 		barBoxDiv.classList.add("barBox-div");
 		statsDiv.appendChild(barBoxDiv)
 
-		// Create the div to hold the actual bar
+		// Create the div to hold the actual bar => add class and ID
 		const barDiv = document.createElement('div')
 		barDiv.classList.add("bar-div");
 		barDiv.setAttribute('id',`stats-bar-${i+1}`);
 		barBoxDiv.appendChild(barDiv)
 
 		// Add styling to the bar depending on the value of the property
-		barDiv.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
+		barDiv.style.background= `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
 
     // Append each status to the main status Div
     statsAllDiv.appendChild(statsDiv)
@@ -220,6 +221,8 @@ function updateStatsBars(pet){
 
 	// Create array to store values
 	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
+  let statsCols = ["var(--green)", "var(--red)", "var(--blue)", "var(--orange)"]
+
 
 	// Update Values
 	for (let i = 0 ; i<statsValues.length ; i++){
@@ -227,7 +230,7 @@ function updateStatsBars(pet){
 		let statsBar = document.getElementById(`stats-bar-${i+1}`)
 
 		// Update the  and stats bar
-		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
+		statsBar.style.background= `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
 	}
 }
 
