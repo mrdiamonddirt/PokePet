@@ -355,9 +355,6 @@ button {
   position: absolute;
 }
 
-.body-box .switch .controller-right .btn:hover,
-.body-box .switch .controller-right .btn:hover,
-.body-box .switch .controller-right .btn:hover,
 .body-box .switch .controller-right .btn:hover {
   background-color: #343132;
   cursor: pointer;
