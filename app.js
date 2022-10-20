@@ -90,14 +90,14 @@ const intbtnname = {
   name: ["heal", "eat", "play", "sleep"],
 };
 const menubtnname = {
-  name: ["play"],
+  name: ["start"],
 };
 
 
 const newDiv = document.createElement("div");
 //create div based on the array value
 function creatediv() {
-  // newDiv.textContent = divname.name[diplayedDivID];
+  newDiv.textContent = "";
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
   // create btn's of pet displayed
@@ -121,7 +121,7 @@ function createbtns() {
     newDiv.appendChild(newBtn);
     newBtn.addEventListener('click', function(event){
       console.log(event.target.textContent)
-      if (event.target.textContent == 'play') {
+      if (event.target.textContent == 'start') {
        diplayedDivID = 1
        console.log(diplayedDivID)
        creatediv();
