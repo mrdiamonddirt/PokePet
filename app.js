@@ -89,13 +89,14 @@ let charmander = new Charmander("dave", "happy");
 console.log(charmander);
 //class for potential divs to create
 const divname = {
-  name: ["menu", "pet"],
-  ID: [0, 1],
+  name: ["menu", "pet", "selection"],
+  ID: [0, 1, 2],
 };
 diplayedDivID = 0;
 //placeholder will get button names from pet class method
 const intbtnname = {
   name: ["heal", "eat", "play", "sleep"],
+  url: ['imgs/pokecentre.webp','imgs/berry.png','imgs/Pokemon1.png','imgs/zzz.png']
 };
 const menubtnname = {
   name: ["start"],
@@ -143,8 +144,9 @@ function createbtns() {
     }
   } else if (diplayedDivID == 1) {
     for (i = 0; i < intbtnname.name.length; i++) {
-      const newBtn = document.createElement("button");
-      newBtn.textContent = `${intbtnname.name[i]}`;
+      const newBtn = document.createElement("img");
+      // newBtn.textContent = `${intbtnname.name[i]}`;
+      newBtn.src = intbtnname.url[i]
       newBtn.classList.add(divname.name[0]);
       newBtn.setAttribute("id", `action-btn-${i + 1}`);
       newDiv.appendChild(newBtn);

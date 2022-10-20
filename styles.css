@@ -396,13 +396,15 @@ button:focus {
 #action-btn-3,
 #action-btn-4 {
   height: 20px;
-  width: 100px;
+  width: 20px;
   font-size: 15px;
-  /* background: url(imgs/dead.png); */
+  /* background-color: rgb(0, 0, 0); */
+  background: url('/imgs/berry.png') no-repeat top left;
 }
 
 .timer {
   display: none;
+  text-align: center;
 }
 /* ----------- Properties Bars */
 
@@ -447,4 +449,14 @@ button:focus {
   100% {
     background-color: #4d4d4d;
   }
+}
+
+#clock{
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  justify-content: flex-end;
+  width: 100%;
+  transform: translateX(-100px);
 }
