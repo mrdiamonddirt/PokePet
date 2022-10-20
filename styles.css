@@ -408,7 +408,6 @@ button {
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.1);
   display: inline-block;
-  width: 2px;
   margin-left: auto ;
   padding: 2% 5% 1% 0;
 }
@@ -451,5 +450,5 @@ button {
 #image-div{
   width: 200px;
   display: inline-block;
-  background-color: yellow;
+  background-color: red;
 }

@@ -406,11 +406,11 @@ function createImage(){
   const imageDiv = document.createElement('div')
   imageDiv.setAttribute("id", "image-div");
 
-  const para = document.createElement('p')
-  para.innerText = `Hello Image`;
+  const image = document.createElement('img')
+  image.src = `./imgs/Pokemon1.png`;
 
 
-  imageDiv.appendChild(para)
+  imageDiv.appendChild(image)
 
   // Append Image to mainDiv
   mainDiv.appendChild(imageDiv)
