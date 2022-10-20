@@ -85,8 +85,27 @@ class Pikachu extends Pet {
   }
 }
 
-let charmander = new Charmander("dave", "happy");
-console.log(charmander);
+// Set new pet
+let chosenPet = "squirtle";
+let newPet = new Pet
+let petImage = "";
+
+// Create switch to create class depending on chosen pet
+if (chosenPet == "charmander"){
+  newPet = new Charmander("dave", "happy");
+  petImage = "Pokemon3.png";
+} 
+else if ( chosenPet == "squirtle"){
+  newPet = new Squirtle ("dave", "happy");
+  petImage = "Pokemon2.png";
+}
+else{
+  newPet = new Pikachu ("dave", "happy");
+  petImage = "Pokemon1.png";
+}
+
+
+
 //class for potential divs to create
 const divname = {
   name: ["menu", "pet", "selection"],
@@ -117,7 +136,7 @@ function creatediv() {
   } else if (diplayedDivID == 1) {
     createImage();
     createbtns();
-    createStatsBars(charmander);
+    createStatsBars(newPet);
   }
 }
 //create div
@@ -160,20 +179,20 @@ function createbtns() {
       newBtn.addEventListener("click", function (event) {
         console.log(event.target.textContent);
         if (event.target.textContent == "heal") {
-          charmander.heal();
-          updateStatsBars(charmander);
+          newPet.heal();
+          updateStatsBars(newPet);
           actionBackground("heal"); // Background change
         } else if (event.target.textContent == "eat") {
-          charmander.eatBerry();
-          updateStatsBars(charmander);
+          newPet.eatBerry();
+          updateStatsBars(newPet);
           actionBackground("eat"); // Background change
         } else if (event.target.textContent == "play") {
-          charmander.playGame();
-          updateStatsBars(charmander);
+          newPet.playGame();
+          updateStatsBars(newPet);
           actionBackground("play"); // Background change
         } else if (event.target.textContent == "sleep") {
-          charmander.sleep();
-          updateStatsBars(charmander);
+          newPet.sleep();
+          updateStatsBars(newPet);
           actionBackground("sleep"); // Background change
         }
       });
@@ -218,53 +237,53 @@ function createbtns() {
           setTimeout(() => {
             letterX.style.animation = "none";
           }, 1000);
-          charmander.heal();
-          updateStatsBars(charmander);
+          newPet.heal();
+          updateStatsBars(newPet);
           actionBackground("heal"); // Background change
         } else if (e.key === "a" || e.key === "A") {
           letterA.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterA.style.animation = "none";
           }, 1000);
-          charmander.eatBerry();
-          updateStatsBars(charmander);
+          newPet.eatBerry();
+          updateStatsBars(newPet);
           actionBackground("eat"); // Background change
         } else if (e.key === "b" || e.key === "B") {
           letterB.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterB.style.animation = "none";
           }, 1000);
-          charmander.playGame();
-          updateStatsBars(charmander);
+          newPet.playGame();
+          updateStatsBars(newPet);
           actionBackground("play"); // Background change
         } else if (e.key === "y" || e.key === "Y") {
           letterY.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterY.style.animation = "none";
           }, 1000);
-          charmander.sleep();
-          updateStatsBars(charmander);
+          newPet.sleep();
+          updateStatsBars(newPet);
           actionBackground("sleep"); // Background change
         }
       });
       letterX.addEventListener("click", () => {
-        charmander.heal();
-        updateStatsBars(charmander);
+        newPet.heal();
+        updateStatsBars(newPet);
         actionBackground("heal"); // Background change
       });
       letterA.addEventListener("click", () => {
-        charmander.eatBerry();
-        updateStatsBars(charmander);
+        newPet.eatBerry();
+        updateStatsBars(newPet);
         actionBackground("eat"); // Background change
       });
       letterB.addEventListener("click", () => {
-        charmander.playGame();
-        updateStatsBars(charmander);
+        newPet.playGame();
+        updateStatsBars(newPet);
         actionBackground("play"); // Background change
       });
       letterY.addEventListener("click", (e) => {
-        charmander.sleep();
-        updateStatsBars(charmander);
+        newPet.sleep();
+        updateStatsBars(newPet);
         actionBackground("sleep"); // Background change
       });
       // X, A, B, Y Buttons //
@@ -410,33 +429,35 @@ function needsTrigger() {
   startTimer();
   setTimeout(() => {
     console.log("feed me");
-    console.log(charmander.checkStats());
+    console.log(newPet.checkStats());
   }, 10000);
   setTimeout(() => {
-    charmander.sleepiness = Math.max(charmander.sleepiness - 10, 0);
+    newPet.sleepiness = Math.max(newPet.sleepiness - 10, 0);
   }, 10000);
-  charmander.hunger = Math.max(charmander.hunger - 10, 0);
+  newPet.hunger = Math.max(newPet.hunger - 10, 0);
   setTimeout(() => {
-    updateStatsBars(charmander);
+    updateStatsBars(newPet);
   }, 1000);
-  if (charmander.hunger <= 5) {
+  if (newPet.hunger <= 5) {
     console.log("starving");
+    // console.log(newPet.checkStats())
+    newPet.health = Math.max(newPet.health - 5, 0);
     // variable for pet image animations
     const imageID = document.getElementById('image-ID')
     imageID.style.animation = 'shake 10s';
-    charmander.health = Math.max(charmander.health - 5, 0);
   }
-  if (charmander.hunger < 50) {
+  if (newPet.hunger < 50) {
     console.log("hungry");
-    // console.log(charmander.checkStats())
-    charmander.happiness = Math.max(charmander.happiness - 10, 0);
+    // console.log(newPet.checkStats())
+    newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
-  if (charmander.health < 50) {
+  if (newPet.health < 50) {
     console.log("hurting");
+    // console.log(newPet.checkStats())
+    newPet.happiness = Math.max(newPet.happiness - 10, 0);
     const imageID = document.getElementById('image-ID')
     imageID.style.animation = 'hurting 2s infinite';
     // console.log(charmander.checkStats())
-    charmander.happiness = Math.max(charmander.happiness - 10, 0);
   }
 }
 
@@ -484,7 +505,7 @@ function createImage(){
 
   const image = document.createElement('img')
   image.setAttribute("id", "image-ID");
-  image.src = `./imgs/Pokemon1.png`;
+  image.src = `./imgs/${petImage}`;
   image.style.width="100%";
 
 
