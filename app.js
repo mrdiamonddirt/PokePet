@@ -191,15 +191,6 @@ function createStatsBars(pet){
 		barDiv.setAttribute('id',`stats-bar-${i+1}`);
 		barBoxDiv.appendChild(barDiv)
 
-		// Create the div to hold the paragraph tag with the percentage value
-		// const statsValueDiv = document.createElement('div')
-		// statsValueDiv.classList.add("stats-perc");
-		// const statsValuePara = document.createElement('p')
-		// statsValuePara.setAttribute('id',`stats-value-para-${i+1}`);
-		// statsValuePara.innerText = `${statsValues[i]}`
-		// statsValueDiv.appendChild(statsValuePara)
-
-		// barBoxDiv.appendChild(statsValueDiv)
 
 		// Add styling to the bar depending on the value of the property
 		barDiv.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
@@ -221,11 +212,9 @@ function updateStatsBars(pet){
 	// Update Values
 	for (let i = 0 ; i<statsValues.length ; i++){
 		// Get the stats paragraphs and bars 
-		// let statsValuePara = document.getElementById(`stats-value-para-${i+1}`)
 		let statsBar = document.getElementById(`stats-bar-${i+1}`)
 
-		// Update the paragraph and stats bar
-		// statsValuePara.innerText = `${statsValues[i]}`
+		// Update the  and stats bar
 		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 	}
 }
