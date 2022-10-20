@@ -112,7 +112,7 @@ function createbtn() {
 // create btn's of pet displayed
 if (diplayedDivID == 1) {
     createbtn()
-
+    createStatsBars(charmander)
 }
 
 
@@ -168,8 +168,6 @@ function createStatsBars(pet){
 	}
 
 }
-
-createStatsBars(charmander)
 
 
 
