@@ -433,10 +433,10 @@ button:focus {
 
 #stats-all-div {
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
   display: inline-block;
   margin-left: auto ;
-  padding: 2% 5% 1% 0;
+  padding: 2% 4% 4% 5%;
 }
 
 .statsName-Para {
@@ -524,11 +524,12 @@ button:focus {
 
 #div-screen{
   display: flex;
+  margin-top: 5%;
 }
 
 #btn-flex-container{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  transform: translateY(15px);
+  justify-content: space-evenly;
+  transform: translateY(9px);
 }
