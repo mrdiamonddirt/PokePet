@@ -410,15 +410,29 @@ function needsTrigger() {
   startTimer();
   setTimeout(() => {
     console.log("feed me");
+    console.log(charmander.checkStats());
   }, 10000);
   setTimeout(() => {
-    charmander.sleepiness -= 5;
+    charmander.sleepiness = Math.max(charmander.sleepiness - 10, 0);
   }, 10000);
-  charmander.hunger -= 10;
-  updateStatsBars(charmander);
-  if (charmander.hunger < 0) {
+  charmander.hunger = Math.max(charmander.hunger - 10, 0);
+  setTimeout(() => {
+    updateStatsBars(charmander);
+  }, 1000);
+  if (charmander.hunger <= 5) {
     console.log("starving");
-    charmander.health -= 5;
+    // console.log(charmander.checkStats())
+    charmander.health = Math.max(charmander.health - 5, 0);
+  }
+  if (charmander.hunger < 50) {
+    console.log("hungry");
+    // console.log(charmander.checkStats())
+    charmander.happiness = Math.max(charmander.happiness - 10, 0);
+  }
+  if (charmander.health < 50) {
+    console.log("hurting");
+    // console.log(charmander.checkStats())
+    charmander.happiness = Math.max(charmander.happiness - 10, 0);
   }
 }
 
