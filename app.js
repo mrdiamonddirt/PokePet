@@ -12,22 +12,22 @@ class Pet {
     this.sleepiness = 100;
     this.happiness = 100;
     this.age = 0;
-  }
+  } 
   playGame(){
-    this.health -=5;
-    this.hunger -=5;
-    this.sleepiness -=5;
-    this.happiness +=5;
+    this.health = Math.max(this.health - 5, 0);
+    this.hunger = Math.max(this.hunger - 5, 0);
+    this.sleepiness = Math.max(this.sleepiness - 5, 0);
+    this.happiness = Math.min(this.happiness + 5, 100);
     // console logs for clarity
     console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`)
     console.log(`played a game`)
     return this;
-  }
+  }  
   eatBerry(){
-    this.health +=5;
-    this.hunger +=10;
-    this.sleepiness -=5;
-    this.happiness +=5;
+    this.health = Math.min(this.health + 5, 100);;
+    this.hunger = Math.min(this.hunger + 10, 100);;
+    this.sleepiness = Math.max(this.sleepiness - 5, 0);;
+    this.happiness = Math.min(this.happiness + 5, 100);;
     console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`)
     console.log(`${this.name} ate a berry`)
     return this;
@@ -220,7 +220,6 @@ function updateStatsBars(pet){
 
 	// Update Values
 	for (let i = 0 ; i<statsValues.length ; i++){
-
 		// Get the stats paragraphs and bars 
 		// let statsValuePara = document.getElementById(`stats-value-para-${i+1}`)
 		let statsBar = document.getElementById(`stats-bar-${i+1}`)
