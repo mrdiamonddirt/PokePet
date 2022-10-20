@@ -87,24 +87,20 @@ class Pikachu extends Pet {
 
 // Set new pet
 let chosenPet = "squirtle";
-let newPet = new Pet
+let newPet = new Pet();
 let petImage = "";
 
 // Create switch to create class depending on chosen pet
-if (chosenPet == "charmander"){
+if (chosenPet == "charmander") {
   newPet = new Charmander("dave", "happy");
   petImage = "Pokemon3.png";
-} 
-else if ( chosenPet == "squirtle"){
-  newPet = new Squirtle ("dave", "happy");
+} else if (chosenPet == "squirtle") {
+  newPet = new Squirtle("dave", "happy");
   petImage = "Pokemon2.png";
-}
-else{
-  newPet = new Pikachu ("dave", "happy");
+} else {
+  newPet = new Pikachu("dave", "happy");
   petImage = "Pokemon1.png";
 }
-
-
 
 //class for potential divs to create
 const divname = {
@@ -115,7 +111,12 @@ diplayedDivID = 0;
 //placeholder will get button names from pet class method
 const intbtnname = {
   name: ["heal", "eat", "sleep", "play"],
-  url: ['imgs/pokecentre.webp','imgs/berry.png','imgs/zzz.png', 'imgs/Pokemon1.png']
+  url: [
+    "imgs/pokecentre.webp",
+    "imgs/berry.png",
+    "imgs/zzz.png",
+    "imgs/Pokemon1.png",
+  ],
 };
 const menubtnname = {
   name: ["start"],
@@ -123,7 +124,7 @@ const menubtnname = {
 
 const newDiv = document.createElement("div");
 const screenDiv = document.createElement("div");
-screenDiv.setAttribute("id", "div-screen")
+screenDiv.setAttribute("id", "div-screen");
 
 //create div based on the array value
 function creatediv() {
@@ -168,11 +169,11 @@ function createbtns() {
   } else if (diplayedDivID == 1) {
     // Create container for buttons
     const btnContainer = document.createElement("div");
-    btnContainer.setAttribute("id", "btn-flex-container")
+    btnContainer.setAttribute("id", "btn-flex-container");
     for (i = 0; i < intbtnname.name.length; i++) {
       const newBtn = document.createElement("img");
       newBtn.textContent = `${intbtnname.name[i]}`;
-      newBtn.src = intbtnname.url[i]
+      newBtn.src = intbtnname.url[i];
       newBtn.classList.add(divname.name[0]);
       newBtn.setAttribute("id", `action-btn-${i + 1}`);
       btnContainer.appendChild(newBtn);
@@ -289,7 +290,7 @@ function createbtns() {
       // X, A, B, Y Buttons //
     }
     // Add the buttons to the screen div
-     screenDiv.appendChild(btnContainer);
+    screenDiv.appendChild(btnContainer);
   }
 }
 
@@ -443,8 +444,8 @@ function needsTrigger() {
     // console.log(newPet.checkStats())
     newPet.health = Math.max(newPet.health - 5, 0);
     // variable for pet image animations
-    const imageID = document.getElementById('image-ID')
-    imageID.style.animation = 'shake 10s';
+    const imageID = document.getElementById("image-ID");
+    imageID.style.animation = "shake 10s";
   }
   if (newPet.hunger < 50) {
     console.log("hungry");
@@ -455,9 +456,12 @@ function needsTrigger() {
     console.log("hurting");
     // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
-    const imageID = document.getElementById('image-ID')
-    imageID.style.animation = 'hurting 2s infinite';
+    const imageID = document.getElementById("image-ID");
+    imageID.style.animation = "hurting 2s infinite";
     // console.log(charmander.checkStats())
+  }
+  if (newPet.health <= 0) {
+    checkDead();
   }
 }
 
@@ -492,39 +496,47 @@ function checkSecond(sec) {
   return sec;
 }
 
-
-
 // ================================
 // ----- Create Image Div
 
-function createImage(){
-
+function createImage() {
   // Create Div to hold pet
-  const imageDiv = document.createElement('div')
+  const imageDiv = document.createElement("div");
   imageDiv.setAttribute("id", "image-div");
 
-  const image = document.createElement('img')
+  const image = document.createElement("img");
   image.setAttribute("id", "image-ID");
   image.src = `./imgs/${petImage}`;
-  image.style.width="100%";
+  image.style.width = "100%";
 
-
-  imageDiv.appendChild(image)
+  imageDiv.appendChild(image);
 
   // Append Image to mainDiv
-  screenDiv.appendChild(imageDiv)
-
+  screenDiv.appendChild(imageDiv);
 }
-
 
 mainDiv.appendChild(screenDiv);
 
+// Check if pet is dead //
 
+function checkDead() {
+  if (newPet.health <= 0) {
+    const screen = document.querySelector(".screen");
+    screen.style.backgroundImage = "url(imgs/dead.png)";
+    screen.style.backgroundSize = "cover";
+    screen.style.backgroundRepeat = "no-repeat";
 
+    while (mainDiv.lastChild) {
+      mainDiv.removeChild(mainDiv.lastChild);
+    }
 
+    const restartButton = document.createElement("button");
+    restartButton.textContent = "Restart";
+    restartButton.classList.add("restart-button");
+    mainDiv.appendChild(restartButton);
 
+    restartButton.addEventListener("click", () => location.reload());
+  }
+}
 
-
-
-
-
+// Check if pet is dead //
