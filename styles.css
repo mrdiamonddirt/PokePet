@@ -433,24 +433,25 @@ button:focus {
 
 #stats-all-div {
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
   display: inline-block;
   margin-left: auto ;
-  padding: 2% 5% 1% 0;
+  padding: 1% 3% 4% 7%;
+  width: 230px;
 }
 
 .statsName-Para {
   text-align: right;
-  width: 250px;
-  margin-left: auto;
+  width: 100px;
   padding: 4% 0 1.5% 0;
+  margin: 2% 5% 1% auto;
 }
 
 .barBox-div {
   display: block;
   text-align: right;
   height: 20px;
-  width: 250px;
+  width: 200px;
   margin-right: 0;
   margin-left: auto;
 }
@@ -514,21 +515,24 @@ button:focus {
 #image-div{
   width: 200px;
   display: inline-block;
+  position: relative;
 }
 
 #image-ID{
-  position: relative;
-  padding-top: 30px;
+  position: absolute;
   bottom: 0;
 }
 
 #div-screen{
   display: flex;
+  margin-top: 5%;
 }
 
 #btn-flex-container{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  transform: translateY(15px);
+  justify-content: space-evenly;
+  transform: translate(35px, 5px);
 }
+
+
