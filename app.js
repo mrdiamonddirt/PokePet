@@ -93,10 +93,11 @@ const menubtnname = {
   name: ["play"],
 };
 
+
 const newDiv = document.createElement("div");
 //create div based on the array value
 function creatediv() {
-  newDiv.textContent = divname.name[diplayedDivID];
+  // newDiv.textContent = divname.name[diplayedDivID];
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
   // create btn's of pet displayed
