@@ -185,19 +185,19 @@ function createbtns() {
           updateStatsBars(charmander);
         }
       });
-      letterX.addEventListener("click", (e) => {
+      letterX.addEventListener("click", () => {
         charmander.heal();
         updateStatsBars(charmander);
       });
-      letterA.addEventListener("click", (e) => {
+      letterA.addEventListener("click", () => {
         charmander.eatBerry();
         updateStatsBars(charmander);
       });
-      letterB.addEventListener("click", (e) => {
+      letterB.addEventListener("click", () => {
         charmander.playGame();
         updateStatsBars(charmander);
       });
-      letterY.addEventListener("keypress", (e) => {
+      letterY.addEventListener("keypress", () => {
         charmander.sleep();
         updateStatsBars(charmander);
       });
