@@ -416,8 +416,9 @@ function needsTrigger() {
     charmander.sleepiness = Math.max(charmander.sleepiness - 10, 0);
   }, 10000);
   charmander.hunger = Math.max(charmander.hunger - 10, 0);
-  
-  updateStatsBars(charmander);
+  setTimeout(() => {
+    updateStatsBars(charmander);
+  }, 1000);
   if (charmander.hunger <= 5) {
     console.log("starving");
     // console.log(charmander.checkStats())
