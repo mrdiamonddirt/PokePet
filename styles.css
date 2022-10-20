@@ -488,4 +488,6 @@ button:focus {
 #btn-flex-container{
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  transform: translateY(15px);
 }
