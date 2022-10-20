@@ -8,7 +8,7 @@ class Pet {
     this.name = name;
     this.mood = mood;
     this.health = 100;
-    this.hunger = 100;
+    this.hunger = 20;
     this.sleepiness = 100;
     this.happiness = 100;
     this.age = 0;
@@ -114,8 +114,8 @@ const divname = {
 diplayedDivID = 0;
 //placeholder will get button names from pet class method
 const intbtnname = {
-  name: ["heal", "eat", "play", "sleep"],
-  url: ['imgs/pokecentre.webp','imgs/berry.png','imgs/Pokemon1.png','imgs/zzz.png']
+  name: ["heal", "eat", "sleep", "play"],
+  url: ['imgs/pokecentre.webp','imgs/berry.png','imgs/zzz.png', 'imgs/Pokemon1.png']
 };
 const menubtnname = {
   name: ["start"],
@@ -442,6 +442,9 @@ function needsTrigger() {
     console.log("starving");
     // console.log(newPet.checkStats())
     newPet.health = Math.max(newPet.health - 5, 0);
+    // variable for pet image animations
+    const imageID = document.getElementById('image-ID')
+    imageID.style.animation = 'shake 10s';
   }
   if (newPet.hunger < 50) {
     console.log("hungry");
@@ -452,6 +455,9 @@ function needsTrigger() {
     console.log("hurting");
     // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
+    const imageID = document.getElementById('image-ID')
+    imageID.style.animation = 'hurting 2s infinite';
+    // console.log(charmander.checkStats())
   }
 }
 
