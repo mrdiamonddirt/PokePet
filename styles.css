@@ -10,6 +10,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+
 * {
   margin: 0;
   padding: 0;
@@ -364,6 +365,11 @@ button {
   position: absolute;
 }
 
+.body-box .switch .controller-right .btn:hover {
+  background-color: #343132;
+  cursor: pointer;
+}
+
 .body-box .switch .controller-right .mini-circle {
   background-color: #4d4d4d;
   border-radius: 20px;
@@ -382,14 +388,17 @@ button {
   position: absolute;
 }
 
-#action-btn-1, #action-btn-2, #action-btn-3, #action-btn-4{
+#action-btn-1,
+#action-btn-2,
+#action-btn-3,
+#action-btn-4 {
   height: 20px;
   width: 100px;
   font-size: 15px;
   /* background: url(imgs/dead.png); */
 }
 
-.timer{
+.timer {
   display: none;
 }
 /* ----------- Properties Bars */
@@ -426,7 +435,13 @@ button {
   min-height: 20px;
 }
 
-
-
-
+@keyframes btnpressed {
+  0%{
+    background-color: #4d4d4d;
+  } 50% {
+    background-color: black;
+  } 100% {
+    background-color: #4d4d4d;
+  }
+}
 
