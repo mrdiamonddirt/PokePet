@@ -84,7 +84,7 @@ const divname = {
   name: ["menu", "pet"],
   ID: [0, 1],
 };
-diplayedDivID = 1;
+diplayedDivID = 0;
 //placeholder will get button names from pet class method
 const intbtnname = {
   name: ["heal", "eat", "play", "sleep"],
@@ -99,6 +99,13 @@ function creatediv() {
   newDiv.textContent = divname.name[diplayedDivID];
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
+  // create btn's of pet displayed
+  if (diplayedDivID == 0) {
+  createbtns()
+  } else if (diplayedDivID == 1) {
+    createbtns()
+    createStatsBars(charmander)
+  }
 }
 //create div
 creatediv();
@@ -113,6 +120,12 @@ function createbtns() {
     newDiv.appendChild(newBtn);
     newBtn.addEventListener('click', function(event){
       console.log(event.target.textContent)
+      if (event.target.textContent == 'play') {
+       diplayedDivID = 1
+       console.log(diplayedDivID)
+       creatediv();
+       return diplayedDivID
+      }
   })
   }
 } else if (diplayedDivID == 1) {
@@ -139,13 +152,6 @@ function createbtns() {
     })
   }
 }
-}
-// create btn's of pet displayed
-if (diplayedDivID == 0) {
-  createbtns()
-} else if (diplayedDivID == 1) {
-    createbtns()
-    createStatsBars(charmander)
 }
 
 
