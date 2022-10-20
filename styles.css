@@ -404,7 +404,24 @@ button:focus {
 
 .timer {
   display: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: center;
   text-align: center;
+  transform: translate(-160px,40px);
+}
+
+#clock{
+  position: fixed;
+  /* text-align: center; */
+  top: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translate(-160px,40px);
 }
 /* ----------- Properties Bars */
 
@@ -459,9 +476,6 @@ button:focus {
   display: inline-block;
   background-color: red;
 }
-
-
-
 
 #div-screen{
   display: flex;
