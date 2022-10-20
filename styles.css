@@ -411,8 +411,8 @@ button:focus {
 #stats-all-div {
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.1);
-  width: 270px;
-  margin-left: auto;
+  display: inline-block;
+  margin-left: auto ;
   padding: 2% 5% 1% 0;
 }
 
@@ -450,6 +450,14 @@ button:focus {
     background-color: #4d4d4d;
   }
 }
+
+
+
+/* ----------- Image */
+#image-div{
+  width: 200px;
+  display: inline-block;
+  background-color: red;
 
 #clock{
   position: fixed;
