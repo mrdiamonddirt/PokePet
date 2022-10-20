@@ -396,6 +396,7 @@ button {
 
 
 #stats-all-div{
+  border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.1);
   width: 270px;
   margin-left: auto ;
@@ -415,7 +416,6 @@ button {
   width: 250px;
   margin-right: 0;
   margin-left: auto;
-  background-color: red;
 }
 
 .bar-div {
