@@ -213,7 +213,7 @@ function createbtns() {
         charmander.playGame();
         updateStatsBars(charmander);
       });
-      letterY.addEventListener("keypress", () => {
+      letterY.addEventListener("click", (e) => {
         charmander.sleep();
         updateStatsBars(charmander);
       });
