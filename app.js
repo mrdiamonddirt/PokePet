@@ -95,8 +95,8 @@ const divname = {
 diplayedDivID = 0;
 //placeholder will get button names from pet class method
 const intbtnname = {
-  name: ["heal", "eat", "play", "sleep"],
-  url: ['imgs/pokecentre.webp','imgs/berry.png','imgs/Pokemon1.png','imgs/zzz.png']
+  name: ["heal", "eat", "sleep", "play"],
+  url: ['imgs/pokecentre.webp','imgs/berry.png','imgs/zzz.png', 'imgs/Pokemon1.png']
 };
 const menubtnname = {
   name: ["start"],
