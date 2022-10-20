@@ -531,5 +531,5 @@ button:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  transform: translateY(9px);
+  transform: translate(27px, 7px);
 }
