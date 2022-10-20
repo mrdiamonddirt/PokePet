@@ -124,7 +124,9 @@ function createbtns() {
        diplayedDivID = 1
        console.log(diplayedDivID)
        creatediv();
-       return diplayedDivID
+       playinggame = true;
+       needsTrigger()
+      //  return diplayedDivID
       }
   })
   }
@@ -275,24 +277,33 @@ function createTimer() {
   timer.setAttribute('id',`timer`);
   mainDiv.appendChild(timer)
   }
-  createTimer()
+  if (diplayedDivID == 0){
+    // createTimer()
+  }
+createTimer()
 
 // Set and Start timer
 const timer = document.getElementById('timer')
-let feedtimer = 00 + ":" + 10;
+let feedtimer = 00 + ":" + 5;
 timer.innerHTML = feedtimer
 
-feedtrigger()
-
-function feedtrigger(){
+//takes stats off pet when hungry and starving
+function needsTrigger(){
 startTimer();
 setTimeout(() => {
   console.log('feed me')
 }, 10000);
+setTimeout(() => {
+  charmander.sleepiness -= 5
+}, 10000);
 charmander.hunger -= 10;
+updateStatsBars(charmander)
+if (charmander.hunger < 0) {
+  console.log('starving')
+  charmander.health -= 5
+}
 }
 
-console.log(feedtimer)
 //start timer function
 function startTimer() {
   var presentTime = document.getElementById('timer').innerHTML;
@@ -301,6 +312,9 @@ function startTimer() {
   var s = checkSecond((timeArray[1] - 1));
   if(s==59){m=m-1}
   if(m<0){
+    console.log('log')
+    timer.innerHTML = feedtimer
+    needsTrigger()
     return
   }
   // updates the html every second
