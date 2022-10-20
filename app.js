@@ -127,6 +127,7 @@ function createbtns() {
        creatediv();
        playinggame = true;
        needsTrigger()
+       document.getElementById('mainlogo').style.display = 'none';
       //  return diplayedDivID
       }
   })
