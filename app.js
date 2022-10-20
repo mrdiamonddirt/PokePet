@@ -1,3 +1,7 @@
+// audio files
+var click = new Audio('/sounds/button-click.mp3');
+click.play()
+
 // ================================
 // ----- Classes
 // ================================
@@ -92,13 +96,13 @@ let petImage = "";
 
 // Create switch to create class depending on chosen pet
 if (chosenPet == "charmander") {
-  newPet = new Charmander("dave", "happy");
+  newPet = new Charmander("Charmander", "happy");
   petImage = "Pokemon3.png";
 } else if (chosenPet == "squirtle") {
-  newPet = new Squirtle("dave", "happy");
+  newPet = new Squirtle("Squirtle", "happy");
   petImage = "Pokemon2.png";
 } else {
-  newPet = new Pikachu("dave", "happy");
+  newPet = new Pikachu("Pikachu", "sleepy");
   petImage = "Pokemon1.png";
 }
 
@@ -161,7 +165,7 @@ function createbtns() {
           needsTrigger();
           document.getElementById("mainlogo").style.display = "none";
           document.getElementById("timer").style.display = "block";
-
+          click.play();
           //  return diplayedDivID
         }
       });
