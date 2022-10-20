@@ -145,7 +145,7 @@ function createbtns() {
   } else if (diplayedDivID == 1) {
     for (i = 0; i < intbtnname.name.length; i++) {
       const newBtn = document.createElement("img");
-      // newBtn.textContent = `${intbtnname.name[i]}`;
+      newBtn.textContent = `${intbtnname.name[i]}`;
       newBtn.src = intbtnname.url[i]
       newBtn.classList.add(divname.name[0]);
       newBtn.setAttribute("id", `action-btn-${i + 1}`);
