@@ -85,19 +85,21 @@ class Pikachu extends Pet {
   }
 }
 
-let chosenPet = "charmander";
+// Set new pet
+let chosenPet = "pikachu";
+let newPet = new Pet
 
 // Create switch to create class depending on chosen pet
 if (chosenPet == "charmander"){
-  let newPet = new Charmander("dave", "happy");
-  console.log('pet is Charmander')
-} else if ( chosenPet == "squirtle"){
-  let newPet = new Squirtle ("dave", "happy");
-}else{
-  let newPet = new Pikachu ("dave", "happy");
+  newPet = new Charmander("dave", "happy");
+} 
+else if ( chosenPet == "squirtle"){
+  newPet = new Squirtle ("dave", "happy");
+}
+else{
+  newPet = new Pikachu ("dave", "happy");
 }
 
-console.log(newPet)
 
 
 //class for potential divs to create
@@ -434,17 +436,17 @@ function needsTrigger() {
   }, 1000);
   if (newPet.hunger <= 5) {
     console.log("starving");
-    // console.log(charmander.checkStats())
+    // console.log(newPet.checkStats())
     newPet.health = Math.max(newPet.health - 5, 0);
   }
   if (newPet.hunger < 50) {
     console.log("hungry");
-    // console.log(charmander.checkStats())
+    // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
   if (newPet.health < 50) {
     console.log("hurting");
-    // console.log(charmander.checkStats())
+    // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
 }
