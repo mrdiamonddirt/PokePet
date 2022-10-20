@@ -228,3 +228,91 @@ function updateStatsBars(pet){
 		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 	}
 }
+
+//timing stuff
+// create clock function
+function createClock() {
+const clock = document.createElement('div')
+clock.setAttribute('class', 'clock');
+clock.setAttribute('id',`clock`);
+// clock.innerText = `${date}`
+mainDiv.appendChild(clock)
+}
+// trigger create clock function
+createClock()
+// get current time and update clock
+function currentTime() {
+  let date = new Date(); 
+  let hh = date.getHours();
+  let mm = date.getMinutes();
+  let ss = date.getSeconds();
+  let session = "AM";
+
+  if(hh == 0){
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let time = hh + ":" + mm + ":" + ss + " " + session;
+
+  document.getElementById("clock").innerText = time; 
+  let t = setTimeout(function(){ currentTime() }, 1000);
+}
+// display current time
+currentTime();
+
+// create clock function
+function createTimer() {
+  const timer = document.createElement('div')
+  timer.setAttribute('class', 'timer');
+  timer.setAttribute('id',`timer`);
+  mainDiv.appendChild(timer)
+  }
+  createTimer()
+
+// Set and Start timer
+const timer = document.getElementById('timer')
+let feedtimer = 00 + ":" + 10;
+timer.innerHTML = feedtimer
+
+feedtrigger()
+
+function feedtrigger(){
+startTimer();
+setTimeout(() => {
+  console.log('feed me')
+}, 10000);
+charmander.hunger -= 10;
+}
+
+console.log(feedtimer)
+//start timer function
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var m = timeArray[0];
+  var s = checkSecond((timeArray[1] - 1));
+  if(s==59){m=m-1}
+  if(m<0){
+    return
+  }
+  // updates the html every second
+  document.getElementById('timer').innerHTML =
+    m + ":" + s;
+  // console.log(m)
+  setTimeout(startTimer, 1000);
+  
+}
+// function for intergering the minutes seconds
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+  if (sec < 0) {sec = "59"};
+  return sec;
+}
