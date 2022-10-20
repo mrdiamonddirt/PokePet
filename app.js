@@ -128,6 +128,8 @@ function createbtns() {
        playinggame = true;
        needsTrigger()
        document.getElementById('mainlogo').style.display = 'none';
+       document.getElementById('timer').style.display = 'block';
+
       //  return diplayedDivID
       }
   })
@@ -137,6 +139,7 @@ function createbtns() {
     const newBtn = document.createElement("button");
     newBtn.textContent = `${intbtnname.name[i]}`;
     newBtn.classList.add(divname.name[0]);
+    newBtn.setAttribute('id', `action-btn-${i+1}`)
     newDiv.appendChild(newBtn);
     newBtn.addEventListener('click', function(event){
       console.log(event.target.textContent)
