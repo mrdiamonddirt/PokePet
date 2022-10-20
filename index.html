@@ -1,13 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Cyberpet</title>
-  </head>
-  <body>
-    <div id="mainDiv"></div>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="styles.css">
+	<title>Cyberpet</title>
+</head>
+<body>
+    <section id="body-background">
+      <div class="body-box-background flex-center">
+        <div class="circle"></div>
+        <div class="background">          
+          <div class="bg-blue"></div>
+          <div class="bg-red"></div>          
+        </div>
+        </section>
+    <section id="body">
+      <div class="body-box flex-center">
+        <div class="switch">
+          <div class="controller-left">
+            <div class="minus"></div>
+            <div class="trigger">
+              <div class="trigger-2"></div>
+            </div>
+            <div class="four-arrow-buttons flex-center">
+              <button class="btn arrow-up">
+                <i class="fa-solid fa-caret-up"></i>
+              </button>
+              <button class="btn arrow-right">
+                <i class="fa-solid fa-caret-right"></i>
+              </button>
+              <button class="btn arrow-down">
+                <i class="fa-solid fa-caret-down"></i>
+              </button>
+              <button class="btn arrow-left">
+                <i class="fa-solid fa-caret-left"></i>
+              </button>
+            </div>
+            <div class="square"><i class="fa-solid fa-circle"></i></div>
+          </div>
+          <div class="console">
+            <div class="curves"></div>
+            <div class="curves"></div>
+            <div class="frame flex-center">
+              <div class="margin flex-center">
+                <div class="screen flex-center">
+                  <img src="imgs/Pokemon Logo.png" />
+                  <button class="start-btn">Start</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="controller-right">
+            <div class="plus"><div class="plus-plus"></div></div>
+            <div class="four-letter-buttons flex-center">
+              <button class="btn letterX">X</button>
+              <button class="btn letterA">A</button>
+              <button class="btn letterB">B</button>
+              <button class="btn letterY">Y</button>
+            </div>
+            <div class="trigger">
+              <div class="trigger-2"></div>
+            </div>
+            <div class="mini-circle"><i class="fa-solid fa-house"></i></div>
+          </div>
+        </div>
+        <div id="mainDiv"></div>
+      </div>
+    </section>
     <script src="app.js"></script>
   </body>
 </html>
