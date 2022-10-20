@@ -405,11 +405,13 @@ button {
   text-align: right;
   width: 250px;
   margin-left: auto ;
+  padding: 4% 0 1.5% 0;
 }
 
 .barBox-div {
   display: block;
   text-align: right;
+  height: 20px;
   width: 250px;
   margin-right: 0;
   margin-left: auto;
@@ -417,7 +419,9 @@ button {
 }
 
 .bar-div {
+  border-radius: 12px;
   display: inline-block;
   min-width: 95%;
-  min-height: 7px;
+  min-height: 20px;
+
 }
