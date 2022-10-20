@@ -155,17 +155,50 @@ function createbtns() {
         if (event.target.textContent == "heal") {
           charmander.heal();
           updateStatsBars(charmander);
+          actionBackground("heal"); // Background change
         } else if (event.target.textContent == "eat") {
           charmander.eatBerry();
           updateStatsBars(charmander);
+          actionBackground("eat"); // Background change
         } else if (event.target.textContent == "play") {
           charmander.playGame();
           updateStatsBars(charmander);
+          actionBackground("play"); // Background change
         } else if (event.target.textContent == "sleep") {
           charmander.sleep();
           updateStatsBars(charmander);
+          actionBackground("sleep"); // Background change
         }
       });
+
+      // Load background image on start //
+      const screen = document.querySelector(".screen");
+      screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+      screen.style.backgroundSize = "cover";
+      screen.style.backgroundRepeat = "no-repeat";
+
+      // Function for swapping backgrounds //
+      function actionBackground(action) {
+        screen.style.backgroundSize = "cover";
+        screen.style.backgroundRepeat = "no-repeat";
+
+        if (action == "heal") {
+          screen.style.backgroundImage = "url(imgs/BgHeal.png)";
+        } else if (action == "eat") {
+          screen.style.backgroundImage = "url(imgs/BgEat.jpg)";
+        } else if (action == "play") {
+          screen.style.backgroundImage = "url(imgs/BgPlay.jpg)";
+        } else if (action == "sleep") {
+          screen.style.backgroundImage = "url(imgs/BgSleep.jpg)";
+        } else {
+          screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+        }
+
+        setTimeout(() => {
+          screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+        }, 500);
+      }
+
       // X, A, B, Y Buttons //
       let input = document.querySelector("body");
       const letterX = document.querySelector(".letterX");
@@ -174,50 +207,58 @@ function createbtns() {
       const letterY = document.querySelector(".letterY");
       input.addEventListener("keypress", (e) => {
         if (e.key === "x" || e.key === "X") {
-          letterX.style.animation = 'btnpressed 1s'
+          letterX.style.animation = "btnpressed 1s";
           setTimeout(() => {
-          letterX.style.animation = 'none'
+            letterX.style.animation = "none";
           }, 1000);
           charmander.heal();
           updateStatsBars(charmander);
+          actionBackground("heal"); // Background change
         } else if (e.key === "a" || e.key === "A") {
-          letterA.style.animation = 'btnpressed 1s'
+          letterA.style.animation = "btnpressed 1s";
           setTimeout(() => {
-          letterA.style.animation = 'none'
+            letterA.style.animation = "none";
           }, 1000);
           charmander.eatBerry();
           updateStatsBars(charmander);
+          actionBackground("eat"); // Background change
         } else if (e.key === "b" || e.key === "B") {
-          letterB.style.animation = 'btnpressed 1s'
+          letterB.style.animation = "btnpressed 1s";
           setTimeout(() => {
-          letterB.style.animation = 'none'
+            letterB.style.animation = "none";
           }, 1000);
           charmander.playGame();
           updateStatsBars(charmander);
+          actionBackground("play"); // Background change
         } else if (e.key === "y" || e.key === "Y") {
-          letterY.style.animation = 'btnpressed 1s'
+          letterY.style.animation = "btnpressed 1s";
           setTimeout(() => {
-          letterY.style.animation = 'none'
+            letterY.style.animation = "none";
           }, 1000);
           charmander.sleep();
           updateStatsBars(charmander);
+          actionBackground("sleep"); // Background change
         }
       });
       letterX.addEventListener("click", () => {
         charmander.heal();
         updateStatsBars(charmander);
+        actionBackground("heal"); // Background change
       });
       letterA.addEventListener("click", () => {
         charmander.eatBerry();
         updateStatsBars(charmander);
+        actionBackground("eat"); // Background change
       });
       letterB.addEventListener("click", () => {
         charmander.playGame();
         updateStatsBars(charmander);
+        actionBackground("play"); // Background change
       });
       letterY.addEventListener("click", (e) => {
         charmander.sleep();
         updateStatsBars(charmander);
+        actionBackground("sleep"); // Background change
       });
       // X, A, B, Y Buttons //
     }
@@ -225,48 +266,51 @@ function createbtns() {
 }
 
 // ================================
-// ----- Create Property Bars 
+// ----- Create Property Bars
 
-function createStatsBars(pet){
+function createStatsBars(pet) {
+  // Create array which hold property names , values , colours for styling
+  let statsArray = ["Health", "Hunger", "Sleep", "Happiness"];
+  let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
+  let statsCols = [
+    "var(--green)",
+    "var(--red)",
+    "var(--blue)",
+    "var(--orange)",
+  ];
 
-	// Create array which hold property names , values , colours for styling
-	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
-	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness]
-  let statsCols = ["var(--green)", "var(--red)", "var(--blue)", "var(--orange)"]
-
-  // Create a div to hold all of the status bars 
-  const statsAllDiv = document.createElement('div')
+  // Create a div to hold all of the status bars
+  const statsAllDiv = document.createElement("div");
   statsAllDiv.setAttribute("id", "stats-all-div");
 
-		for (let i=0 ; i<statsArray.length ; i++ ){
+  for (let i = 0; i < statsArray.length; i++) {
+    // Create div to hold property bar
+    const statsDiv = document.createElement("div");
+    statsDiv.setAttribute("id", `stats-div-${i + 1}`);
 
-		// Create div to hold property bar
-		const statsDiv = document.createElement('div')
-    statsDiv.setAttribute("id", `stats-div-${i+1}`);
+    // Create paragraph tag to hold property name => Append to the new progress div
+    const newPara = document.createElement("p");
+    newPara.setAttribute("class", "statsName-Para");
+    newPara.innerText = `${statsArray[i]}`;
+    statsDiv.appendChild(newPara);
 
-		// Create paragraph tag to hold property name => Append to the new progress div
-		const newPara = document.createElement('p')
-		newPara.setAttribute('class', 'statsName-Para');
-		newPara.innerText = `${statsArray[i]}`
-		statsDiv.appendChild(newPara)
+    // Create the div to hold the property bar
+    const barBoxDiv = document.createElement("div");
+    barBoxDiv.classList.add("barBox-div");
+    statsDiv.appendChild(barBoxDiv);
 
-		// Create the div to hold the property bar  
-		const barBoxDiv = document.createElement('div')
-		barBoxDiv.classList.add("barBox-div");
-		statsDiv.appendChild(barBoxDiv)
+    // Create the div to hold the actual bar => add class and ID
+    const barDiv = document.createElement("div");
+    barDiv.classList.add("bar-div");
+    barDiv.setAttribute("id", `stats-bar-${i + 1}`);
+    barBoxDiv.appendChild(barDiv);
 
-		// Create the div to hold the actual bar => add class and ID
-		const barDiv = document.createElement('div')
-		barDiv.classList.add("bar-div");
-		barDiv.setAttribute('id',`stats-bar-${i+1}`);
-		barBoxDiv.appendChild(barDiv)
-
-		// Add styling to the bar depending on the value of the property
-		barDiv.style.background= `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
+    // Add styling to the bar depending on the value of the property
+    barDiv.style.background = `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
 
     // Append each status to the main status Div
-    statsAllDiv.appendChild(statsDiv)
-	}
+    statsAllDiv.appendChild(statsDiv);
+  }
 
   // Append stats All Div to main div
   mainDiv.appendChild(statsAllDiv);
@@ -275,19 +319,23 @@ function createStatsBars(pet){
 // ================================
 // ----- Update Stats bars
 
-function updateStatsBars(pet){
-
-	// Create array to store values
-	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
-  let statsCols = ["var(--green)", "var(--red)", "var(--blue)", "var(--orange)"]
+function updateStatsBars(pet) {
+  // Create array to store values
+  let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
+  let statsCols = [
+    "var(--green)",
+    "var(--red)",
+    "var(--blue)",
+    "var(--orange)",
+  ];
   // Update Values
   for (let i = 0; i < statsValues.length; i++) {
     // Get the stats paragraphs and bars
     let statsBar = document.getElementById(`stats-bar-${i + 1}`);
 
-		// Update the  and stats bar
-		statsBar.style.background= `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
-	}
+    // Update the  and stats bar
+    statsBar.style.background = `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
+  }
 }
 
 //timing stuff
