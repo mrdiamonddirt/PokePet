@@ -400,6 +400,7 @@ button {
   background-color: rgba(0, 0, 0, 0.1);
   width: 270px;
   margin-left: auto ;
+  padding: 2% 5% 1% 0;
 }
 
 .statsName-Para {
@@ -424,6 +425,7 @@ button {
   min-width: 95%;
   min-height: 20px;
 }
+
 
 
 

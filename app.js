@@ -183,7 +183,7 @@ function createStatsBars(pet){
 
 		// Create div to hold property bar
 		const statsDiv = document.createElement('div')
-    statsDiv.setAttribute("id", "stats-div");
+    statsDiv.setAttribute("id", `stats-div-${i+1}`);
 
 		// Create paragraph tag to hold property name => Append to the new progress div
 		const newPara = document.createElement('p')
@@ -191,7 +191,7 @@ function createStatsBars(pet){
 		newPara.innerText = `${statsArray[i]}`
 		statsDiv.appendChild(newPara)
 
-		// Create the div to hold the property bar and 
+		// Create the div to hold the property bar  
 		const barBoxDiv = document.createElement('div')
 		barBoxDiv.classList.add("barBox-div");
 		statsDiv.appendChild(barBoxDiv)
