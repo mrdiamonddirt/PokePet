@@ -9,38 +9,38 @@ class Pet {
     this.mood = mood;
     this.health = 100;
     this.hunger = 100;
-    this.sleep = 100;
+    this.sleepiness = 100;
     this.happiness = 100;
     this.age = 0;
   }
   playGame(){
     this.health -=5;
     this.hunger -=5;
-    this.sleep -=5;
+    this.sleepiness -=5;
     this.happiness +=5;
     // console logs for clarity
-    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`)
     console.log(`played a game`)
     return this;
   }
   eatBerry(){
     this.health +=5;
     this.hunger +=10;
-    this.sleep -=5;
+    this.sleepiness -=5;
     this.happiness +=5;
-    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`)
     console.log(`${this.name} ate a berry`)
     return this;
   }
   heal(){
     this.health = 100;
-    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`)
     console.log(`${this.name} visited a pokéstop`)
     return this;
   }
   sleep(){
-    this.sleep =100;
-    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n sleep ${this.happiness}`)
+    this.sleepiness = 100;
+    console.log(`health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n happiness ${this.happiness}`)
     console.log(`${this.name} is sleeping`)
     return this;
   }
@@ -50,7 +50,7 @@ class Pet {
       mood: this.mood,
       health: this.health,
       hunger: this.hunger,
-      sleep: this.sleep,
+      sleep: this.sleepiness,
       happiness: this.happiness,
       age: this.age
     });
@@ -87,7 +87,7 @@ const divname = {
 diplayedDivID = 1;
 //placeholder will get button names from pet class method
 const intbtnname = {
-  name: ["eat", "drink", "play"],
+  name: ["heal", "eat", "play", "sleep"],
 };
 const menubtnname = {
   name: ["play"],
@@ -111,6 +111,9 @@ function createbtns() {
     newBtn.textContent = `${menubtnname.name[i]}`;
     newBtn.classList.add(divname.name[0]);
     newDiv.appendChild(newBtn);
+    newBtn.addEventListener('click', function(event){
+      console.log(event.target.textContent)
+  })
   }
 } else if (diplayedDivID == 1) {
   for (i = 0; i < intbtnname.name.length; i++) {
@@ -118,6 +121,22 @@ function createbtns() {
     newBtn.textContent = `${intbtnname.name[i]}`;
     newBtn.classList.add(divname.name[0]);
     newDiv.appendChild(newBtn);
+    newBtn.addEventListener('click', function(event){
+      console.log(event.target.textContent)
+      if (event.target.textContent == 'heal') {
+        charmander.heal()
+        updateStatsBars(charmander)
+      } else if (event.target.textContent == 'eat') {
+        charmander.eatBerry()
+        updateStatsBars(charmander)
+      } else if (event.target.textContent == 'play') {
+        charmander.playGame()
+        updateStatsBars(charmander)
+      } else if (event.target.textContent == 'sleep') {
+        charmander.sleep()
+        updateStatsBars(charmander)
+      }
+    })
   }
 }
 }
@@ -140,7 +159,7 @@ function createStatsBars(pet){
 
 	// Create array which hold property names
 	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
-	let statsValues = [pet.health, pet.hunger, pet.sleep, pet.happiness]
+	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness]
 
 		for (let i=0 ; i<statsArray.length ; i++ ){
 
@@ -183,15 +202,13 @@ function createStatsBars(pet){
 
 }
 
-
-
 // ================================
 // ----- Update Stats bars
 
 function updateStatsBars(pet){
 
 	// Create array to store values
-	let statsValues = [pet.health, pet.hunger, pet.sleep, pet.happiness];
+	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
 
 	// Update Values
 	for (let i = 0 ; i<statsValues.length ; i++){
@@ -205,14 +222,3 @@ function updateStatsBars(pet){
 		statsBar.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
