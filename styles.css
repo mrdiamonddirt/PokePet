@@ -387,18 +387,21 @@ button {
 .statsName-Para {
   background-color: yellow;
   text-align: right;
+  width: 250px;
+  margin-left: auto ;
 }
 
 .barBox-div {
-  display: inline-block;
+  display: block;
   text-align: right;
-  width: 300px;
+  width: 250px;
   margin-right: 0;
+  margin-left: auto;
   background-color: red;
 }
 
 .bar-div {
   display: inline-block;
-  min-width: 85%;
+  min-width: 95%;
   min-height: 7px;
 }

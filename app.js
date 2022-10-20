@@ -174,10 +174,15 @@ function createStatsBars(pet){
 	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
 	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness]
 
+  // Create a div to hold all of the status bars 
+  const statsAllDiv = document.createElement('div')
+  statsAllDiv.setAttribute("id", "stats-all-div");
+
 		for (let i=0 ; i<statsArray.length ; i++ ){
 
 		// Create div to hold property bar
 		const statsDiv = document.createElement('div')
+    statsDiv.setAttribute("id", "stats-div");
 
 		// Create paragraph tag to hold property name => Append to the new progress div
 		const newPara = document.createElement('p')
@@ -185,7 +190,7 @@ function createStatsBars(pet){
 		newPara.innerText = `${statsArray[i]}`
 		statsDiv.appendChild(newPara)
 
-		// Create the div to hold the property bar and paratag
+		// Create the div to hold the property bar and 
 		const barBoxDiv = document.createElement('div')
 		barBoxDiv.classList.add("barBox-div");
 		statsDiv.appendChild(barBoxDiv)
@@ -196,13 +201,15 @@ function createStatsBars(pet){
 		barDiv.setAttribute('id',`stats-bar-${i+1}`);
 		barBoxDiv.appendChild(barDiv)
 
-
 		// Add styling to the bar depending on the value of the property
 		barDiv.style.background= `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
 
-		// Append progress div to main div
-		mainDiv.appendChild(statsDiv);
+    // Append each status to the main status Div
+    statsAllDiv.appendChild(statsDiv)
 	}
+
+  // Append stats All Div to main div
+  mainDiv.appendChild(statsAllDiv);
 
 }
 
