@@ -223,57 +223,69 @@ function createbtns() {
 }
 
 // ================================
-// ----- Create Property Bars
+// ----- Create Property Bars 
 
-function createStatsBars(pet) {
-  // Create array which hold property names
-  let statsArray = ["Health", "Hunger", "Sleep", "Happiness"];
-  let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
+function createStatsBars(pet){
 
-  for (let i = 0; i < statsArray.length; i++) {
-    // Create div to hold property bar
-    const statsDiv = document.createElement("div");
+	// Create array which hold property names , values , colours for styling
+	let statsArray = ["Health", "Hunger", "Sleep", "Happiness"]
+	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness]
+  let statsCols = ["var(--green)", "var(--red)", "var(--blue)", "var(--orange)"]
 
-    // Create paragraph tag to hold property name => Append to the new progress div
-    const newPara = document.createElement("p");
-    newPara.setAttribute("class", "statsName-Para");
-    newPara.innerText = `${statsArray[i]}`;
-    statsDiv.appendChild(newPara);
+  // Create a div to hold all of the status bars 
+  const statsAllDiv = document.createElement('div')
+  statsAllDiv.setAttribute("id", "stats-all-div");
 
-    // Create the div to hold the property bar and paratag
-    const barBoxDiv = document.createElement("div");
-    barBoxDiv.classList.add("barBox-div");
-    statsDiv.appendChild(barBoxDiv);
+		for (let i=0 ; i<statsArray.length ; i++ ){
 
-    // Create the div to hold the actual bar
-    const barDiv = document.createElement("div");
-    barDiv.classList.add("bar-div");
-    barDiv.setAttribute("id", `stats-bar-${i + 1}`);
-    barBoxDiv.appendChild(barDiv);
+		// Create div to hold property bar
+		const statsDiv = document.createElement('div')
+    statsDiv.setAttribute("id", `stats-div-${i+1}`);
 
-    // Add styling to the bar depending on the value of the property
-    barDiv.style.background = `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
+		// Create paragraph tag to hold property name => Append to the new progress div
+		const newPara = document.createElement('p')
+		newPara.setAttribute('class', 'statsName-Para');
+		newPara.innerText = `${statsArray[i]}`
+		statsDiv.appendChild(newPara)
 
-    // Append progress div to main div
-    mainDiv.appendChild(statsDiv);
-  }
+		// Create the div to hold the property bar  
+		const barBoxDiv = document.createElement('div')
+		barBoxDiv.classList.add("barBox-div");
+		statsDiv.appendChild(barBoxDiv)
+
+		// Create the div to hold the actual bar => add class and ID
+		const barDiv = document.createElement('div')
+		barDiv.classList.add("bar-div");
+		barDiv.setAttribute('id',`stats-bar-${i+1}`);
+		barBoxDiv.appendChild(barDiv)
+
+		// Add styling to the bar depending on the value of the property
+		barDiv.style.background= `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
+
+    // Append each status to the main status Div
+    statsAllDiv.appendChild(statsDiv)
+	}
+
+  // Append stats All Div to main div
+  mainDiv.appendChild(statsAllDiv);
 }
 
 // ================================
 // ----- Update Stats bars
 
-function updateStatsBars(pet) {
-  // Create array to store values
-  let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
+function updateStatsBars(pet){
 
+	// Create array to store values
+	let statsValues = [pet.health, pet.hunger, pet.sleepiness, pet.happiness];
+  let statsCols = ["var(--green)", "var(--red)", "var(--blue)", "var(--orange)"]
   // Update Values
   for (let i = 0; i < statsValues.length; i++) {
     // Get the stats paragraphs and bars
     let statsBar = document.getElementById(`stats-bar-${i + 1}`);
 
-    // Update the  and stats bar
-    statsBar.style.background = `linear-gradient(to right, green ${statsValues[i]}%, green ${statsValues[i]}%, blue 1%)`;
-  }
+		// Update the  and stats bar
+		statsBar.style.background= `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
+	}
 }
 
 //timing stuff
