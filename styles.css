@@ -474,12 +474,15 @@ button:focus {
 #image-div{
   width: 200px;
   display: inline-block;
-  background-color: red;
+}
+
+#image-ID{
+  position: relative;
+  bottom: 0;
 }
 
 #div-screen{
   display: flex;
-  background-color: green;
 }
 
 #btn-flex-container{
