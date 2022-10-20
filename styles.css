@@ -458,6 +458,7 @@ button:focus {
   width: 200px;
   display: inline-block;
   background-color: red;
+}
 
 #clock{
   position: fixed;
@@ -467,4 +468,10 @@ button:focus {
   justify-content: flex-end;
   width: 100%;
   transform: translateX(-100px);
+}
+
+
+#div-screen{
+  display: flex;
+  background-color: green;
 }
