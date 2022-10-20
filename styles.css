@@ -461,9 +461,12 @@ button:focus {
 }
 
 
-
-
 #div-screen{
   display: flex;
   background-color: green;
+}
+
+#btn-flex-container{
+  display: flex;
+  flex-direction: column;
 }
