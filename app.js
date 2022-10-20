@@ -8,7 +8,7 @@ class Pet {
     this.name = name;
     this.mood = mood;
     this.health = 100;
-    this.hunger = 100;
+    this.hunger = 20;
     this.sleepiness = 100;
     this.happiness = 100;
     this.age = 0;
@@ -421,7 +421,9 @@ function needsTrigger() {
   }, 1000);
   if (charmander.hunger <= 5) {
     console.log("starving");
-    // console.log(charmander.checkStats())
+    // variable for pet image animations
+    const imageID = document.getElementById('image-ID')
+    imageID.style.animation = 'shake 10s';
     charmander.health = Math.max(charmander.health - 5, 0);
   }
   if (charmander.hunger < 50) {
@@ -431,6 +433,8 @@ function needsTrigger() {
   }
   if (charmander.health < 50) {
     console.log("hurting");
+    const imageID = document.getElementById('image-ID')
+    imageID.style.animation = 'hurting 2s infinite';
     // console.log(charmander.checkStats())
     charmander.happiness = Math.max(charmander.happiness - 10, 0);
   }
