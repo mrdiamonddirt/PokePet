@@ -86,8 +86,11 @@ const divname = {
 };
 diplayedDivID = 1;
 //placeholder will get button names from pet class method
-const btnname = {
+const intbtnname = {
   name: ["eat", "drink", "play"],
+};
+const menubtnname = {
+  name: ["play"],
 };
 
 const newDiv = document.createElement("div");
@@ -100,18 +103,29 @@ function creatediv() {
 //create div
 creatediv();
 
-//create buttons function - loops through the class to create btns
-function createbtn() {
-  for (i = 0; i < btnname.name.length; i++) {
+//create buttons function - loops through the class to create btns for pet interactions
+function createbtns() {
+  if (diplayedDivID == 0) {
+  for (i = 0; i < menubtnname.name.length; i++) {
     const newBtn = document.createElement("button");
-    newBtn.textContent = `${btnname.name[i]}`;
+    newBtn.textContent = `${menubtnname.name[i]}`;
+    newBtn.classList.add(divname.name[0]);
+    newDiv.appendChild(newBtn);
+  }
+} else if (diplayedDivID == 1) {
+  for (i = 0; i < intbtnname.name.length; i++) {
+    const newBtn = document.createElement("button");
+    newBtn.textContent = `${intbtnname.name[i]}`;
     newBtn.classList.add(divname.name[0]);
     newDiv.appendChild(newBtn);
   }
 }
+}
 // create btn's of pet displayed
-if (diplayedDivID == 1) {
-    createbtn()
+if (diplayedDivID == 0) {
+  createbtns()
+} else if (diplayedDivID == 1) {
+    createbtns()
     createStatsBars(charmander)
 }
 
