@@ -147,13 +147,16 @@ function createbtns() {
       });
     }
   } else if (diplayedDivID == 1) {
+    // Create container for buttons
+    const btnContainer = document.createElement("div");
+    btnContainer.setAttribute("id", "btn-flex-container")
     for (i = 0; i < intbtnname.name.length; i++) {
       const newBtn = document.createElement("img");
       newBtn.textContent = `${intbtnname.name[i]}`;
       newBtn.src = intbtnname.url[i]
       newBtn.classList.add(divname.name[0]);
       newBtn.setAttribute("id", `action-btn-${i + 1}`);
-      newDiv.appendChild(newBtn);
+      btnContainer.appendChild(newBtn);
       newBtn.addEventListener("click", function (event) {
         console.log(event.target.textContent);
         if (event.target.textContent == "heal") {
@@ -174,8 +177,6 @@ function createbtns() {
           actionBackground("sleep"); // Background change
         }
       });
-
-      screenDiv.appendChild(newDiv)
 
       // Load background image on start //
       const screen = document.querySelector(".screen");
@@ -268,6 +269,8 @@ function createbtns() {
       });
       // X, A, B, Y Buttons //
     }
+    // Add the buttons to the screen div
+     screenDiv.appendChild(btnContainer);
   }
 }
 
