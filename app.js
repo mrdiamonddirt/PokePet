@@ -1,7 +1,3 @@
-// audio files
-var click = new Audio('/sounds/button-click.mp3');
-click.play()
-
 // ================================
 // ----- Classes
 // ================================
@@ -11,7 +7,7 @@ class Pet {
   constructor(name, mood) {
     this.name = name;
     this.mood = mood;
-    this.health = 100;
+    this.health = 20;
     this.hunger = 20;
     this.sleepiness = 100;
     this.happiness = 100;
@@ -187,18 +183,26 @@ function createbtns() {
           newPet.heal();
           updateStatsBars(newPet);
           actionBackground("heal"); // Background change
+          healsound.pause()
+          healsound.play();
         } else if (event.target.textContent == "eat") {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
+          click.pause()
+          click.play();
         } else if (event.target.textContent == "play") {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
+          click.pause()
+          click.play();
         } else if (event.target.textContent == "sleep") {
           newPet.sleep();
           updateStatsBars(newPet);
           actionBackground("sleep"); // Background change
+          click.pause()
+          click.play();
         }
       });
 
@@ -544,3 +548,9 @@ function checkDead() {
 }
 
 // Check if pet is dead //
+
+// audio files
+var click = new Audio('sounds/button-click.mp3');
+var healsound = new Audio('sounds/poke-recovery.mp3');
+// click.play()
+
