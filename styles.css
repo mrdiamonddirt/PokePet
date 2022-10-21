@@ -431,9 +431,9 @@ button.restart-button {
   transform: translate(-180px, 40px);
 }
 .age{
+  position: fixed;
   display: none;
-  transform: translateY(10px);
-
+  transform: translate(-20px,0px);
 }
 
 #clock {
@@ -543,7 +543,13 @@ button.restart-button {
     background: radial-gradient(#ff0000, #ffffff00, #ffffff00);
   }
 }
+@keyframes happy {
+0%{
 
+} 100%{
+
+} 
+}
 /* ----------- Image */
 #image-div {
   width: 200px;
