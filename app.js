@@ -185,25 +185,25 @@ function createbtns() {
           newPet.heal();
           updateStatsBars(newPet);
           actionBackground("heal"); // Background change
-          healsound.pause()
+          healsound.pause();
           healsound.play();
         } else if (event.target.textContent == "eat") {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
-          click.pause()
+          click.pause();
           click.play();
         } else if (event.target.textContent == "play") {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
-          click.pause()
+          click.pause();
           click.play();
         } else if (event.target.textContent == "sleep") {
           newPet.sleep();
           updateStatsBars(newPet);
           actionBackground("sleep"); // Background change
-          click.pause()
+          click.pause();
           click.play();
         }
       });
@@ -432,7 +432,11 @@ function createAge() {
   age.textContent = `Age = ${newPet.age}`;
   mainDiv.appendChild(age);
 }
-createAge()
+createAge();
+function updateage() {
+  const age = document.getElementById("age");
+  age.textContent = `Age = ${newPet.age.toFixed(1)}`;
+}
 createTimer();
 
 // Set and Start timer
@@ -452,6 +456,9 @@ function needsTrigger() {
   }, 10000);
   newPet.hunger = Math.max(newPet.hunger - 10, 0);
   setTimeout(() => {
+    newPet.age = newPet.age + 0.1;
+    console.log(newPet.age);
+    updateage()
     updateStatsBars(newPet);
   }, 1000);
   if (newPet.hunger <= 5) {
@@ -557,7 +564,6 @@ function checkDead() {
 // Check if pet is dead //
 
 // audio files
-var click = new Audio('sounds/button-click.mp3');
-var healsound = new Audio('sounds/poke-recovery.mp3');
+var click = new Audio("sounds/button-click.mp3");
+var healsound = new Audio("sounds/poke-recovery.mp3");
 // click.play()
-
