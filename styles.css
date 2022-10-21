@@ -636,3 +636,8 @@ button.restart-button {
 #selection-btn-2:hover, #selection-btn-1:hover, #selection-btn-3:hover, #selection-btn-4:hover{
   transform: translateY(-60px) scale(2);
 }
+#soundimg{
+position: fixed;
+right: 0;
+transform: scale(0.1) translate(150px,1200px);
+}
