@@ -148,8 +148,8 @@ function creatediv(diplayedID) {
   } else if (diplayedDivID == 1) {
     createPet(chosenPet)
     createImage();
-    createStatsBars(newPet);
     createbtns(1);
+    createStatsBars(newPet);
   } else if (diplayedDivID == 2){
     createbtns(2);
   }
