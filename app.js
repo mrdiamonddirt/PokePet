@@ -474,13 +474,17 @@ function needsTrigger() {
     // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
-  if (newPet.health < 50) {
+  if (newPet.health <= 20) {
     console.log("hurting");
     // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "hurting 2s infinite";
     // console.log(charmander.checkStats())
+  }
+  if (newPet.health > 21) {
+    const imageID = document.getElementById("image-ID");
+    imageID.style.animation = "none";
   }
   if (newPet.health <= 0) {
     checkDead();
