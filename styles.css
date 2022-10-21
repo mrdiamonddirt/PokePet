@@ -556,6 +556,7 @@ button.restart-button {
   width: 200px;
   display: flex;
   position: relative;
+  align-items: flex-start;
 }
 
 #image-ID {
@@ -565,11 +566,10 @@ button.restart-button {
 }
 
 #image-mood{
-  width: 10%;
-  height: 10%;
+  width: 15%;
   margin-left: auto;
   margin-right: auto;
-  padding: 5% 0 0 0;
+  padding: 4% 0 0 0;
 }
 
 #div-screen {

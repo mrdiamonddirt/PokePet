@@ -540,7 +540,7 @@ function createImage() {
   // Create mood
   const moodImage = document.createElement("img");
   moodImage.setAttribute("id", "image-mood");
-  moodImage.src = `./imgs/zzz.png`;
+  moodImage.src = `./imgs/heal.png`;
 
 
   // Create Pet
