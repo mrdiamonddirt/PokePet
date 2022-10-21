@@ -87,20 +87,20 @@ class Pikachu extends Pet {
 }
 
 // Set new pet
-let chosenPet = "squirtle";
+let chosenPet = "charmander";
 let newPet = new Pet();
 let petImage = "";
 
 // Create switch to create class depending on chosen pet
 if (chosenPet == "charmander") {
   newPet = new Charmander("Charmander", "happy");
-  petImage = "Pokemon3.png";
+  petImage = "Pokemon3";
 } else if (chosenPet == "squirtle") {
   newPet = new Squirtle("Squirtle", "happy");
-  petImage = "Pokemon2.png";
+  petImage = "Pokemon2";
 } else {
   newPet = new Pikachu("Pikachu", "sleepy");
-  petImage = "Pokemon1.png";
+  petImage = "Pokemon1";
 }
 
 //class for potential divs to create
@@ -535,38 +535,6 @@ function checkSecond(sec) {
 // ================================
 // ----- Create Image Div
 
-function createImage() {
-
-  // Create Div to hold pet and mood 
-  const imageDiv = document.createElement("div");
-  imageDiv.setAttribute("id", "image-div");
-
-  // Create mood for health hunger sleep happiness
-  const moodImageHappy = document.createElement("img");
-  moodImageHappy.setAttribute("id", "image-mood-happy");
-  moodImageHappy.setAttribute("class", "image-mood");
-  moodImageHappy.src = `./imgs/hearts.png`;
-
-
-  // Create Pet
-  const image = document.createElement("img");
-  image.setAttribute("id", "image-ID");
-  image.src = `./imgs/${petImage}`;
-  image.style.width = "100%";
-
-  // imageDiv.appendChild(moodImageHeal)
-  // imageDiv.appendChild(moodImageHunger)
-  // imageDiv.appendChild(moodImageSleep)
-  console.log(moodImageHappy)
-  imageDiv.appendChild(moodImageHappy)
-
-  imageDiv.appendChild(image);
-
-  // Append Image to mainDiv
-  screenDiv.appendChild(imageDiv);
-}
-
-
 
 // Need to create these OUTSIDE of the function
 // Create mood for health hunger sleep happiness
@@ -585,16 +553,44 @@ function createImage() {
   moodImageSleep.setAttribute("class", "image-mood");
   moodImageSleep.src = `./imgs/zzz.png`;
 
+  // Create mood for health hunger sleep happiness
+  const moodImageHappy = document.createElement("img");
+  moodImageHappy.setAttribute("id", "image-mood-happy");
+  moodImageHappy.setAttribute("class", "image-mood");
+  moodImageHappy.src = `./imgs/hearts.png`;
+
+  
+
+function createImage() {
+
+  // Create Div to hold pet and mood 
+  const imageDiv = document.createElement("div");
+  imageDiv.setAttribute("id", "image-div");
+
+  // Create Pet
+  const image = document.createElement("img");
+  image.setAttribute("id", "image-ID");
+  image.src = `./imgs/${petImage}.png`;
+  image.style.width = "100%";
+
+  imageDiv.appendChild(moodImageHappy)
+
+  imageDiv.appendChild(image);
+
+  // Append Image to mainDiv
+  screenDiv.appendChild(imageDiv);
+}
+
+
 
 // Update Image
 function updateImage(newPet){
 
-
-  // IDs of mood images
-  let moodHappy = document.getElementById("image-mood-happy")
-
   // Get the IDs of the images and divs needed 
   let imageDivMain = document.getElementById("image-div")
+
+  // Get the ID of the image Div
+  let imageMain = document.getElementById("image-ID")
 
 
   // Change the mood image if the various stats are below 50%
@@ -619,9 +615,13 @@ function updateImage(newPet){
   }
 
   if (newPet.happiness < 50 && imageDivMain.querySelector("#image-mood-happy") !== null){
-    imageDivMain.removeChild(moodHappy)
+    imageDivMain.removeChild(moodImageHappy)
+    // Change the source to angry pokemon
+    imageMain.src = `./imgs/${petImage}-angry.png`
   }else if (newPet.happiness > 50 && imageDivMain.querySelector("#image-mood-happy") == null){
-    imageDivMain.appendChild(moodHappy)
+    imageDivMain.appendChild(moodImageHappy)
+    console.log("Changing to happy image")
+    imageMain.src = `./imgs/${petImage}.png`
   }
 
 }
