@@ -24,7 +24,6 @@ class Pet {
     console.log(
       `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
     );
-    console.log(`played a game`);
     return this;
   }
   eatBerry() {
@@ -34,7 +33,6 @@ class Pet {
     console.log(
       `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
     );
-    console.log(`${this.name} ate a berry`);
     return this;
   }
   heal() {
@@ -42,7 +40,6 @@ class Pet {
     console.log(
       `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
     );
-    console.log(`${this.name} visited a pokéstop`);
     return this;
   }
   sleep() {
@@ -50,7 +47,6 @@ class Pet {
     console.log(
       `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n happiness ${this.happiness}`
     );
-    console.log(`${this.name} is sleeping`);
     return this;
   }
   checkStats() {
@@ -86,8 +82,13 @@ class Pikachu extends Pet {
   }
 }
 
+
+// function chosenPetFunc () {
+
+  
+// }
 // Set new pet
-let chosenPet = "squirtle";
+let chosenPet = "charmander";
 let newPet = new Pet();
 let petImage = "";
 
@@ -108,7 +109,8 @@ const divname = {
   name: ["menu", "pet", "selection"],
   ID: [0, 1, 2],
 };
-diplayedDivID = 0;
+
+
 //placeholder will get button names from pet class method
 const intbtnname = {
   name: ["heal", "eat", "sleep", "play"],
@@ -123,7 +125,7 @@ const menubtnname = {
   name: ["start"],
 };
 const selectionbtn = {
-  name: ['charmander', 'squirtle', 'bulbasaur'],
+  name: ['pikachu', 'squirtle', 'charmander'],
   url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png']
 }
 
@@ -132,29 +134,39 @@ const screenDiv = document.createElement("div");
 screenDiv.setAttribute("id", "div-screen");
 
 //create div based on the array value
-function creatediv() {
+function creatediv(diplayedID) {
+  let diplayedDivID = diplayedID
+
   newDiv.textContent = "";
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
   // create btn's of pet displayed
   if (diplayedDivID == 0) {
-    createbtns();
+    console.log("creating start screen")
+    createbtns(0);
   } else if (diplayedDivID == 1) {
+    console.log("creating main screen")
     createImage();
-    createbtns();
     createStatsBars(newPet);
+    createbtns(1);
   } else if (diplayedDivID == 2){
-    createbtns();
+    console.log("creating selection screen")
+    createbtns(2);
   }
 }
 //create div
-creatediv();
+creatediv(0);
 
 
 
 //create buttons function - loops through the class to create btns for pet interactions
-function createbtns() {
+function createbtns(suppliedID) {
+
+  let diplayedDivID = suppliedID;
+
+   // MAIN MENU
   if (diplayedDivID == 0) {
+    console.log("HERE AT MAIN MENU")
     for (i = 0; i < menubtnname.name.length; i++) {
       const newBtn = document.createElement("button");
       newBtn.textContent = `${menubtnname.name[i]}`;
@@ -165,13 +177,18 @@ function createbtns() {
         if (event.target.textContent == "start") {
           diplayedDivID = 2;
           console.log(diplayedDivID);
-          creatediv();
+          creatediv(2);
           click.play();
           //  return diplayedDivID
         }
       });
     }
-  } else if (diplayedDivID == 1) {
+  } 
+
+
+  // GAME PLAY SCREEN
+  else if (diplayedDivID == 1) {
+    console.log("HERE AT GAME SCREEN")
     // Create container for buttons
     const btnContainer = document.createElement("div");
     btnContainer.setAttribute("id", "btn-flex-container");
@@ -304,7 +321,11 @@ function createbtns() {
     }
     // Add the buttons to the screen div
     screenDiv.appendChild(btnContainer);
-  } else if (diplayedDivID == 2) {
+  } 
+
+  // SELECTION SCREEN
+  else if (diplayedDivID == 2) {
+    console.log("HERE AT SELECTION SCREEN")
     const selectionDiv = document.createElement('div')
     selectionDiv.classList.add('selectiondiv');
     mainDiv.appendChild(selectionDiv);
@@ -315,36 +336,27 @@ function createbtns() {
       selectionbtnimg.setAttribute("id", `selection-btn-${l + 1}`);
       selectionbtnimg.src = selectionbtn.url[l];
       selectionDiv.appendChild(selectionbtnimg);
+
       selectionbtnimg.addEventListener("click", function (event) {
         console.log(event.target.textContent);
         if (event.target.textContent == "charmander") {
-          event.target.textContent = chosenPet;
+          chosenPet = event.target.textContent;
+          console.log(chosenPet)
           playinggame = true;
-          needsTrigger();
-          document.getElementById("mainlogo").style.display = "none";
-          document.getElementById("timer").style.display = "block";
-          document.getElementById("age").style.display = "block";
-          displayedDivID = 1;
-          console.log(`Displayed Div ${displayedDivID}`)
         } else if (event.target.textContent == 'squirtle' ) {
           chosenPet = event.target.textContent;
-          displayedDivID = 1;
+          console.log(chosenPet)
           playinggame = true;
-          needsTrigger();
-          document.getElementById("mainlogo").style.display = "none";
-          document.getElementById("timer").style.display = "block";
-          document.getElementById("age").style.display = "block";
-          console.log(`Displayed Div ${displayedDivID}`)
-        } else if (event.target.textContent == 'bulbasaur' ) {
+        } else if (event.target.textContent == 'pikachu' ) {
           chosenPet = event.target.textContent;
-          displayedDivID = 1;
+          console.log(chosenPet)
           playinggame = true;
-          needsTrigger();
-          document.getElementById("mainlogo").style.display = "none";
-          document.getElementById("timer").style.display = "block";
-          document.getElementById("age").style.display = "block";
-          console.log(`Displayed Div ${displayedDivID}`)
         }
+        document.getElementById("mainlogo").style.display = "none";
+        document.getElementById("timer").style.display = "block";
+        document.getElementById("age").style.display = "block";
+        mainDiv.removeChild(selectionDiv);
+        creatediv(1)
       })
   }
 }
@@ -421,8 +433,6 @@ function updateStatsBars(pet) {
     // Update the  and stats bar
     statsBar.style.background = `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
   }
-
-  console.log("Updating images")
   // Update mood icons
   updateImage(pet)
 }
@@ -526,7 +536,6 @@ function needsTrigger() {
     imageID.style.animation = "none";
   }
   if (newPet.hunger <= 5) {
-    console.log("starving");
     // console.log(newPet.checkStats())
     newPet.health = Math.max(newPet.health - 5, 0);
     // variable for pet image animations
@@ -548,7 +557,6 @@ function startTimer() {
     m = m - 1;
   }
   if (m < 0) {
-    console.log("log");
     timer.innerHTML = feedtimer;
     needsTrigger();
     return;
@@ -660,7 +668,6 @@ function updateImage(newPet){
     imageMain.src = `./imgs/${petImage}-angry.png`
   }else if (newPet.happiness > 50 && imageDivMain.querySelector("#image-mood-happy") == null){
     imageDivMain.appendChild(moodImageHappy)
-    console.log("Changing to happy image")
     imageMain.src = `./imgs/${petImage}.png`
   }
 
