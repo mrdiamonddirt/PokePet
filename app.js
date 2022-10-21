@@ -543,7 +543,7 @@ mainDiv.appendChild(screenDiv);
 function checkDead() {
   if (newPet.health <= 0) {
     const screen = document.querySelector(".screen");
-    screen.style.backgroundImage = "url(imgs/dead.png)";
+    screen.style.backgroundImage = `url(imgs/dead${newPet.name}.png)`;
     screen.style.backgroundSize = "cover";
     screen.style.backgroundRepeat = "no-repeat";
 
