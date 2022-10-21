@@ -565,12 +565,25 @@ button.restart-button {
   margin-top: 0;
 }
 
-#image-mood{
+.image-mood{
+  max-width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4% 0 0 0;
+}
+/*#image-mood-hunger{
   width: 15%;
   margin-left: auto;
   margin-right: auto;
   padding: 4% 0 0 0;
 }
+
+#image-mood-heal{
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4% 0 0 0;
+}*/
 
 #div-screen {
   display: flex;
