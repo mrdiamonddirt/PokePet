@@ -623,3 +623,17 @@ button.restart-button {
   justify-content: space-evenly;
   transform: translate(35px, 5px);
 }
+.selectiondiv{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#selection-btn-2, #selection-btn-1, #selection-btn-3{
+  width: 100px;
+  transform: translateY(-20px);
+}
+#selection-btn-2:hover, #selection-btn-1:hover, #selection-btn-3:hover{
+
+  transform: translateY(-60px) scale(2);
+}
