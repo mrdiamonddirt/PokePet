@@ -460,14 +460,6 @@ function needsTrigger() {
     updateage()
     updateStatsBars(newPet);
   }, 1000);
-  if (newPet.hunger <= 5) {
-    console.log("starving");
-    // console.log(newPet.checkStats())
-    newPet.health = Math.max(newPet.health - 5, 0);
-    // variable for pet image animations
-    const imageID = document.getElementById("image-ID");
-    imageID.style.animation = "shake 10s";
-  }
   if (newPet.hunger < 50) {
     console.log("hungry");
     // console.log(newPet.checkStats())
@@ -480,10 +472,17 @@ function needsTrigger() {
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "hurting 2s infinite";
     // console.log(charmander.checkStats())
-  }
-  if (newPet.health > 21) {
+  } else if (newPet.health > 21) {
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "none";
+  }
+  if (newPet.hunger <= 5) {
+    console.log("starving");
+    // console.log(newPet.checkStats())
+    newPet.health = Math.max(newPet.health - 5, 0);
+    // variable for pet image animations
+    const imageID = document.getElementById("image-ID");
+    imageID.style.animation = "shake 10s";
   }
   if (newPet.health <= 0) {
     checkDead();
