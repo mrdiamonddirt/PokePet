@@ -87,7 +87,7 @@ class Pikachu extends Pet {
 }
 
 // Set new pet
-let chosenPet = "charmander";
+let chosenPet = "squirtle";
 let newPet = new Pet();
 let petImage = "";
 
@@ -559,7 +559,7 @@ function checkSecond(sec) {
   moodImageHappy.setAttribute("class", "image-mood");
   moodImageHappy.src = `./imgs/hearts.png`;
 
-  
+
 
 function createImage() {
 
