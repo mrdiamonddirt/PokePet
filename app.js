@@ -702,4 +702,19 @@ function checkDead() {
 // audio files
 var click = new Audio("sounds/button-click.mp3");
 var healsound = new Audio("sounds/poke-recovery.mp3");
+var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
+bgmusic.play()
 // click.play()
+let musicplaying = true
+let bgmusicimg = document.getElementById('soundimg')
+bgmusicimg.addEventListener('click', function() {
+  if (musicplaying == true){
+    bgmusic.pause()
+    musicplaying = false;
+    bgmusicimg.src = './imgs/mute.png'
+  } else {
+    bgmusic.play()
+    musicplaying = true;
+    bgmusicimg.src = './imgs/sound.png'
+  }
+})
