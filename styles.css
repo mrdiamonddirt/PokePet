@@ -543,13 +543,7 @@ button.restart-button {
     background: radial-gradient(#ff0000, #ffffff00, #ffffff00);
   }
 }
-@keyframes happy {
-0%{
 
-} 100%{
-
-} 
-}
 /* ----------- Image */
 #image-div {
   width: 200px;

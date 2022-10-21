@@ -7,8 +7,8 @@ class Pet {
   constructor(name, mood) {
     this.name = name;
     this.mood = mood;
-    this.health = 20;
-    this.hunger = 20;
+    this.health = 50;
+    this.hunger = 50;
     this.sleepiness = 100;
     this.happiness = 100;
     this.age = 0;
@@ -303,6 +303,7 @@ function createbtns() {
   }
 }
 
+// 
 // ================================
 // ----- Create Property Bars
 
@@ -446,10 +447,6 @@ timer.innerHTML = feedtimer;
 //takes stats off pet when hungry and starving
 function needsTrigger() {
   startTimer();
-  setTimeout(() => {
-    console.log("feed me");
-    console.log(newPet.checkStats());
-  }, 10000);
   setTimeout(() => {
     newPet.sleepiness = Math.max(newPet.sleepiness - 10, 0);
   }, 10000);
