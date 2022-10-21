@@ -1,3 +1,5 @@
+//  Update the image when we update the stat
+
 // ================================
 // ----- Classes
 // ================================
@@ -141,6 +143,8 @@ function creatediv() {
 }
 //create div
 creatediv();
+
+
 
 //create buttons function - loops through the class to create btns for pet interactions
 function createbtns() {
@@ -303,7 +307,9 @@ function createbtns() {
   }
 }
 
-// 
+
+
+
 // ================================
 // ----- Create Property Bars
 
@@ -376,6 +382,8 @@ function updateStatsBars(pet) {
     statsBar.style.background = `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
   }
 }
+
+
 
 //timing stuff
 // create clock function
@@ -517,25 +525,39 @@ function checkSecond(sec) {
   return sec;
 }
 
+
+
+
 // ================================
 // ----- Create Image Div
 
 function createImage() {
-  // Create Div to hold pet
+
+  // Create Div to hold pet and mood 
   const imageDiv = document.createElement("div");
   imageDiv.setAttribute("id", "image-div");
 
+  // Create mood
+  const moodImage = document.createElement("img");
+  moodImage.setAttribute("id", "image-mood");
+  moodImage.src = `./imgs/zzz.png`;
+
+
+  // Create Pet
   const image = document.createElement("img");
   image.setAttribute("id", "image-ID");
   image.src = `./imgs/${petImage}`;
   image.style.width = "100%";
 
+  imageDiv.appendChild(moodImage)
   imageDiv.appendChild(image);
 
   // Append Image to mainDiv
   screenDiv.appendChild(imageDiv);
 }
 
+// ****** IMPORTANT ********
+// Append the image - buttons - stat bars to the main div
 mainDiv.appendChild(screenDiv);
 
 // Check if pet is dead //
