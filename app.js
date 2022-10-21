@@ -26,7 +26,6 @@ class Pet {
     return this;
   }
   eatBerry() {
-    this.health = Math.min(this.health + 5, 100);
     this.hunger = Math.min(this.hunger + 10, 100);
     this.sleepiness = Math.max(this.sleepiness - 5, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
