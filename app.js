@@ -717,5 +717,4 @@ bgmusicimg.addEventListener('click', function() {
     musicplaying = true;
     bgmusicimg.src = './imgs/sound.png'
   }
- 
 })
