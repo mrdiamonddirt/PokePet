@@ -429,13 +429,13 @@ function createAge() {
   const age = document.createElement("div");
   age.setAttribute("class", "age");
   age.setAttribute("id", `age`);
-  age.textContent = `Age = ${newPet.age}`;
+  age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
   mainDiv.appendChild(age);
 }
 createAge();
 function updateage() {
   const age = document.getElementById("age");
-  age.textContent = `Age = ${newPet.age.toFixed(1)}`;
+  age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
 }
 createTimer();
 
