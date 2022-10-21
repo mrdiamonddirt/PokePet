@@ -307,9 +307,6 @@ function createbtns() {
   }
 }
 
-
-
-
 // ================================
 // ----- Create Property Bars
 
@@ -466,7 +463,7 @@ function needsTrigger() {
   setTimeout(() => {
     newPet.age = newPet.age + 0.1;
     console.log(newPet.age);
-    updateage()
+    updateage();
     updateStatsBars(newPet);
   }, 1000);
   if (newPet.hunger < 50) {
