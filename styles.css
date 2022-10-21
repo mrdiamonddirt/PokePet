@@ -571,16 +571,46 @@ button.restart-button {
 }
 
 /* ----------- Image */
+/*
+#image-container{
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+}*/
+
 #image-div {
   width: 200px;
-  display: inline-block;
+  display: flex;
   position: relative;
+  align-items: flex-start;
 }
 
 #image-ID {
   position: absolute;
   bottom: 0;
+  margin-top: 0;
+  max-height: 75%;
 }
+
+.image-mood{
+  max-width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4% 0 0 0;
+}
+/*#image-mood-hunger{
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4% 0 0 0;
+}
+
+#image-mood-heal{
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4% 0 0 0;
+}*/
 
 #div-screen {
   display: flex;

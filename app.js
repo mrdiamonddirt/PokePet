@@ -1,3 +1,5 @@
+//  Update the image when we update the stat
+
 // ================================
 // ----- Classes
 // ================================
@@ -92,13 +94,13 @@ let petImage = "";
 // Create switch to create class depending on chosen pet
 if (chosenPet == "charmander") {
   newPet = new Charmander("Charmander", "happy");
-  petImage = "Pokemon3.png";
+  petImage = "Pokemon3";
 } else if (chosenPet == "squirtle") {
   newPet = new Squirtle("Squirtle", "happy");
-  petImage = "Pokemon2.png";
+  petImage = "Pokemon2";
 } else {
   newPet = new Pikachu("Pikachu", "sleepy");
-  petImage = "Pokemon1.png";
+  petImage = "Pokemon1";
 }
 
 //class for potential divs to create
@@ -141,6 +143,8 @@ function creatediv() {
 }
 //create div
 creatediv();
+
+
 
 //create buttons function - loops through the class to create btns for pet interactions
 function createbtns() {
@@ -303,7 +307,6 @@ function createbtns() {
   }
 }
 
-//
 // ================================
 // ----- Create Property Bars
 
@@ -375,7 +378,13 @@ function updateStatsBars(pet) {
     // Update the  and stats bar
     statsBar.style.background = `linear-gradient(to left, ${statsCols[i]} ${statsValues[i]}%, ${statsCols[i]} ${statsValues[i]}%, white 1%)`;
   }
+
+  console.log("Updating images")
+  // Update mood icons
+  updateImage(pet)
 }
+
+
 
 //timing stuff
 // create clock function
@@ -517,18 +526,51 @@ function checkSecond(sec) {
   return sec;
 }
 
+
+
+
 // ================================
 // ----- Create Image Div
 
+
+// Need to create these OUTSIDE of the function
+// Create mood for health hunger sleep happiness
+  let moodImageHeal = document.createElement("img");
+  moodImageHeal.setAttribute("id", "image-mood-heal");
+  moodImageHeal.setAttribute("class", "image-mood");
+  moodImageHeal.src = `./imgs/heal.png`;
+
+  let moodImageHunger = document.createElement("img");
+  moodImageHunger.setAttribute("id", "image-mood-hunger");
+  moodImageHunger.setAttribute("class", "image-mood");
+  moodImageHunger.src = `./imgs/berry.png`;
+
+  let moodImageSleep = document.createElement("img");
+  moodImageSleep.setAttribute("id", "image-mood-sleep");
+  moodImageSleep.setAttribute("class", "image-mood");
+  moodImageSleep.src = `./imgs/zzz.png`;
+
+  // Create mood for health hunger sleep happiness
+  const moodImageHappy = document.createElement("img");
+  moodImageHappy.setAttribute("id", "image-mood-happy");
+  moodImageHappy.setAttribute("class", "image-mood");
+  moodImageHappy.src = `./imgs/hearts.png`;
+
+
+
 function createImage() {
-  // Create Div to hold pet
+
+  // Create Div to hold pet and mood 
   const imageDiv = document.createElement("div");
   imageDiv.setAttribute("id", "image-div");
 
+  // Create Pet
   const image = document.createElement("img");
   image.setAttribute("id", "image-ID");
-  image.src = `./imgs/${petImage}`;
+  image.src = `./imgs/${petImage}.png`;
   image.style.width = "100%";
+
+  imageDiv.appendChild(moodImageHappy)
 
   imageDiv.appendChild(image);
 
@@ -536,6 +578,55 @@ function createImage() {
   screenDiv.appendChild(imageDiv);
 }
 
+
+
+// Update Image
+function updateImage(newPet){
+
+  // Get the IDs of the images and divs needed 
+  let imageDivMain = document.getElementById("image-div")
+
+  // Get the ID of the image Div
+  let imageMain = document.getElementById("image-ID")
+
+
+  // Change the mood image if the various stats are below 50%
+  //  If the image div DOES NOT already have the icon - append it
+  // If the stat is above 50 - remove the icon
+  if (newPet.health < 50 && imageDivMain.querySelector("#image-mood-heal") == null) {
+    imageDivMain.appendChild(moodImageHeal)
+  }else if (newPet.health >= 50 && imageDivMain.querySelector("#image-mood-heal") !== null) {
+    imageDivMain.removeChild(moodImageHeal)
+  }
+
+  if (newPet.hunger < 50 && imageDivMain.querySelector("#image-mood-hunger") == null) {
+    imageDivMain.appendChild(moodImageHunger)
+  }else if (newPet.hunger >= 50 && imageDivMain.querySelector("#image-mood-hunger") !== null) {
+    imageDivMain.removeChild(moodImageHunger)
+  }
+
+  if (newPet.sleepiness < 50 && imageDivMain.querySelector("#image-mood-sleep") == null) {
+    imageDivMain.appendChild(moodImageSleep)
+  }else if (newPet.sleepiness >= 50 && imageDivMain.querySelector("#image-mood-sleep") !== null) {
+    imageDivMain.removeChild(moodImageSleep)
+  }
+
+  if (newPet.happiness < 50 && imageDivMain.querySelector("#image-mood-happy") !== null){
+    imageDivMain.removeChild(moodImageHappy)
+    // Change the source to angry pokemon
+    imageMain.src = `./imgs/${petImage}-angry.png`
+  }else if (newPet.happiness > 50 && imageDivMain.querySelector("#image-mood-happy") == null){
+    imageDivMain.appendChild(moodImageHappy)
+    console.log("Changing to happy image")
+    imageMain.src = `./imgs/${petImage}.png`
+  }
+
+}
+
+
+
+// ****** IMPORTANT ********
+// Append the image - buttons - stat bars to the main div
 mainDiv.appendChild(screenDiv);
 
 // Check if pet is dead //
