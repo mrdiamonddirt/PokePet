@@ -161,6 +161,8 @@ function createbtns() {
           needsTrigger();
           document.getElementById("mainlogo").style.display = "none";
           document.getElementById("timer").style.display = "block";
+          document.getElementById("age").style.display = "block";
+
           click.play();
           //  return diplayedDivID
         }
@@ -423,9 +425,14 @@ function createTimer() {
   timer.setAttribute("id", `timer`);
   mainDiv.appendChild(timer);
 }
-if (diplayedDivID == 0) {
-  // createTimer()
+function createAge() {
+  const age = document.createElement("div");
+  age.setAttribute("class", "age");
+  age.setAttribute("id", `age`);
+  age.textContent = `Age = ${newPet.age}`;
+  mainDiv.appendChild(age);
 }
+createAge()
 createTimer();
 
 // Set and Start timer

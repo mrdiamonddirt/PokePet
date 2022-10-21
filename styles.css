@@ -428,7 +428,12 @@ button.restart-button {
   margin-right: auto;
   position: center;
   text-align: center;
-  transform: translate(-160px, 40px);
+  transform: translate(-180px, 40px);
+}
+.age{
+  display: none;
+  transform: translateY(10px);
+
 }
 
 #clock {
