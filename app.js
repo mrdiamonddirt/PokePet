@@ -83,26 +83,28 @@ class Pikachu extends Pet {
 }
 
 
-// function chosenPetFunc () {
-
-  
-// }
-// Set new pet
-let chosenPet = "charmander";
 let newPet = new Pet();
 let petImage = "";
 
-// Create switch to create class depending on chosen pet
-if (chosenPet == "charmander") {
-  newPet = new Charmander("Charmander", "happy");
-  petImage = "Pokemon3";
-} else if (chosenPet == "squirtle") {
-  newPet = new Squirtle("Squirtle", "happy");
-  petImage = "Pokemon2";
-} else {
-  newPet = new Pikachu("Pikachu", "sleepy");
-  petImage = "Pokemon1";
+
+// Set new pet
+let chosenPet = "charmander";
+
+
+function createPet(chosenPet){
+  // Create switch to create class depending on chosen pet
+  if (chosenPet == "charmander") {
+    newPet = new Charmander("Charmander", "happy");
+    petImage = "Pokemon3";
+  } else if (chosenPet == "squirtle") {
+    newPet = new Squirtle("Squirtle", "happy");
+    petImage = "Pokemon2";
+  } else {
+    newPet = new Pikachu("Pikachu", "sleepy");
+    petImage = "Pokemon1";
+  }
 }
+
 
 //class for potential divs to create
 const divname = {
@@ -142,15 +144,13 @@ function creatediv(diplayedID) {
   mainDiv.appendChild(newDiv);
   // create btn's of pet displayed
   if (diplayedDivID == 0) {
-    console.log("creating start screen")
     createbtns(0);
   } else if (diplayedDivID == 1) {
-    console.log("creating main screen")
+    createPet(chosenPet)
     createImage();
     createStatsBars(newPet);
     createbtns(1);
   } else if (diplayedDivID == 2){
-    console.log("creating selection screen")
     createbtns(2);
   }
 }
@@ -166,7 +166,6 @@ function createbtns(suppliedID) {
 
    // MAIN MENU
   if (diplayedDivID == 0) {
-    console.log("HERE AT MAIN MENU")
     for (i = 0; i < menubtnname.name.length; i++) {
       const newBtn = document.createElement("button");
       newBtn.textContent = `${menubtnname.name[i]}`;
@@ -179,7 +178,6 @@ function createbtns(suppliedID) {
           console.log(diplayedDivID);
           creatediv(2);
           click.play();
-          //  return diplayedDivID
         }
       });
     }
@@ -188,7 +186,6 @@ function createbtns(suppliedID) {
 
   // GAME PLAY SCREEN
   else if (diplayedDivID == 1) {
-    console.log("HERE AT GAME SCREEN")
     // Create container for buttons
     const btnContainer = document.createElement("div");
     btnContainer.setAttribute("id", "btn-flex-container");
@@ -325,7 +322,6 @@ function createbtns(suppliedID) {
 
   // SELECTION SCREEN
   else if (diplayedDivID == 2) {
-    console.log("HERE AT SELECTION SCREEN")
     const selectionDiv = document.createElement('div')
     selectionDiv.classList.add('selectiondiv');
     mainDiv.appendChild(selectionDiv);
@@ -341,22 +337,17 @@ function createbtns(suppliedID) {
         console.log(event.target.textContent);
         if (event.target.textContent == "charmander") {
           chosenPet = event.target.textContent;
-          console.log(chosenPet)
-          playinggame = true;
         } else if (event.target.textContent == 'squirtle' ) {
           chosenPet = event.target.textContent;
-          console.log(chosenPet)
-          playinggame = true;
         } else if (event.target.textContent == 'pikachu' ) {
           chosenPet = event.target.textContent;
-          console.log(chosenPet)
-          playinggame = true;
         }
         document.getElementById("mainlogo").style.display = "none";
         document.getElementById("timer").style.display = "block";
         document.getElementById("age").style.display = "block";
         mainDiv.removeChild(selectionDiv);
         creatediv(1)
+        needsTrigger()
       })
   }
 }
