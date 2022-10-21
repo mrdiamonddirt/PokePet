@@ -629,11 +629,10 @@ button.restart-button {
   align-items: center;
   justify-content: space-between;
 }
-#selection-btn-2, #selection-btn-1, #selection-btn-3{
+#selection-btn-2, #selection-btn-1, #selection-btn-3,  #selection-btn-4{
   width: 100px;
   transform: translateY(-20px);
 }
-#selection-btn-2:hover, #selection-btn-1:hover, #selection-btn-3:hover{
-
+#selection-btn-2:hover, #selection-btn-1:hover, #selection-btn-3:hover, #selection-btn-4:hover{
   transform: translateY(-60px) scale(2);
 }

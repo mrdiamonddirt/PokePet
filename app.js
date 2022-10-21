@@ -99,6 +99,9 @@ function createPet(chosenPet){
   } else if (chosenPet == "squirtle") {
     newPet = new Squirtle("Squirtle", "happy");
     petImage = "Pokemon2";
+  } else if  (chosenPet == "bulbasaur"){
+    newPet = new Bulbasaur("Bulbasaur", "sleepy");
+    petImage = "Pokemon4";
   } else {
     newPet = new Pikachu("Pikachu", "sleepy");
     petImage = "Pokemon1";
@@ -127,8 +130,8 @@ const menubtnname = {
   name: ["start"],
 };
 const selectionbtn = {
-  name: ['pikachu', 'squirtle', 'charmander'],
-  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png']
+  name: ['pikachu', 'squirtle', 'charmander', 'bulbasaur'],
+  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png','./imgs/Pokemon4.png']
 }
 
 const newDiv = document.createElement("div");
@@ -250,7 +253,7 @@ function createbtns(suppliedID) {
 
         setTimeout(() => {
           screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
-        }, 500);
+        }, 2000);
       }
 
       // X, A, B, Y Buttons //
@@ -340,6 +343,8 @@ function createbtns(suppliedID) {
         } else if (event.target.textContent == 'squirtle' ) {
           chosenPet = event.target.textContent;
         } else if (event.target.textContent == 'pikachu' ) {
+          chosenPet = event.target.textContent;
+        }else if (event.target.textContent == 'bulbasaur' ) {
           chosenPet = event.target.textContent;
         }
         document.getElementById("mainlogo").style.display = "none";
