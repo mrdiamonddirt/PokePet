@@ -540,7 +540,7 @@ function createImage() {
   // Create mood
   const moodImage = document.createElement("img");
   moodImage.setAttribute("id", "image-mood");
-  moodImage.src = `./imgs/heal.png`;
+  moodImage.src = `./imgs/hearts.png`;
 
 
   // Create Pet
@@ -555,6 +555,11 @@ function createImage() {
   // Append Image to mainDiv
   screenDiv.appendChild(imageDiv);
 }
+
+// Update Image
+function updateImage(pet){}
+
+
 
 // ****** IMPORTANT ********
 // Append the image - buttons - stat bars to the main div
