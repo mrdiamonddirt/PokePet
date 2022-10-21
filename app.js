@@ -120,6 +120,10 @@ const intbtnname = {
 const menubtnname = {
   name: ["start"],
 };
+const selectionbtn = {
+  name: ['charmander', 'squirtle', 'bulbasaur'],
+  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png']
+}
 
 const newDiv = document.createElement("div");
 const screenDiv = document.createElement("div");
@@ -137,6 +141,8 @@ function creatediv() {
     createImage();
     createbtns();
     createStatsBars(newPet);
+  } else if (diplayedDivID == 2){
+    createbtns();
   }
 }
 //create div
@@ -153,15 +159,9 @@ function createbtns() {
       newBtn.addEventListener("click", function (event) {
         console.log(event.target.textContent);
         if (event.target.textContent == "start") {
-          diplayedDivID = 1;
+          diplayedDivID = 2;
           console.log(diplayedDivID);
           creatediv();
-          playinggame = true;
-          needsTrigger();
-          document.getElementById("mainlogo").style.display = "none";
-          document.getElementById("timer").style.display = "block";
-          document.getElementById("age").style.display = "block";
-
           click.play();
           //  return diplayedDivID
         }
@@ -300,7 +300,50 @@ function createbtns() {
     }
     // Add the buttons to the screen div
     screenDiv.appendChild(btnContainer);
+  } else if (diplayedDivID == 2) {
+    const selectionDiv = document.createElement('div')
+    selectionDiv.classList.add('selectiondiv');
+    mainDiv.appendChild(selectionDiv);
+    for (l = 0; l < selectionbtn.name.length; l++) {   
+      const selectionbtnimg = document.createElement("img");   
+      selectionbtnimg.textContent = `${selectionbtn.name[l]}`;
+      selectionbtnimg.classList.add(selectionbtn.name[l]);
+      selectionbtnimg.setAttribute("id", `selection-btn-${l + 1}`);
+      selectionbtnimg.src = selectionbtn.url[l];
+      selectionDiv.appendChild(selectionbtnimg);
+      selectionbtnimg.addEventListener("click", function (event) {
+        console.log(event.target.textContent);
+        if (event.target.textContent == "charmander") {
+          event.target.textContent = chosenPet;
+          playinggame = true;
+          needsTrigger();
+          document.getElementById("mainlogo").style.display = "none";
+          document.getElementById("timer").style.display = "block";
+          document.getElementById("age").style.display = "block";
+          displayedDivID = 1;
+          console.log(`Displayed Div ${displayedDivID}`)
+        } else if (event.target.textContent == 'squirtle' ) {
+          chosenPet = event.target.textContent;
+          displayedDivID = 1;
+          playinggame = true;
+          needsTrigger();
+          document.getElementById("mainlogo").style.display = "none";
+          document.getElementById("timer").style.display = "block";
+          document.getElementById("age").style.display = "block";
+          console.log(`Displayed Div ${displayedDivID}`)
+        } else if (event.target.textContent == 'bulbasaur' ) {
+          chosenPet = event.target.textContent;
+          displayedDivID = 1;
+          playinggame = true;
+          needsTrigger();
+          document.getElementById("mainlogo").style.display = "none";
+          document.getElementById("timer").style.display = "block";
+          document.getElementById("age").style.display = "block";
+          console.log(`Displayed Div ${displayedDivID}`)
+        }
+      })
   }
+}
 }
 
 //
@@ -453,17 +496,17 @@ function needsTrigger() {
   newPet.hunger = Math.max(newPet.hunger - 10, 0);
   setTimeout(() => {
     newPet.age = newPet.age + 0.1;
-    console.log(newPet.age);
+    // console.log(newPet.age);
     updateage();
     updateStatsBars(newPet);
   }, 1000);
   if (newPet.hunger < 50) {
-    console.log("hungry");
+    // console.log("hungry");
     // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
   if (newPet.health <= 20) {
-    console.log("hurting");
+    // console.log("hurting");
     // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
     const imageID = document.getElementById("image-ID");
