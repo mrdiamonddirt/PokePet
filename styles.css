@@ -428,7 +428,12 @@ button.restart-button {
   margin-right: auto;
   position: center;
   text-align: center;
-  transform: translate(-160px, 40px);
+  transform: translate(-180px, 40px);
+}
+.age{
+  position: fixed;
+  display: none;
+  transform: translate(-20px,0px);
 }
 
 #clock {
@@ -513,34 +518,29 @@ button.restart-button {
 }
 
 @keyframes hurting {
-  0%,
-  100% {
+  0%, 100% {
     transform: translate(1px, 1px) rotate(0deg);
     background-color: #ffffff00;
   }
-  10%,
-  90% {
+  10%, 90% {
     transform: translate(-1px, -2px) rotate(-1deg);
-    background-color: #ed1b266f;
+    background: radial-gradient(#ff0000, #ffffff00, #ffffff00);
   }
-  20%,
-  80% {
+  20%, 80% {
     transform: translate(-3px, 0px) rotate(1deg);
     background-color: #ffffff00;
   }
-  30%,
-  70% {
+  30%, 70% {
     transform: translate(3px, 2px) rotate(0deg);
-    background-color: #ed1b266f;
+    background: radial-gradient(#ff0000, #ffffff00, #ffffff00);
   }
-  40%,
-  60% {
+  40%,60% {
     transform: translate(1px, -1px) rotate(1deg);
     background-color: #ffffff00;
   }
   50% {
     transform: translate(-1px, 2px) rotate(-1deg);
-    background-color: #ed1b266f;
+    background: radial-gradient(#ff0000, #ffffff00, #ffffff00);
   }
 }
 

@@ -7,8 +7,8 @@ class Pet {
   constructor(name, mood) {
     this.name = name;
     this.mood = mood;
-    this.health = 20;
-    this.hunger = 20;
+    this.health = 50;
+    this.hunger = 50;
     this.sleepiness = 100;
     this.happiness = 100;
     this.age = 0;
@@ -26,7 +26,6 @@ class Pet {
     return this;
   }
   eatBerry() {
-    this.health = Math.min(this.health + 5, 100);
     this.hunger = Math.min(this.hunger + 10, 100);
     this.sleepiness = Math.max(this.sleepiness - 5, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
@@ -161,6 +160,8 @@ function createbtns() {
           needsTrigger();
           document.getElementById("mainlogo").style.display = "none";
           document.getElementById("timer").style.display = "block";
+          document.getElementById("age").style.display = "block";
+
           click.play();
           //  return diplayedDivID
         }
@@ -183,25 +184,25 @@ function createbtns() {
           newPet.heal();
           updateStatsBars(newPet);
           actionBackground("heal"); // Background change
-          healsound.pause()
+          healsound.pause();
           healsound.play();
         } else if (event.target.textContent == "eat") {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
-          click.pause()
+          click.pause();
           click.play();
         } else if (event.target.textContent == "play") {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
-          click.pause()
+          click.pause();
           click.play();
         } else if (event.target.textContent == "sleep") {
           newPet.sleep();
           updateStatsBars(newPet);
           actionBackground("sleep"); // Background change
-          click.pause()
+          click.pause();
           click.play();
         }
       });
@@ -302,6 +303,7 @@ function createbtns() {
   }
 }
 
+// 
 // ================================
 // ----- Create Property Bars
 
@@ -423,8 +425,17 @@ function createTimer() {
   timer.setAttribute("id", `timer`);
   mainDiv.appendChild(timer);
 }
-if (diplayedDivID == 0) {
-  // createTimer()
+function createAge() {
+  const age = document.createElement("div");
+  age.setAttribute("class", "age");
+  age.setAttribute("id", `age`);
+  age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
+  mainDiv.appendChild(age);
+}
+createAge();
+function updateage() {
+  const age = document.getElementById("age");
+  age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
 }
 createTimer();
 
@@ -437,16 +448,31 @@ timer.innerHTML = feedtimer;
 function needsTrigger() {
   startTimer();
   setTimeout(() => {
-    console.log("feed me");
-    console.log(newPet.checkStats());
-  }, 10000);
-  setTimeout(() => {
     newPet.sleepiness = Math.max(newPet.sleepiness - 10, 0);
   }, 10000);
   newPet.hunger = Math.max(newPet.hunger - 10, 0);
   setTimeout(() => {
+    newPet.age = newPet.age + 0.1;
+    console.log(newPet.age);
+    updateage()
     updateStatsBars(newPet);
   }, 1000);
+  if (newPet.hunger < 50) {
+    console.log("hungry");
+    // console.log(newPet.checkStats())
+    newPet.happiness = Math.max(newPet.happiness - 10, 0);
+  }
+  if (newPet.health <= 20) {
+    console.log("hurting");
+    // console.log(newPet.checkStats())
+    newPet.happiness = Math.max(newPet.happiness - 10, 0);
+    const imageID = document.getElementById("image-ID");
+    imageID.style.animation = "hurting 2s infinite";
+    // console.log(charmander.checkStats())
+  } else if (newPet.health > 21) {
+    const imageID = document.getElementById("image-ID");
+    imageID.style.animation = "none";
+  }
   if (newPet.hunger <= 5) {
     console.log("starving");
     // console.log(newPet.checkStats())
@@ -454,19 +480,6 @@ function needsTrigger() {
     // variable for pet image animations
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "shake 10s";
-  }
-  if (newPet.hunger < 50) {
-    console.log("hungry");
-    // console.log(newPet.checkStats())
-    newPet.happiness = Math.max(newPet.happiness - 10, 0);
-  }
-  if (newPet.health < 50) {
-    console.log("hurting");
-    // console.log(newPet.checkStats())
-    newPet.happiness = Math.max(newPet.happiness - 10, 0);
-    const imageID = document.getElementById("image-ID");
-    imageID.style.animation = "hurting 2s infinite";
-    // console.log(charmander.checkStats())
   }
   if (newPet.health <= 0) {
     checkDead();
@@ -550,7 +563,6 @@ function checkDead() {
 // Check if pet is dead //
 
 // audio files
-var click = new Audio('sounds/button-click.mp3');
-var healsound = new Audio('sounds/poke-recovery.mp3');
+var click = new Audio("sounds/button-click.mp3");
+var healsound = new Audio("sounds/poke-recovery.mp3");
 // click.play()
-
