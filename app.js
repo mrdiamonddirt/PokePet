@@ -115,6 +115,7 @@ screenDiv.setAttribute("id", "div-screen");
 
 
 
+
 // ================================
 // ----- CREATE THE PET 
 // ================================
@@ -170,10 +171,11 @@ bgmusicimg.addEventListener('click', function() {
 
 
 // ================================
-// ----- CREATE THE DIV
+// ----- GAMEPLAY INSTRUCTIONS
 // ================================
-// DEPENDS ON WHICH SCREEN IS SELECTED
-
+// WILL RUN VARIOUS FUNCTIONS DEPENDING 
+// ON WHICH SCREEN IS SELECTED
+ 
 //create div based on the array value
 function creatediv(diplayedID) {
 
@@ -374,8 +376,12 @@ function createbtns(suppliedID) {
     // Create a div to store the components
     const selectionDiv = document.createElement('div')
     selectionDiv.classList.add('selectiondiv');
-    mainDiv.appendChild(selectionDiv);
+
+
+    // Loop over the available pokemon
     for (l = 0; l < selectionbtn.name.length; l++) {   
+
+      // Create an image for each pokemon => Add the image to the selection screen div
       const selectionbtnimg = document.createElement("img");   
       selectionbtnimg.textContent = `${selectionbtn.name[l]}`;
       selectionbtnimg.classList.add(selectionbtn.name[l]);
@@ -383,6 +389,7 @@ function createbtns(suppliedID) {
       selectionbtnimg.src = selectionbtn.url[l];
       selectionDiv.appendChild(selectionbtnimg);
 
+      // Add an event listener to each pokemon
       selectionbtnimg.addEventListener("click", function (event) {
         console.log(event.target.textContent);
         if (event.target.textContent == "charmander") {
@@ -394,19 +401,35 @@ function createbtns(suppliedID) {
         }else if (event.target.textContent == 'bulbasaur' ) {
           chosenPet = event.target.textContent;
         }
+
+        // Turn off the pokemon logo => add clock and timer
         document.getElementById("mainlogo").style.display = "none";
         document.getElementById("timer").style.display = "block";
         document.getElementById("age").style.display = "block";
+
+        // Remove the selection screen once a pokemon is chosen
         mainDiv.removeChild(selectionDiv);
+
+        // Run the function to change to gamescreen
         creatediv(1)
+        // Start the timing function
         needsTrigger()
       })
   }
+  // Append the selection screen div to the mainDiv
+    mainDiv.appendChild(selectionDiv);
 }
 }
 
 
-// Function for swapping backgrounds when a button is clicked//
+
+
+
+
+// ================================
+// ----- SWAP BACKGROUND
+// ================================
+
 function actionBackground(action) {
 
   const screen = document.querySelector(".screen");
@@ -435,8 +458,10 @@ function actionBackground(action) {
 
 
 
+
 // ================================
-// ----- Create STATS Bars
+// ----- CREATE STAT BARS
+// ================================
 
 function createStatsBars(pet) {
   // Create array which hold property names , values , colours for styling
@@ -486,8 +511,12 @@ function createStatsBars(pet) {
   screenDiv.appendChild(statsAllDiv);
 }
 
+
+
+
 // ================================
-// ----- Update Stats bars
+// ----- UPDATE STAT BARS
+// ================================
 
 function updateStatsBars(pet) {
   // Create array to store values
@@ -514,27 +543,35 @@ function updateStatsBars(pet) {
 
 
 
-// ================================
-// ----- TIMING FUNCTIONS
 
-// create clock function
+// ================================
+// ----- TIMING FUNCTION
+// ================================
+
 function createClock() {
+
+  // Create the clock
   const clock = document.createElement("div");
   clock.setAttribute("class", "clock");
   clock.setAttribute("id", `clock`);
-  // clock.innerText = `${date}`
   mainDiv.appendChild(clock);
 }
-// trigger create clock function
+
+// Create clock component
 createClock();
-// get current time and update clock
+
+
+// Create current time
 function currentTime() {
+
+  // Create variables
   let date = new Date();
   let hh = date.getHours();
   let mm = date.getMinutes();
   let ss = date.getSeconds();
   let session = "AM";
 
+  // Set format for time 
   if (hh == 0) {
     hh = 12;
   }
@@ -554,16 +591,22 @@ function currentTime() {
     currentTime();
   }, 1000);
 }
-// display current time
+
+// Display the current time
 currentTime();
 
-// create clock function
+// Create timer function
 function createTimer() {
   const timer = document.createElement("div");
   timer.setAttribute("class", "timer");
   timer.setAttribute("id", `timer`);
   mainDiv.appendChild(timer);
 }
+
+// Create timer
+createTimer();
+
+// Create age function
 function createAge() {
   const age = document.createElement("div");
   age.setAttribute("class", "age");
@@ -571,58 +614,75 @@ function createAge() {
   age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
   mainDiv.appendChild(age);
 }
+
+// Create age
 createAge();
+
+// Create function to update age 
 function updateage() {
   const age = document.getElementById("age");
   age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
 }
-createTimer();
 
-// Set and Start timer
+
+
+// ----- TIMER -----
+// Set a limit for the timer
 const timer = document.getElementById("timer");
-let feedtimer = 00 + ":" + 5;
+let feedtimer = 00 + ":" + 10;
 timer.innerHTML = feedtimer;
 
-//takes stats off pet when hungry and starving
+
+// ----------- TRIGGER FUNCTION --------
+// Takes stats off pet when hungry and starving
 function needsTrigger() {
+  // Start timer
   startTimer();
+
+  // Decrease sleepiness 
   setTimeout(() => {
     newPet.sleepiness = Math.max(newPet.sleepiness - 10, 0);
   }, 10000);
+
+  // Take off huner
   newPet.hunger = Math.max(newPet.hunger - 10, 0);
+
+  // Add to age
   setTimeout(() => {
     newPet.age = newPet.age + 0.1;
-    // console.log(newPet.age);
     updateage();
     updateStatsBars(newPet);
   }, 1000);
+
+  // Decrease happiness if pet is hungry
   if (newPet.hunger < 50) {
-    // console.log("hungry");
-    // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
+
+  // Decrease happiness if pet is sick => Make pet shake 
   if (newPet.health <= 20) {
-    // console.log("hurting");
-    // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "hurting 2s infinite";
-    // console.log(charmander.checkStats())
-  } else if (newPet.health > 21) {
+  } 
+  // Take off shaking if pet is better
+  else if (newPet.health > 21) {
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "none";
   }
+  // Decrease happiness if pet is hungry => Make pet shake
   if (newPet.hunger <= 5) {
-    // console.log(newPet.checkStats())
     newPet.health = Math.max(newPet.health - 5, 0);
     // variable for pet image animations
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "shake 10s";
   }
+  // Kill pet if health is zero
   if (newPet.health <= 0) {
     checkDead();
   }
 }
+
 
 //start timer function
 function startTimer() {
@@ -643,6 +703,7 @@ function startTimer() {
   // console.log(m)
   setTimeout(startTimer, 1000);
 }
+
 // function for intergering the minutes seconds
 function checkSecond(sec) {
   if (sec < 10 && sec >= 0) {
@@ -657,14 +718,13 @@ function checkSecond(sec) {
 
 
 
+
 // ================================
-// ----- Create Image Div
+// ----- CREATE IMAGES
+// ================================
 
 
-//  --------- SET VARIABLES 
-
-// Need to create these OUTSIDE of the function
-// Create mood for health hunger sleep happiness
+  // Create mood for health hunger sleep happiness
   let moodImageHeal = document.createElement("img");
   moodImageHeal.setAttribute("id", "image-mood-heal");
   moodImageHeal.setAttribute("class", "image-mood");
@@ -710,8 +770,7 @@ function createImage() {
 
 
 
-// FUNCTION TO UPDATE IMAGE DIV
-
+// -----------  FUNCTION TO UPDATE IMAGE DIV
 function updateImage(newPet){
 
   // Get the IDs of the images and divs needed 
@@ -757,7 +816,8 @@ function updateImage(newPet){
 
 
 // ================================
-// ----- Death of pet
+// ----- DEATH OF PET
+// ================================
 
 function checkDead() {
   if (newPet.health <= 0) {
@@ -778,8 +838,6 @@ function checkDead() {
     restartButton.addEventListener("click", () => location.reload());
   }
 }
-
-
 
 
 
