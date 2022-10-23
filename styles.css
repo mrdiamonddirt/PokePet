@@ -28,10 +28,11 @@
 }
 
 .burgerIcon{
-  width: 25px;
+  width: 30px;
   height: 3px;
   background-color: #faf8f9;
   margin: 6px 0;
+  border-radius: 5px;
 }
 
 #btn-instructions:hover > .burgerIcon{
@@ -42,13 +43,18 @@
   cursor: pointer;
 }
 
-
-ul{
-  margin-top: 2%;
+#instructions-logo{
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: -35%;
 }
 
-li{
-  margin-bottom: 1%;
+#instructions-close{
+  display: block;
+  margin: 2% 5% 0 auto;
 }
 
 
@@ -63,16 +69,22 @@ li{
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: white; /* Fallback color */
-  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+  background-color: rgba(0,0,0, 0); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: white;
-  margin: 15% auto; /* 15% from the top and centered */
+  border-radius: 30px;
+  border-style: none;
+  margin: 3% auto 2% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 90%; /* Could be more or less, depending on screen size */
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* The Close Button */
@@ -85,10 +97,12 @@ li{
 
 .close:hover,
 .close:focus {
-  color: grey;
+  color: #fe6054;
   text-decoration: none;
   cursor: pointer;
 } 
+
+
 
 
 
@@ -102,13 +116,10 @@ li{
   justify-content: center;
 }
 
-body {
+body button p{
   font-family: "Poppins", sans-serif;
 }
 
-button {
-  font-family: "Poppins", sans-serif;
-}
 
 button:focus {
   outline: none;
