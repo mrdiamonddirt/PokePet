@@ -7,15 +7,15 @@ class Pet {
   constructor(name, mood) {
     this.name = name;
     this.mood = mood;
-    this.health = 50;
-    this.hunger = 50;
+    this.health = 60;
+    this.hunger = 60;
     this.sleepiness = 80;
     this.happiness = 80;
     this.age = 0;
   }
   playGame() {
-    this.health = Math.max(this.health - 10, 0);
-    this.hunger = Math.max(this.hunger - 10, 0);
+    this.health = Math.max(this.health - 5, 0);
+    this.hunger = Math.max(this.hunger - 5, 0);
     this.sleepiness = Math.max(this.sleepiness - 10, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
     return this;
@@ -658,8 +658,11 @@ function needsTrigger() {
     newPet.sleepiness = Math.max(newPet.sleepiness - 5, 0);
   }, 10000);
 
-  // Take off huner
+  // Take off hunger
   newPet.hunger = Math.max(newPet.hunger - 5, 0);
+
+    // Take off happiness
+  newPet.happiness = Math.max(newPet.happiness - 5, 0);
 
   // Add to age
   setTimeout(() => {

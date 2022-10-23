@@ -57,6 +57,19 @@
   margin: 2% 5% 0 auto;
 }
 
+.instructions-icon{
+  width: 2%;
+}
+
+.instructions-para{
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  text-align: center;
+  margin: 2% 0 0 0 ;
+}
+
 
  /* The Modal (background) */
 .modal {
@@ -116,7 +129,7 @@
   justify-content: center;
 }
 
-body button p{
+body, button{
   font-family: "Poppins", sans-serif;
 }
 
