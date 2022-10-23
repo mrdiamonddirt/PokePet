@@ -27,12 +27,11 @@ class Pet {
     return this;
   }
   heal() {
-    this.health = Math.min(this.health + 30, 100);
+    this.health = Math.min(this.health + 20, 100);
     return this;
   }
   sleep() {
     this.sleepiness = Math.min(this.sleepiness + 30, 100);
-    
     return this;
   }
   checkStats() {
@@ -78,15 +77,13 @@ let newPet = new Pet();
 let petImage = "";
 let chosenPet = "";
 
-
 // Set variable to name the div for each screen 
 const divname = {
   name: ["menu", "pet", "selection"],
   ID: [0, 1, 2],
 };
 
-
-// Buttons to be used for images
+// Buttons to be used for images of stats 
 const intbtnname = {
   name: ["heal", "eat", "sleep", "play"],
   url: [
@@ -141,12 +138,40 @@ function createPet(chosenPet){
 
 
 
+// ================================
+// ----- SET UP THE AUDIO
+// ================================
+
+var click = new Audio("sounds/button-click.mp3");
+var healsound = new Audio("sounds/poke-recovery.mp3");
+var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
+
+//  Start background music 
+bgmusic.play()
+
+// Set up mute button
+let musicplaying = true
+let bgmusicimg = document.getElementById('soundimg')
+
+// Add event listner to mute button
+bgmusicimg.addEventListener('click', function() {
+  if (musicplaying == true){
+    bgmusic.pause()
+    musicplaying = false;
+    bgmusicimg.src = './imgs/mute.png'
+  } else {
+    bgmusic.play()
+    musicplaying = true;
+    bgmusicimg.src = './imgs/sound.png'
+  }
+})
+
+
 
 
 // ================================
 // ----- CREATE THE DIV
 // ================================
-
 // DEPENDS ON WHICH SCREEN IS SELECTED
 
 //create div based on the array value
@@ -158,7 +183,7 @@ function creatediv(diplayedID) {
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
 
-  // CREATE COMONENTS DEPENDING ON WHICH SCREEN IS SELECTED
+  // CREATE COMPONENTS DEPENDING ON WHICH SCREEN IS SELECTED
   // 0 = MAIN   1 = GAME SCREEN   2 = SELECTIONS CREEN
   if (diplayedDivID == 0) {
     createbtns(0);
@@ -174,34 +199,30 @@ function creatediv(diplayedID) {
 
 
 
-// ================================
-// ----- GAME PLAY
-// ================================
-creatediv(0);
 
 
 
 // ================================
-// ----- CREATES BUTTONS 
+// ----- CREATE THE COMPONENTS
+// ================================
 // DEPENDS ON WHICH SCREEN IS SELECTED
 
-//create buttons function - loops through the class to create btns for pet interactions
 function createbtns(suppliedID) {
 
   let diplayedDivID = suppliedID;
 
-   // MAIN MENU
+  // MAIN MENU
   if (diplayedDivID == 0) {
+    // Create start button
     for (i = 0; i < menubtnname.name.length; i++) {
       const newBtn = document.createElement("button");
       newBtn.textContent = `${menubtnname.name[i]}`;
       newBtn.classList.add(divname.name[0]);
       newDiv.appendChild(newBtn);
+
+      // Change to the selection screen if the start button is clicked
       newBtn.addEventListener("click", function (event) {
-        console.log(event.target.textContent);
         if (event.target.textContent == "start") {
-          diplayedDivID = 2;
-          console.log(diplayedDivID);
           creatediv(2);
           click.play();
         }
@@ -212,36 +233,46 @@ function createbtns(suppliedID) {
 
   // GAME PLAY SCREEN
   else if (diplayedDivID == 1) {
-    // Create container for buttons
+
+    // Create container for stat buttons
     const btnContainer = document.createElement("div");
     btnContainer.setAttribute("id", "btn-flex-container");
+
+    // Loop through the stats to create buttons for them
     for (i = 0; i < intbtnname.name.length; i++) {
       const newBtn = document.createElement("img");
       newBtn.textContent = `${intbtnname.name[i]}`;
       newBtn.src = intbtnname.url[i];
       newBtn.classList.add(divname.name[0]);
       newBtn.setAttribute("id", `action-btn-${i + 1}`);
+
+      // Append the button to the button container 
       btnContainer.appendChild(newBtn);
+
+      // Add event listener to buttons 
       newBtn.addEventListener("click", function (event) {
-        console.log(event.target.textContent);
+
         if (event.target.textContent == "heal") {
           newPet.heal();
-          updateStatsBars(newPet);
+          updateStatsBars(newPet);  // Update the stats bar 
           actionBackground("heal"); // Background change
-          healsound.pause();
-          healsound.play();
+          healsound.pause();        
+          healsound.play();         // Play the heal sound
+
         } else if (event.target.textContent == "eat") {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
           click.pause();
           click.play();
+
         } else if (event.target.textContent == "play") {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
           click.pause();
           click.play();
+          
         } else if (event.target.textContent == "sleep") {
           newPet.sleep();
           updateStatsBars(newPet);
@@ -730,27 +761,6 @@ function checkDead() {
 
 
 
-// ================================
-// ----- Audio event listners
-var click = new Audio("sounds/button-click.mp3");
-var healsound = new Audio("sounds/poke-recovery.mp3");
-var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
-bgmusic.play()
-// click.play()
-let musicplaying = true
-let bgmusicimg = document.getElementById('soundimg')
-bgmusicimg.addEventListener('click', function() {
-  if (musicplaying == true){
-    bgmusic.pause()
-    musicplaying = false;
-    bgmusicimg.src = './imgs/mute.png'
-  } else {
-    bgmusic.play()
-    musicplaying = true;
-    bgmusicimg.src = './imgs/sound.png'
-  }
-})
-
 
 
 // ================================================================
@@ -761,6 +771,11 @@ bgmusicimg.addEventListener('click', function() {
 mainDiv.appendChild(screenDiv);
 
 
+
+// ================================
+// ----- GAME PLAY
+// ================================
+creatediv(0);
 
 
 
