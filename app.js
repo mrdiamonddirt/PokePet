@@ -149,6 +149,7 @@ var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
 
 //  Start background music 
 bgmusic.play()
+bgmusic.loop = true
 
 // Set up mute button
 let musicplaying = true
