@@ -1,7 +1,5 @@
-//  Update the image when we update the stat
-
 // ================================
-// ----- Classes
+// ----- CLASSES
 // ================================
 
 // Create class to store pet
@@ -20,33 +18,21 @@ class Pet {
     this.hunger = Math.max(this.hunger - 5, 0);
     this.sleepiness = Math.max(this.sleepiness - 5, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
-    // console logs for clarity
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
-    );
     return this;
   }
   eatBerry() {
     this.hunger = Math.min(this.hunger + 10, 100);
     this.sleepiness = Math.max(this.sleepiness - 5, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
-    );
     return this;
   }
   heal() {
-    this.health = 100;
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
-    );
+    this.health = Math.min(this.health + 30, 100);
     return this;
   }
   sleep() {
-    this.sleepiness = 100;
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n happiness ${this.happiness}`
-    );
+    this.sleepiness = Math.min(this.sleepiness + 30, 100);
+    
     return this;
   }
   checkStats() {
@@ -83,13 +69,58 @@ class Pikachu extends Pet {
 }
 
 
+// ================================
+// ----- VARIABLES
+// ================================
+
+// Create a new pet instance and set the image to a blank variable
 let newPet = new Pet();
 let petImage = "";
+let chosenPet = "";
 
 
-// Set new pet
-let chosenPet = "charmander";
+// Set variable to name the div for each screen 
+const divname = {
+  name: ["menu", "pet", "selection"],
+  ID: [0, 1, 2],
+};
 
+
+// Buttons to be used for images
+const intbtnname = {
+  name: ["heal", "eat", "sleep", "play"],
+  url: [
+    "imgs/pokecentre.webp",
+    "imgs/berry.png",
+    "imgs/zzz.png",
+    "imgs/Pokemon1.png",
+  ],
+};
+
+// Set button name
+const menubtnname = {
+  name: ["start"],
+};
+
+// Set selction pokemon images 
+const selectionbtn = {
+  name: ['pikachu', 'squirtle', 'charmander', 'bulbasaur'],
+  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png','./imgs/Pokemon4.png']
+}
+
+// Create a new div element 
+const newDiv = document.createElement("div");
+
+// Create the div to be used to hold screen components
+const screenDiv = document.createElement("div");
+screenDiv.setAttribute("id", "div-screen");
+
+
+
+
+// ================================
+// ----- CREATE THE PET 
+// ================================
 
 function createPet(chosenPet){
   // Create switch to create class depending on chosen pet
@@ -109,43 +140,26 @@ function createPet(chosenPet){
 }
 
 
-//class for potential divs to create
-const divname = {
-  name: ["menu", "pet", "selection"],
-  ID: [0, 1, 2],
-};
 
 
-//placeholder will get button names from pet class method
-const intbtnname = {
-  name: ["heal", "eat", "sleep", "play"],
-  url: [
-    "imgs/pokecentre.webp",
-    "imgs/berry.png",
-    "imgs/zzz.png",
-    "imgs/Pokemon1.png",
-  ],
-};
-const menubtnname = {
-  name: ["start"],
-};
-const selectionbtn = {
-  name: ['pikachu', 'squirtle', 'charmander', 'bulbasaur'],
-  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png','./imgs/Pokemon4.png']
-}
 
-const newDiv = document.createElement("div");
-const screenDiv = document.createElement("div");
-screenDiv.setAttribute("id", "div-screen");
+// ================================
+// ----- CREATE THE DIV
+// ================================
+
+// DEPENDS ON WHICH SCREEN IS SELECTED
 
 //create div based on the array value
 function creatediv(diplayedID) {
+
   let diplayedDivID = diplayedID
 
   newDiv.textContent = "";
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
-  // create btn's of pet displayed
+
+  // CREATE COMONENTS DEPENDING ON WHICH SCREEN IS SELECTED
+  // 0 = MAIN   1 = GAME SCREEN   2 = SELECTIONS CREEN
   if (diplayedDivID == 0) {
     createbtns(0);
   } else if (diplayedDivID == 1) {
@@ -157,10 +171,19 @@ function creatediv(diplayedID) {
     createbtns(2);
   }
 }
-//create div
+
+
+
+// ================================
+// ----- GAME PLAY
+// ================================
 creatediv(0);
 
 
+
+// ================================
+// ----- CREATES BUTTONS 
+// DEPENDS ON WHICH SCREEN IS SELECTED
 
 //create buttons function - loops through the class to create btns for pet interactions
 function createbtns(suppliedID) {
@@ -358,8 +381,10 @@ function createbtns(suppliedID) {
 }
 }
 
+
+
 // ================================
-// ----- Create Property Bars
+// ----- Create STATS Bars
 
 function createStatsBars(pet) {
   // Create array which hold property names , values , colours for styling
@@ -435,7 +460,11 @@ function updateStatsBars(pet) {
 
 
 
-//timing stuff
+
+
+// ================================
+// ----- TIMING FUNCTIONS
+
 // create clock function
 function createClock() {
   const clock = document.createElement("div");
@@ -580,6 +609,8 @@ function checkSecond(sec) {
 // ----- Create Image Div
 
 
+//  --------- SET VARIABLES 
+
 // Need to create these OUTSIDE of the function
 // Create mood for health hunger sleep happiness
   let moodImageHeal = document.createElement("img");
@@ -604,7 +635,7 @@ function checkSecond(sec) {
   moodImageHappy.src = `./imgs/hearts.png`;
 
 
-
+// ----------- FUNCTION TO CREATE IMAGE DIV
 function createImage() {
 
   // Create Div to hold pet and mood 
@@ -627,7 +658,8 @@ function createImage() {
 
 
 
-// Update Image
+// FUNCTION TO UPDATE IMAGE DIV
+
 function updateImage(newPet){
 
   // Get the IDs of the images and divs needed 
@@ -671,11 +703,9 @@ function updateImage(newPet){
 
 
 
-// ****** IMPORTANT ********
-// Append the image - buttons - stat bars to the main div
-mainDiv.appendChild(screenDiv);
 
-// Check if pet is dead //
+// ================================
+// ----- Death of pet
 
 function checkDead() {
   if (newPet.health <= 0) {
@@ -697,9 +727,11 @@ function checkDead() {
   }
 }
 
-// Check if pet is dead //
 
-// audio files
+
+
+// ================================
+// ----- Audio event listners
 var click = new Audio("sounds/button-click.mp3");
 var healsound = new Audio("sounds/poke-recovery.mp3");
 var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
@@ -718,3 +750,17 @@ bgmusicimg.addEventListener('click', function() {
     bgmusicimg.src = './imgs/sound.png'
   }
 })
+
+
+
+// ================================================================
+// ================================================================
+// *********  IMPORTANT ****************
+// Append the image - buttons - stat bars to the main div
+
+mainDiv.appendChild(screenDiv);
+
+
+
+
+
