@@ -148,7 +148,7 @@ var healsound = new Audio("sounds/poke-recovery.mp3");
 var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
 
 //  Start background music 
-// bgmusic.play()
+bgmusic.play()
 bgmusic.loop = true
 
 // Set up mute button
@@ -659,10 +659,10 @@ function needsTrigger() {
   }, 10000);
 
   // Take off hunger
-  newPet.hunger = Math.max(newPet.hunger - 5, 0);
+  newPet.hunger = Math.max(newPet.hunger - 10, 0);
 
     // Take off happiness
-  newPet.happiness = Math.max(newPet.happiness - 5, 0);
+  newPet.happiness = Math.max(newPet.happiness - 10, 0);
 
   // Add to age
   setTimeout(() => {
