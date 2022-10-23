@@ -215,6 +215,13 @@ function createbtns(suppliedID) {
 
   // MAIN MENU
   if (diplayedDivID == 0) {
+
+      // Load background image for main screen
+      const screen = document.querySelector(".screen");
+      screen.style.backgroundImage = "url(imgs/bg-Main.jpg)";
+      screen.style.backgroundSize = "cover";
+      screen.style.backgroundRepeat = "no-repeat";
+
     // Create start button
     for (i = 0; i < menubtnname.name.length; i++) {
       const newBtn = document.createElement("button");
@@ -372,6 +379,12 @@ function createbtns(suppliedID) {
 
   // SELECTION SCREEN
   else if (diplayedDivID == 2) {
+
+    // Load background image for main screen
+    const screen = document.querySelector(".screen");
+    screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+    screen.style.backgroundSize = "cover";
+    screen.style.backgroundRepeat = "no-repeat";
 
     // Create a div to store the components
     const selectionDiv = document.createElement('div')
