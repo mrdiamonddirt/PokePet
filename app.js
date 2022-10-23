@@ -148,7 +148,7 @@ var healsound = new Audio("sounds/poke-recovery.mp3");
 var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
 
 //  Start background music 
-bgmusic.play()
+// bgmusic.play()
 bgmusic.loop = true
 
 // Set up mute button
@@ -869,6 +869,42 @@ mainDiv.appendChild(screenDiv);
 // ----- GAME PLAY
 // ================================
 creatediv(0);
+
+
+
+// ================================
+// ----- INSTRUCTIONS BUTTON
+// ================================
+
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btnInstructions = document.getElementById("btn-instructions");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btnInstructions.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
+
+
 
 
 

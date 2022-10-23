@@ -14,6 +14,88 @@
   padding: 0;
 }
 
+
+/* ----------- INSTRUCTIONS --------- */
+.instructions-div{
+  position: relative; 
+  z-index: 1;
+}
+
+.instructions{
+  position: absolute;
+  left: 92%;
+  margin-top: 3% ;
+}
+
+.burgerIcon{
+  width: 25px;
+  height: 3px;
+  background-color: #faf8f9;
+  margin: 6px 0;
+}
+
+#btn-instructions:hover > .burgerIcon{
+  background-color: #00c6e5;
+}
+
+#btn-instructions:hover  {
+  cursor: pointer;
+}
+
+
+ul{
+  margin-top: 2%;
+}
+
+li{
+  margin-bottom: 1%;
+}
+
+
+ /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: white; /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: white;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+} 
+
+
+
+
+/* ----------- SWITCH --------- */
+
+
 .flex-center {
   display: flex;
   align-items: center;
@@ -458,6 +540,8 @@ button.restart-button {
   margin-right: auto;
   transform: translate(-160px, 40px);
 }
+
+
 /* ----------- Properties Bars */
 
 #stats-all-div {
@@ -598,19 +682,6 @@ button.restart-button {
   margin-right: auto;
   padding: 4% 0 0 0;
 }
-/*#image-mood-hunger{
-  width: 15%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 4% 0 0 0;
-}
-
-#image-mood-heal{
-  width: 15%;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 4% 0 0 0;
-}*/
 
 #div-screen {
   display: flex;
