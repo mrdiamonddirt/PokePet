@@ -272,7 +272,7 @@ function createbtns(suppliedID) {
           actionBackground("play"); // Background change
           click.pause();
           click.play();
-          
+
         } else if (event.target.textContent == "sleep") {
           newPet.sleep();
           updateStatsBars(newPet);
@@ -282,41 +282,25 @@ function createbtns(suppliedID) {
         }
       });
 
-      // Load background image on start //
+
+      // Load background image for game play screen
       const screen = document.querySelector(".screen");
       screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
       screen.style.backgroundSize = "cover";
       screen.style.backgroundRepeat = "no-repeat";
 
-      // Function for swapping backgrounds //
-      function actionBackground(action) {
-        screen.style.backgroundSize = "cover";
-        screen.style.backgroundRepeat = "no-repeat";
 
-        if (action == "heal") {
-          screen.style.backgroundImage = "url(imgs/BgHeal.png)";
-        } else if (action == "eat") {
-          screen.style.backgroundImage = "url(imgs/BgEat.jpg)";
-        } else if (action == "play") {
-          screen.style.backgroundImage = "url(imgs/BgPlay.jpg)";
-        } else if (action == "sleep") {
-          screen.style.backgroundImage = "url(imgs/BgSleep.jpg)";
-        } else {
-          screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
-        }
-
-        setTimeout(() => {
-          screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
-        }, 2000);
-      }
-
-      // X, A, B, Y Buttons //
+      // Set up x y a b buttons
       let input = document.querySelector("body");
       const letterX = document.querySelector(".letterX");
       const letterA = document.querySelector(".letterA");
       const letterB = document.querySelector(".letterB");
       const letterY = document.querySelector(".letterY");
+
+      // Add event listener to buttons when keyboard pressed 
       input.addEventListener("keypress", (e) => {
+        
+        // When pressed => add animation => perform action => update stat bars => change background
         if (e.key === "x" || e.key === "X") {
           letterX.style.animation = "btnpressed 1s";
           setTimeout(() => {
@@ -325,7 +309,8 @@ function createbtns(suppliedID) {
           newPet.heal();
           updateStatsBars(newPet);
           actionBackground("heal"); // Background change
-        } else if (e.key === "a" || e.key === "A") {
+        } 
+        else if (e.key === "a" || e.key === "A") {
           letterA.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterA.style.animation = "none";
@@ -333,7 +318,8 @@ function createbtns(suppliedID) {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
-        } else if (e.key === "b" || e.key === "B") {
+        } 
+        else if (e.key === "b" || e.key === "B") {
           letterB.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterB.style.animation = "none";
@@ -341,7 +327,8 @@ function createbtns(suppliedID) {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
-        } else if (e.key === "y" || e.key === "Y") {
+        } 
+        else if (e.key === "y" || e.key === "Y") {
           letterY.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterY.style.animation = "none";
@@ -351,6 +338,9 @@ function createbtns(suppliedID) {
           actionBackground("sleep"); // Background change
         }
       });
+
+      // Add event listener to buttons when clicked  
+      // Perform action => update stats bars => change background
       letterX.addEventListener("click", () => {
         newPet.heal();
         updateStatsBars(newPet);
@@ -371,14 +361,17 @@ function createbtns(suppliedID) {
         updateStatsBars(newPet);
         actionBackground("sleep"); // Background change
       });
-      // X, A, B, Y Buttons //
     }
-    // Add the buttons to the screen div
+    // Add the components to the screen div
     screenDiv.appendChild(btnContainer);
   } 
 
+
+
   // SELECTION SCREEN
   else if (diplayedDivID == 2) {
+
+    // Create a div to store the components
     const selectionDiv = document.createElement('div')
     selectionDiv.classList.add('selectiondiv');
     mainDiv.appendChild(selectionDiv);
@@ -411,6 +404,34 @@ function createbtns(suppliedID) {
   }
 }
 }
+
+
+// Function for swapping backgrounds when a button is clicked//
+function actionBackground(action) {
+
+  const screen = document.querySelector(".screen");
+  screen.style.backgroundSize = "cover";
+  screen.style.backgroundRepeat = "no-repeat";
+
+  // Switch depending on which background is needed
+  if (action == "heal") {
+    screen.style.backgroundImage = "url(imgs/BgHeal.png)";
+  } else if (action == "eat") {
+    screen.style.backgroundImage = "url(imgs/BgEat.jpg)";
+  } else if (action == "play") {
+    screen.style.backgroundImage = "url(imgs/BgPlay.jpg)";
+  } else if (action == "sleep") {
+    screen.style.backgroundImage = "url(imgs/BgSleep.jpg)";
+  } else {
+    screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+  }
+
+  // Set time limit for the background image 
+  setTimeout(() => {
+    screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+  }, 2000);
+}
+
 
 
 
