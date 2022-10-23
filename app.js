@@ -151,9 +151,16 @@ var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
 bgmusic.play()
 bgmusic.loop = true
 
+window.addEventListener("DOMContentLoaded", event => {
+  const audio = bgmusic
+  audio.volume = 0.2;
+  audio.play();
+});
+
 // Set up mute button
 let musicplaying = true
 let bgmusicimg = document.getElementById('soundimg')
+
 
 // Add event listner to mute button
 bgmusicimg.addEventListener('click', function() {
