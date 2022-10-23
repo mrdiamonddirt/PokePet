@@ -1,7 +1,5 @@
-//  Update the image when we update the stat
-
 // ================================
-// ----- Classes
+// ----- CLASSES
 // ================================
 
 // Create class to store pet
@@ -9,44 +7,31 @@ class Pet {
   constructor(name, mood) {
     this.name = name;
     this.mood = mood;
-    this.health = 50;
-    this.hunger = 50;
-    this.sleepiness = 100;
-    this.happiness = 100;
+    this.health = 60;
+    this.hunger = 60;
+    this.sleepiness = 80;
+    this.happiness = 80;
     this.age = 0;
   }
   playGame() {
     this.health = Math.max(this.health - 5, 0);
     this.hunger = Math.max(this.hunger - 5, 0);
-    this.sleepiness = Math.max(this.sleepiness - 5, 0);
+    this.sleepiness = Math.max(this.sleepiness - 10, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
-    // console logs for clarity
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
-    );
     return this;
   }
   eatBerry() {
     this.hunger = Math.min(this.hunger + 10, 100);
-    this.sleepiness = Math.max(this.sleepiness - 5, 0);
+    this.sleepiness = Math.max(this.sleepiness - 10, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
-    );
     return this;
   }
   heal() {
-    this.health = 100;
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleepiness}\n happiness ${this.happiness}`
-    );
+    this.health = Math.min(this.health + 30, 100);
     return this;
   }
   sleep() {
-    this.sleepiness = 100;
-    console.log(
-      `health ${this.health} \n hunger ${this.hunger} \n sleep ${this.sleep}\n happiness ${this.happiness}`
-    );
+    this.sleepiness = Math.min(this.sleepiness + 50, 100);
     return this;
   }
   checkStats() {
@@ -83,13 +68,57 @@ class Pikachu extends Pet {
 }
 
 
+// ================================
+// ----- VARIABLES
+// ================================
+
+// Create a new pet instance and set the image to a blank variable
 let newPet = new Pet();
 let petImage = "";
+let chosenPet = "";
+
+// Set variable to name the div for each screen 
+const divname = {
+  name: ["menu", "pet", "selection"],
+  ID: [0, 1, 2],
+};
+
+// Buttons to be used for images of stats 
+const intbtnname = {
+  name: ["heal", "eat", "sleep", "play"],
+  url: [
+    "imgs/pokecentre.webp",
+    "imgs/berry.png",
+    "imgs/zzz.png",
+    "imgs/Pokemon1.png",
+  ],
+};
+
+// Set button name
+const menubtnname = {
+  name: ["start"],
+};
+
+// Set selction pokemon images 
+const selectionbtn = {
+  name: ['pikachu', 'squirtle', 'charmander', 'bulbasaur'],
+  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png','./imgs/Pokemon4.png']
+}
+
+// Create a new div element 
+const newDiv = document.createElement("div");
+
+// Create the div to be used to hold screen components
+const screenDiv = document.createElement("div");
+screenDiv.setAttribute("id", "div-screen");
 
 
-// Set new pet
-let chosenPet = "charmander";
 
+
+
+// ================================
+// ----- CREATE THE PET 
+// ================================
 
 function createPet(chosenPet){
   // Create switch to create class depending on chosen pet
@@ -109,43 +138,65 @@ function createPet(chosenPet){
 }
 
 
-//class for potential divs to create
-const divname = {
-  name: ["menu", "pet", "selection"],
-  ID: [0, 1, 2],
-};
+
+// ================================
+// ----- SET UP THE AUDIO
+// ================================
+
+var click = new Audio("sounds/button-click.mp3");
+var healsound = new Audio("sounds/poke-recovery.mp3");
+var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
+
+//  Start background music (may not work in browsers)
+bgmusic.play();
+bgmusic.loop = true;
+
+// Automatically start music in browsers
+window.addEventListener("DOMContentLoaded", event => {
+  const audio = bgmusic
+  audio.volume = 0.2;
+  audio.play();
+  audio.loop = true;
+});
+
+// Set up mute button
+let musicplaying = true
+let bgmusicimg = document.getElementById('soundimg')
 
 
-//placeholder will get button names from pet class method
-const intbtnname = {
-  name: ["heal", "eat", "sleep", "play"],
-  url: [
-    "imgs/pokecentre.webp",
-    "imgs/berry.png",
-    "imgs/zzz.png",
-    "imgs/Pokemon1.png",
-  ],
-};
-const menubtnname = {
-  name: ["start"],
-};
-const selectionbtn = {
-  name: ['pikachu', 'squirtle', 'charmander', 'bulbasaur'],
-  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png','./imgs/Pokemon4.png']
-}
+// Add event listner to mute button
+bgmusicimg.addEventListener('click', function() {
+  if (musicplaying == true){
+    bgmusic.pause()
+    musicplaying = false;
+    bgmusicimg.src = './imgs/mute.png'
+  } else {
+    bgmusic.play()
+    musicplaying = true;
+    bgmusicimg.src = './imgs/sound.png'
+  }
+})
 
-const newDiv = document.createElement("div");
-const screenDiv = document.createElement("div");
-screenDiv.setAttribute("id", "div-screen");
 
+
+
+// ================================
+// ----- GAMEPLAY INSTRUCTIONS
+// ================================
+// WILL RUN VARIOUS FUNCTIONS DEPENDING 
+// ON WHICH SCREEN IS SELECTED
+ 
 //create div based on the array value
 function creatediv(diplayedID) {
+
   let diplayedDivID = diplayedID
 
   newDiv.textContent = "";
   newDiv.classList.add(divname.name[diplayedDivID]);
   mainDiv.appendChild(newDiv);
-  // create btn's of pet displayed
+
+  // CREATE COMPONENTS DEPENDING ON WHICH SCREEN IS SELECTED
+  // 0 = MAIN   1 = GAME SCREEN   2 = SELECTIONS CREEN
   if (diplayedDivID == 0) {
     createbtns(0);
   } else if (diplayedDivID == 1) {
@@ -157,28 +208,40 @@ function creatediv(diplayedID) {
     createbtns(2);
   }
 }
-//create div
-creatediv(0);
 
 
 
-//create buttons function - loops through the class to create btns for pet interactions
+
+
+
+// ================================
+// ----- CREATE THE COMPONENTS
+// ================================
+// DEPENDS ON WHICH SCREEN IS SELECTED
+
 function createbtns(suppliedID) {
 
   let diplayedDivID = suppliedID;
 
-   // MAIN MENU
+  // MAIN MENU
   if (diplayedDivID == 0) {
+
+      // Load background image for main screen
+      const screen = document.querySelector(".screen");
+      screen.style.backgroundImage = "url(imgs/bg-Main.jpg)";
+      screen.style.backgroundSize = "cover";
+      screen.style.backgroundRepeat = "no-repeat";
+
+    // Create start button
     for (i = 0; i < menubtnname.name.length; i++) {
       const newBtn = document.createElement("button");
       newBtn.textContent = `${menubtnname.name[i]}`;
       newBtn.classList.add(divname.name[0]);
       newDiv.appendChild(newBtn);
+
+      // Change to the selection screen if the start button is clicked
       newBtn.addEventListener("click", function (event) {
-        console.log(event.target.textContent);
         if (event.target.textContent == "start") {
-          diplayedDivID = 2;
-          console.log(diplayedDivID);
           creatediv(2);
           click.play();
         }
@@ -189,36 +252,46 @@ function createbtns(suppliedID) {
 
   // GAME PLAY SCREEN
   else if (diplayedDivID == 1) {
-    // Create container for buttons
+
+    // Create container for stat buttons
     const btnContainer = document.createElement("div");
     btnContainer.setAttribute("id", "btn-flex-container");
+
+    // Loop through the stats to create buttons for them
     for (i = 0; i < intbtnname.name.length; i++) {
       const newBtn = document.createElement("img");
       newBtn.textContent = `${intbtnname.name[i]}`;
       newBtn.src = intbtnname.url[i];
       newBtn.classList.add(divname.name[0]);
       newBtn.setAttribute("id", `action-btn-${i + 1}`);
+
+      // Append the button to the button container 
       btnContainer.appendChild(newBtn);
+
+      // Add event listener to buttons 
       newBtn.addEventListener("click", function (event) {
-        console.log(event.target.textContent);
+
         if (event.target.textContent == "heal") {
           newPet.heal();
-          updateStatsBars(newPet);
+          updateStatsBars(newPet);  // Update the stats bar 
           actionBackground("heal"); // Background change
-          healsound.pause();
-          healsound.play();
+          healsound.pause();        
+          healsound.play();         // Play the heal sound
+
         } else if (event.target.textContent == "eat") {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
           click.pause();
           click.play();
+
         } else if (event.target.textContent == "play") {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
           click.pause();
           click.play();
+
         } else if (event.target.textContent == "sleep") {
           newPet.sleep();
           updateStatsBars(newPet);
@@ -228,41 +301,25 @@ function createbtns(suppliedID) {
         }
       });
 
-      // Load background image on start //
+
+      // Load background image for game play screen
       const screen = document.querySelector(".screen");
       screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
       screen.style.backgroundSize = "cover";
       screen.style.backgroundRepeat = "no-repeat";
 
-      // Function for swapping backgrounds //
-      function actionBackground(action) {
-        screen.style.backgroundSize = "cover";
-        screen.style.backgroundRepeat = "no-repeat";
 
-        if (action == "heal") {
-          screen.style.backgroundImage = "url(imgs/BgHeal.png)";
-        } else if (action == "eat") {
-          screen.style.backgroundImage = "url(imgs/BgEat.jpg)";
-        } else if (action == "play") {
-          screen.style.backgroundImage = "url(imgs/BgPlay.jpg)";
-        } else if (action == "sleep") {
-          screen.style.backgroundImage = "url(imgs/BgSleep.jpg)";
-        } else {
-          screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
-        }
-
-        setTimeout(() => {
-          screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
-        }, 2000);
-      }
-
-      // X, A, B, Y Buttons //
+      // Set up x y a b buttons
       let input = document.querySelector("body");
       const letterX = document.querySelector(".letterX");
       const letterA = document.querySelector(".letterA");
       const letterB = document.querySelector(".letterB");
       const letterY = document.querySelector(".letterY");
+
+      // Add event listener to buttons when keyboard pressed 
       input.addEventListener("keypress", (e) => {
+        
+        // When pressed => add animation => perform action => update stat bars => change background
         if (e.key === "x" || e.key === "X") {
           letterX.style.animation = "btnpressed 1s";
           setTimeout(() => {
@@ -271,7 +328,8 @@ function createbtns(suppliedID) {
           newPet.heal();
           updateStatsBars(newPet);
           actionBackground("heal"); // Background change
-        } else if (e.key === "a" || e.key === "A") {
+        } 
+        else if (e.key === "a" || e.key === "A") {
           letterA.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterA.style.animation = "none";
@@ -279,7 +337,8 @@ function createbtns(suppliedID) {
           newPet.eatBerry();
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
-        } else if (e.key === "b" || e.key === "B") {
+        } 
+        else if (e.key === "y" || e.key === "Y") {
           letterB.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterB.style.animation = "none";
@@ -287,7 +346,8 @@ function createbtns(suppliedID) {
           newPet.playGame();
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
-        } else if (e.key === "y" || e.key === "Y") {
+        } 
+        else if (e.key === "b" || e.key === "B") {
           letterY.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterY.style.animation = "none";
@@ -297,6 +357,9 @@ function createbtns(suppliedID) {
           actionBackground("sleep"); // Background change
         }
       });
+
+      // Add event listener to buttons when clicked  
+      // Perform action => update stats bars => change background
       letterX.addEventListener("click", () => {
         newPet.heal();
         updateStatsBars(newPet);
@@ -307,28 +370,41 @@ function createbtns(suppliedID) {
         updateStatsBars(newPet);
         actionBackground("eat"); // Background change
       });
-      letterB.addEventListener("click", () => {
+      letterY.addEventListener("click", () => {
         newPet.playGame();
         updateStatsBars(newPet);
         actionBackground("play"); // Background change
       });
-      letterY.addEventListener("click", (e) => {
+      letterB.addEventListener("click", (e) => {
         newPet.sleep();
         updateStatsBars(newPet);
         actionBackground("sleep"); // Background change
       });
-      // X, A, B, Y Buttons //
     }
-    // Add the buttons to the screen div
+    // Add the components to the screen div
     screenDiv.appendChild(btnContainer);
   } 
 
+
+
   // SELECTION SCREEN
   else if (diplayedDivID == 2) {
+
+    // Load background image for main screen
+    const screen = document.querySelector(".screen");
+    screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+    screen.style.backgroundSize = "cover";
+    screen.style.backgroundRepeat = "no-repeat";
+
+    // Create a div to store the components
     const selectionDiv = document.createElement('div')
     selectionDiv.classList.add('selectiondiv');
-    mainDiv.appendChild(selectionDiv);
+
+
+    // Loop over the available pokemon
     for (l = 0; l < selectionbtn.name.length; l++) {   
+
+      // Create an image for each pokemon => Add the image to the selection screen div
       const selectionbtnimg = document.createElement("img");   
       selectionbtnimg.textContent = `${selectionbtn.name[l]}`;
       selectionbtnimg.classList.add(selectionbtn.name[l]);
@@ -336,6 +412,7 @@ function createbtns(suppliedID) {
       selectionbtnimg.src = selectionbtn.url[l];
       selectionDiv.appendChild(selectionbtnimg);
 
+      // Add an event listener to each pokemon
       selectionbtnimg.addEventListener("click", function (event) {
         console.log(event.target.textContent);
         if (event.target.textContent == "charmander") {
@@ -347,19 +424,67 @@ function createbtns(suppliedID) {
         }else if (event.target.textContent == 'bulbasaur' ) {
           chosenPet = event.target.textContent;
         }
+
+        // Turn off the pokemon logo => add clock and timer
         document.getElementById("mainlogo").style.display = "none";
         document.getElementById("timer").style.display = "block";
         document.getElementById("age").style.display = "block";
+
+        // Remove the selection screen once a pokemon is chosen
         mainDiv.removeChild(selectionDiv);
+
+        // Run the function to change to gamescreen
         creatediv(1)
+        // Start the timing function
         needsTrigger()
       })
   }
+  // Append the selection screen div to the mainDiv
+    mainDiv.appendChild(selectionDiv);
 }
 }
 
+
+
+
+
+
 // ================================
-// ----- Create Property Bars
+// ----- SWAP BACKGROUND
+// ================================
+
+function actionBackground(action) {
+
+  const screen = document.querySelector(".screen");
+  screen.style.backgroundSize = "cover";
+  screen.style.backgroundRepeat = "no-repeat";
+
+  // Switch depending on which background is needed
+  if (action == "heal") {
+    screen.style.backgroundImage = "url(imgs/BgHeal.png)";
+  } else if (action == "eat") {
+    screen.style.backgroundImage = "url(imgs/BgEat.jpg)";
+  } else if (action == "play") {
+    screen.style.backgroundImage = "url(imgs/BgPlay.jpg)";
+  } else if (action == "sleep") {
+    screen.style.backgroundImage = "url(imgs/BgSleep.jpg)";
+  } else {
+    screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+  }
+
+  // Set time limit for the background image 
+  setTimeout(() => {
+    screen.style.backgroundImage = "url(imgs/PokemonBackground.jpg)";
+  }, 2000);
+}
+
+
+
+
+
+// ================================
+// ----- CREATE STAT BARS
+// ================================
 
 function createStatsBars(pet) {
   // Create array which hold property names , values , colours for styling
@@ -409,8 +534,12 @@ function createStatsBars(pet) {
   screenDiv.appendChild(statsAllDiv);
 }
 
+
+
+
 // ================================
-// ----- Update Stats bars
+// ----- UPDATE STAT BARS
+// ================================
 
 function updateStatsBars(pet) {
   // Create array to store values
@@ -435,25 +564,37 @@ function updateStatsBars(pet) {
 
 
 
-//timing stuff
-// create clock function
+
+
+
+// ================================
+// ----- TIMING FUNCTION
+// ================================
+
 function createClock() {
+
+  // Create the clock
   const clock = document.createElement("div");
   clock.setAttribute("class", "clock");
   clock.setAttribute("id", `clock`);
-  // clock.innerText = `${date}`
   mainDiv.appendChild(clock);
 }
-// trigger create clock function
+
+// Create clock component
 createClock();
-// get current time and update clock
+
+
+// Create current time
 function currentTime() {
+
+  // Create variables
   let date = new Date();
   let hh = date.getHours();
   let mm = date.getMinutes();
   let ss = date.getSeconds();
   let session = "AM";
 
+  // Set format for time 
   if (hh == 0) {
     hh = 12;
   }
@@ -473,16 +614,22 @@ function currentTime() {
     currentTime();
   }, 1000);
 }
-// display current time
+
+// Display the current time
 currentTime();
 
-// create clock function
+// Create timer function
 function createTimer() {
   const timer = document.createElement("div");
   timer.setAttribute("class", "timer");
   timer.setAttribute("id", `timer`);
   mainDiv.appendChild(timer);
 }
+
+// Create timer
+createTimer();
+
+// Create age function
 function createAge() {
   const age = document.createElement("div");
   age.setAttribute("class", "age");
@@ -490,58 +637,78 @@ function createAge() {
   age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
   mainDiv.appendChild(age);
 }
+
+// Create age
 createAge();
+
+// Create function to update age 
 function updateage() {
   const age = document.getElementById("age");
   age.textContent = `Age: ${newPet.age.toFixed(1)} Days`;
 }
-createTimer();
 
-// Set and Start timer
+
+
+// ----- TIMER -----
+// Set a limit for the timer
 const timer = document.getElementById("timer");
 let feedtimer = 00 + ":" + 5;
 timer.innerHTML = feedtimer;
 
-//takes stats off pet when hungry and starving
+
+// ----------- TRIGGER FUNCTION --------
+// Takes stats off pet when hungry and starving
 function needsTrigger() {
+  // Start timer
   startTimer();
+
+  // Decrease sleepiness 
   setTimeout(() => {
-    newPet.sleepiness = Math.max(newPet.sleepiness - 10, 0);
+    newPet.sleepiness = Math.max(newPet.sleepiness - 5, 0);
   }, 10000);
-  newPet.hunger = Math.max(newPet.hunger - 10, 0);
+
+  // Take off hunger
+  newPet.hunger = Math.max(newPet.hunger - 5, 0);
+
+    // Take off happiness
+  newPet.happiness = Math.max(newPet.happiness - 10, 0);
+
+  // Add to age
   setTimeout(() => {
     newPet.age = newPet.age + 0.1;
-    // console.log(newPet.age);
     updateage();
     updateStatsBars(newPet);
   }, 1000);
+
+  // Decrease happiness if pet is hungry
   if (newPet.hunger < 50) {
-    // console.log("hungry");
-    // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
   }
+
+  // Decrease happiness if pet is sick => Make pet shake 
   if (newPet.health <= 20) {
-    // console.log("hurting");
-    // console.log(newPet.checkStats())
     newPet.happiness = Math.max(newPet.happiness - 10, 0);
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "hurting 2s infinite";
-    // console.log(charmander.checkStats())
-  } else if (newPet.health > 21) {
+  } 
+  // Take off shaking if pet is better
+  else if (newPet.health > 21) {
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "none";
   }
+
+  // Decrease happiness if pet is hungry => Make pet shake
   if (newPet.hunger <= 5) {
-    // console.log(newPet.checkStats())
-    newPet.health = Math.max(newPet.health - 5, 0);
-    // variable for pet image animations
+    newPet.health = Math.max(newPet.health - 20, 0);
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "shake 10s";
   }
+  // Kill pet if health is zero
   if (newPet.health <= 0) {
     checkDead();
   }
 }
+
 
 //start timer function
 function startTimer() {
@@ -562,6 +729,7 @@ function startTimer() {
   // console.log(m)
   setTimeout(startTimer, 1000);
 }
+
 // function for intergering the minutes seconds
 function checkSecond(sec) {
   if (sec < 10 && sec >= 0) {
@@ -576,12 +744,13 @@ function checkSecond(sec) {
 
 
 
+
 // ================================
-// ----- Create Image Div
+// ----- CREATE IMAGES
+// ================================
 
 
-// Need to create these OUTSIDE of the function
-// Create mood for health hunger sleep happiness
+  // Create mood for health hunger sleep happiness
   let moodImageHeal = document.createElement("img");
   moodImageHeal.setAttribute("id", "image-mood-heal");
   moodImageHeal.setAttribute("class", "image-mood");
@@ -604,7 +773,7 @@ function checkSecond(sec) {
   moodImageHappy.src = `./imgs/hearts.png`;
 
 
-
+// ----------- FUNCTION TO CREATE IMAGE DIV
 function createImage() {
 
   // Create Div to hold pet and mood 
@@ -627,7 +796,7 @@ function createImage() {
 
 
 
-// Update Image
+// -----------  FUNCTION TO UPDATE IMAGE DIV
 function updateImage(newPet){
 
   // Get the IDs of the images and divs needed 
@@ -671,11 +840,10 @@ function updateImage(newPet){
 
 
 
-// ****** IMPORTANT ********
-// Append the image - buttons - stat bars to the main div
-mainDiv.appendChild(screenDiv);
 
-// Check if pet is dead //
+// ================================
+// ----- DEATH OF PET
+// ================================
 
 function checkDead() {
   if (newPet.health <= 0) {
@@ -697,24 +865,58 @@ function checkDead() {
   }
 }
 
-// Check if pet is dead //
 
-// audio files
-var click = new Audio("sounds/button-click.mp3");
-var healsound = new Audio("sounds/poke-recovery.mp3");
-var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
-bgmusic.play()
-// click.play()
-let musicplaying = true
-let bgmusicimg = document.getElementById('soundimg')
-bgmusicimg.addEventListener('click', function() {
-  if (musicplaying == true){
-    bgmusic.pause()
-    musicplaying = false;
-    bgmusicimg.src = './imgs/mute.png'
-  } else {
-    bgmusic.play()
-    musicplaying = true;
-    bgmusicimg.src = './imgs/sound.png'
+
+
+// ================================================================
+// ================================================================
+// *********  IMPORTANT ****************
+// Append the image - buttons - stat bars to the main div
+
+mainDiv.appendChild(screenDiv);
+
+
+
+// ================================
+// ----- GAME PLAY
+// ================================
+creatediv(0);
+
+
+
+// ================================
+// ----- INSTRUCTIONS BUTTON
+// ================================
+
+
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btnInstructions = document.getElementById("btn-instructions");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btnInstructions.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
-})
+} 
+
+
+
+
+
