@@ -9,29 +9,29 @@ class Pet {
     this.mood = mood;
     this.health = 50;
     this.hunger = 50;
-    this.sleepiness = 100;
-    this.happiness = 100;
+    this.sleepiness = 80;
+    this.happiness = 80;
     this.age = 0;
   }
   playGame() {
-    this.health = Math.max(this.health - 5, 0);
-    this.hunger = Math.max(this.hunger - 5, 0);
-    this.sleepiness = Math.max(this.sleepiness - 5, 0);
+    this.health = Math.max(this.health - 10, 0);
+    this.hunger = Math.max(this.hunger - 10, 0);
+    this.sleepiness = Math.max(this.sleepiness - 10, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
     return this;
   }
   eatBerry() {
     this.hunger = Math.min(this.hunger + 10, 100);
-    this.sleepiness = Math.max(this.sleepiness - 5, 0);
+    this.sleepiness = Math.max(this.sleepiness - 10, 0);
     this.happiness = Math.min(this.happiness + 5, 100);
     return this;
   }
   heal() {
-    this.health = Math.min(this.health + 20, 100);
+    this.health = Math.min(this.health + 30, 100);
     return this;
   }
   sleep() {
-    this.sleepiness = Math.min(this.sleepiness + 30, 100);
+    this.sleepiness = Math.min(this.sleepiness + 50, 100);
     return this;
   }
   checkStats() {
@@ -642,7 +642,7 @@ function updateage() {
 // ----- TIMER -----
 // Set a limit for the timer
 const timer = document.getElementById("timer");
-let feedtimer = 00 + ":" + 10;
+let feedtimer = 00 + ":" + 5;
 timer.innerHTML = feedtimer;
 
 
@@ -654,11 +654,11 @@ function needsTrigger() {
 
   // Decrease sleepiness 
   setTimeout(() => {
-    newPet.sleepiness = Math.max(newPet.sleepiness - 10, 0);
+    newPet.sleepiness = Math.max(newPet.sleepiness - 5, 0);
   }, 10000);
 
   // Take off huner
-  newPet.hunger = Math.max(newPet.hunger - 10, 0);
+  newPet.hunger = Math.max(newPet.hunger - 5, 0);
 
   // Add to age
   setTimeout(() => {
@@ -683,10 +683,10 @@ function needsTrigger() {
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "none";
   }
+
   // Decrease happiness if pet is hungry => Make pet shake
   if (newPet.hunger <= 5) {
-    newPet.health = Math.max(newPet.health - 5, 0);
-    // variable for pet image animations
+    newPet.health = Math.max(newPet.health - 20, 0);
     const imageID = document.getElementById("image-ID");
     imageID.style.animation = "shake 10s";
   }
