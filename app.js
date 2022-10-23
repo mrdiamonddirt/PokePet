@@ -329,7 +329,7 @@ function createbtns(suppliedID) {
           updateStatsBars(newPet);
           actionBackground("eat"); // Background change
         } 
-        else if (e.key === "b" || e.key === "B") {
+        else if (e.key === "y" || e.key === "Y") {
           letterB.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterB.style.animation = "none";
@@ -338,7 +338,7 @@ function createbtns(suppliedID) {
           updateStatsBars(newPet);
           actionBackground("play"); // Background change
         } 
-        else if (e.key === "y" || e.key === "Y") {
+        else if (e.key === "b" || e.key === "B") {
           letterY.style.animation = "btnpressed 1s";
           setTimeout(() => {
             letterY.style.animation = "none";
@@ -361,12 +361,12 @@ function createbtns(suppliedID) {
         updateStatsBars(newPet);
         actionBackground("eat"); // Background change
       });
-      letterB.addEventListener("click", () => {
+      letterY.addEventListener("click", () => {
         newPet.playGame();
         updateStatsBars(newPet);
         actionBackground("play"); // Background change
       });
-      letterY.addEventListener("click", (e) => {
+      letterB.addEventListener("click", (e) => {
         newPet.sleep();
         updateStatsBars(newPet);
         actionBackground("sleep"); // Background change
@@ -659,7 +659,7 @@ function needsTrigger() {
   }, 10000);
 
   // Take off hunger
-  newPet.hunger = Math.max(newPet.hunger - 10, 0);
+  newPet.hunger = Math.max(newPet.hunger - 5, 0);
 
     // Take off happiness
   newPet.happiness = Math.max(newPet.happiness - 10, 0);
