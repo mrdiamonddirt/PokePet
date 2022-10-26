@@ -87,7 +87,7 @@ const divname = {
 const intbtnname = {
   name: ["heal", "eat", "sleep", "play"],
   url: [
-    "imgs/pokecentre.webp",
+    "imgs/pokecentre.png",
     "imgs/berry.png",
     "imgs/zzz.png",
     "imgs/Pokemon1.png",
