@@ -741,12 +741,15 @@ transform: scale(0.1) translate(150px,1200px);
 
 }
 @media screen and (orientation:portrait) {
-  html{
+  body{
     background: url(./imgs/Gameboy.svg);
     
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: calc(100% - 100px);;
+    background-position: left;
+    background-size: 100vw;
+    background-color: #0091cf;
+    /* background-size: calc(100% - 100px); */
   }
   .background{
     display: none;
@@ -772,8 +775,18 @@ transform: scale(0.1) translate(150px,1200px);
     display: none;
   }
   .frame, .frame2{
-    transform: translate(0px, -250px) scale(0.5);
+    transform: translate(0px, calc(100vw - 550px)) scale(0.8);
     /* background-color: #0091cf; */
-    width: calc(80vw - 100px);
+    width: 100vw;
+  }
+  .curves{
+    display: none;
+  }
+  .console{
+    /* display: none; */
+    scale: 0.5;
   }
   }
+  /* media queries for phone to make compatible with phones */
+  
+
