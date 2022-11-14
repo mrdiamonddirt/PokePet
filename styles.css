@@ -736,3 +736,44 @@ position: fixed;
 right: 0;
 transform: scale(0.1) translate(150px,1200px);
 }
+
+@media screen and (orientation:landscape) { 
+
+}
+@media screen and (orientation:portrait) {
+  html{
+    background: url(./imgs/Gameboy.svg);
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: calc(100% - 100px);;
+  }
+  .background{
+    display: none;
+    
+
+  }
+  .bg-blue{
+    display: none;
+  }
+  .bg-red{
+    display: none;
+  }
+  .circle{
+    display: none;
+  }
+  .controller-left{
+    display: none;
+  }
+  .controller-right{
+    display: none;
+  }
+  .switch{
+    display: none;
+  }
+  .frame, .frame2{
+    transform: translate(0px, -250px) scale(0.5);
+    /* background-color: #0091cf; */
+    width: calc(80vw - 100px);
+  }
+  }

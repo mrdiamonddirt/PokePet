@@ -147,20 +147,18 @@ var click = new Audio("sounds/button-click.mp3");
 var healsound = new Audio("sounds/poke-recovery.mp3");
 var bgmusic = new Audio("sounds/pallet-Town8bit.mp3");
 
-//  Start background music (may not work in browsers)
-bgmusic.play();
-bgmusic.loop = true;
 
 // Automatically start music in browsers
 window.addEventListener("DOMContentLoaded", event => {
   const audio = bgmusic
   audio.volume = 0.2;
   audio.play();
+  bgmusic.pause();
   audio.loop = true;
 });
 
 // Set up mute button
-let musicplaying = true
+let musicplaying = false
 let bgmusicimg = document.getElementById('soundimg')
 
 
