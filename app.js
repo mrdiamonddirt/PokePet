@@ -66,8 +66,28 @@ class Pikachu extends Pet {
     super(name, mood);
   }
 }
+let pokedata = {};
+// get api data from pokeapi fetch(`https://pokeapi.co/api/v2/pokemon/${number}
+  async function getpokemon(number) {
+    await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log(data.name);
+        // console.log(response)
+        console.log(data.sprites.front_default);
+        // pass pokemon data to global variable
+        pokemonnum = number
+        pokemonImage = data.sprites.front_default;
+        // pass data out of function to be used in other functions
+        pokedata = data;
+        console.log(`pokemon data: ${pokedata}`);
+        console.log(pokemonnum)
+      });
+  }
 
-
+  getpokemon(25);
+  
 // ================================
 // ----- VARIABLES
 // ================================
@@ -102,7 +122,7 @@ const menubtnname = {
 // Set selction pokemon images 
 const selectionbtn = {
   name: ['pikachu', 'squirtle', 'charmander', 'bulbasaur'],
-  url: ['./imgs/Pokemon1.png','./imgs/Pokemon2.png','./imgs/Pokemon3.png','./imgs/Pokemon4.png']
+  url: [`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif`,`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif`,`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/4.gif`,`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/1.gif`]
 }
 
 // Create a new div element 
